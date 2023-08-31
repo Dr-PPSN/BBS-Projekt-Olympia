@@ -1,0 +1,23 @@
+
+Sportart
+--------
+ID
+BEZEICHNUNG
+
+
+Athlet
+------
+ID
+VORNAME
+NACHNAME
+GESCHLECHT (m/w)
+LAND
+
+
+Athlet_Sportart
+-------------------
+ID
+ID_ATHLET
+ID_SPORTART
+ERGEBNIS - double
+MEDAILLE (gold, silber, bronze)
