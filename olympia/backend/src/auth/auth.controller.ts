@@ -5,7 +5,7 @@ import { Api } from './auth.constant';
 
 @Controller(Api.TITEL)
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   // UseGuards hängt user an request an
   @UseGuards(LocalAuthGuard)
