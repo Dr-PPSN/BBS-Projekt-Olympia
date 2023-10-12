@@ -1,0 +1,30 @@
+(Ziel dieses Softwareprojektes war es, den Softwarestack von Modulen zu einem Spack Environment zu migrieren, diesen CI/CD-fähig zu machen und zu erarbeiten, wie man den Stack auch als Container anbieten kann.)
+
+
+# Einleitung
+
+Das primäre Ziel dieses Softwarepojektes war es, den Softwarestack der ParCIO-Arbeitsgruppe auf dem FIN-Cluster in einem Spack Environment zu verwalten. Weiterhin haben wir uns damit beschäftigt, wie dieses Environment mit CI/CD automatisch gebaut werden kann und
+inwiefern es möglich ist, den Stack auch für lokale Benutzung als Container anzubieten.
+
+[Vielleicht das hier noch anhängen, um in die Arbeitsweise einzuleiten]
+Dazu haben wir uns in Spack Environments, Container, Mirror und Gitlab CI eingearbeitet und außerdem probiert, einige Paketfehler zu beheben, was aber im Gesamten nicht zielführend war, da mit der nächsten Compiler oder Spack Version sowieso wieder Packetfehler auftreten werden.
+Diese zu erkennen wurde aber durch Nutzung der Gitlab CI deutlich erleichtert.
+
+
+
+# Ausgangssituation
+
+Der Softwarestack der ParCIO-Arbeitsgruppe wird derzeit über Module von Spack verwaltet. Dies ist aber umständlich und nutzt die Vorteile von Spack nur bedingt aus. Weiterhin werden die Packete einzeln installiert und der gesamte Prozess ist etwas unübersichtlich.
+[code einfügen wie gebaut wird und so weiter...]
+
+
+# Grundlegender Aufbau von Environments
+
+Ein Spack Environment wird durch eine spack.yaml beschrieben. Diese beinhaltet im einfachsten Fall eine Liste von Packeten (keyword specs), die das Environment enthalten soll. Dazu sollte man konfigurieren, wie die Packete gebaut werden sollen (keyword packages) und
+wie die Specs konkretisiert werden sollen (default ist ...). Der Großteil dieser Config Files kann auch ausgelagert werden, sodass man zum Updaten des Stacks nur eine übersichtlichere Datei verändern muss.
+Die Vorteile von Environments gegenüber dem Bauen und Laden von einzelnen Spack Modulen sind, dass Environments konsistenter sind, mehrere Packete auf einmal gebaut werden können, und das gesamte Environment auf einmal geladen werden kann.
+
+Ablauf von Environment erstellen
+- erfolgt in zwei Schritten:
+    - spack create env spack.yaml  -> erstellt ein Environment aus der spack.yaml
+    - spack install                -> konkretisiert und installiert die Packete
