@@ -1,1 +1,18 @@
-<p>login works!</p>
+<form [formGroup]="formular" class="login-container">
+  <input
+    class="email"
+    [formControlName]="Formular.Email.NAME"
+    [type]="Formular.Email.TYPE"
+    [placeholder]="Formular.Email.PLACEHOLDER">
+  <input 
+    class="password"
+    [formControlName]="Formular.Password.NAME"
+    [type]="Formular.Password.TYPE"
+    [placeholder]="Formular.Password.PLACEHOLDER">
+
+  <div class="container">
+    <a>Passwort vergessen</a>
+    <div class="spacer"></div>
+    <button class="login" (click)="login()">Anmelden</button>
+  </div>
+</form>
