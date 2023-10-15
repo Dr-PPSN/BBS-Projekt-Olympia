@@ -13,5 +13,16 @@
 		"parser": {
 			"unsafeParameterDecoratorsEnabled": true
 		}
+	},
+	"files": {
+		"ignore": [
+			".angular",
+			".vscode",
+			"dist",
+			"node_modules",
+			"tsconfig.json",
+			"tsconfig.app.json",
+			"tslint.json"
+		]
 	}
 }
