@@ -13,9 +13,9 @@ import { HttpService } from "./service/http.service";
 	declarations: [AppComponent, LandingPageComponent, LoginComponent],
 	imports: [
 		BrowserModule,
+		HttpClientModule,
 		AppRoutingModule,
 		ReactiveFormsModule,
-		HttpClientModule,
 	],
 	providers: [HttpService],
 	bootstrap: [AppComponent],
