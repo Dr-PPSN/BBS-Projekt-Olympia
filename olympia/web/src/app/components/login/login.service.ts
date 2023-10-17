@@ -19,4 +19,12 @@ export class LoginService {
 		console.error(error);
 		return throwError(error);
 	}
+
+	test(token: string): Observable<any> {
+		return this.http
+			.get<any>("http://localhost:4200/api/test-user", {
+				headers: { Authorization: `Bearer ${token}` },
+			})
+			.pipe(catchError(this.handleError));
+	}
 }
