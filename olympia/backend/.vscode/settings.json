@@ -4,7 +4,7 @@
 		"activityBar.background": "#530E4D",
 		"titleBar.activeBackground": "#74146B",
 		"titleBar.activeForeground": "#FEFCFE",
-    "titleBar.inactiveBackground": "#4f2c4b",
-    "titleBar.inactiveForeground": "#FEFCFE"
+		"titleBar.inactiveBackground": "#4f2c4b",
+		"titleBar.inactiveForeground": "#FEFCFE"
 	}
 }

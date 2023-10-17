@@ -9,7 +9,6 @@ import { jwtConstants } from "credentials";
 import { Request } from "express";
 
 // Guard für alle Routen, die Authentifizierung benötigen
-
 @Injectable()
 export class AuthGuard implements CanActivate {
 	constructor(private jwtService: JwtService) {}
@@ -24,7 +23,6 @@ export class AuthGuard implements CanActivate {
 			const payload = await this.jwtService.verifyAsync(token, {
 				secret: jwtConstants.secret,
 			});
-			// 💡 user wird an request angehängt
 			request.user = payload;
 		} catch {
 			throw new UnauthorizedException();
