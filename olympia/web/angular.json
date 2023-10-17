@@ -62,13 +62,13 @@
 							"vendorChunk": true,
 							"extractLicenses": false,
 							"sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
-                }
-              ]
+							"namedChunks": true,
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.development.ts"
+								}
+							]
 						}
 					},
 					"defaultConfiguration": "production"
@@ -80,7 +80,8 @@
 							"browserTarget": "web:build:production"
 						},
 						"development": {
-							"browserTarget": "web:build:development"
+							"browserTarget": "web:build:development",
+							"proxyConfig": "src/proxy.conf.json"
 						}
 					},
 					"defaultConfiguration": "development"
