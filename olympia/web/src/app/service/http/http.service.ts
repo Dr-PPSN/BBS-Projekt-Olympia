@@ -20,11 +20,12 @@ export class HttpService {
 		});
 	}
 
-	// biome-ignore lint: muss any sein
 	postData(
 		endpoint: string,
+		// biome-ignore lint: muss any sein
 		data: any,
 		headers?: HttpHeaders,
+		// biome-ignore lint: muss any sein
 	): Observable<any> {
 		const postHeaders = headers ? headers : this.getDefaultHeader();
 		return this.http.post(

@@ -1,25 +1,24 @@
 import { Component } from "@angular/core";
 import {
-	FormGroup,
 	FormControl,
-	Validators,
+	FormGroup,
 	FormGroupDirective,
 	NgForm,
+	Validators,
 } from "@angular/forms";
-import { Formular } from "./login.constant";
-import { LoginService } from "./login.service";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { AuthService } from "../../service/auth/auth.service";
+import { Formular } from "./login.constant";
+import { LoginService } from "./login.service";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(
 		control: FormControl | null,
 		form: FormGroupDirective | NgForm | null,
 	): boolean {
-		const isSubmitted = form && form.submitted;
+		const isSubmitted = form?.submitted;
 		return !!(
-			control &&
-			control.invalid &&
+			control?.invalid &&
 			(control.dirty || control.touched || isSubmitted)
 		);
 	}

@@ -9,7 +9,7 @@ import { HttpService } from "../../service/http/http.service";
 export class LoginService {
 	constructor(private httpService: HttpService) {}
 
-	login(email: string, password: string): Observable<any> {
+	login(email: string, password: string): Observable<{ access_token: string }> {
 		const sendData = {
 			email,
 			password,
@@ -19,12 +19,13 @@ export class LoginService {
 			.pipe(catchError(this.handleError));
 	}
 
-	test(): Observable<any> {
+	test(): Observable<string> {
 		return this.httpService
 			.getData("test-user")
 			.pipe(catchError(this.handleError));
 	}
 
+	// biome-ignore lint: muss any sein
 	private handleError(error: any) {
 		console.error(error);
 		return throwError(error);
