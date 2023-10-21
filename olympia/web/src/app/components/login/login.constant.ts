@@ -13,3 +13,8 @@ export namespace Formular {
 		export const PLACEHOLDER = "Passwort";
 	}
 }
+
+export namespace Api {
+	export const LOGIN = "auth/login";
+	export const TEST = "test-user";
+}
