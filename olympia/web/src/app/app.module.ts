@@ -19,24 +19,24 @@ import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: getToken,
-        allowedDomains: ["localhost:4200"],
-      }
-    }),
+		JwtModule.forRoot({
+			config: {
+				tokenGetter: getToken,
+				allowedDomains: ["localhost:4200"],
+			},
+		}),
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		MatInputModule,
 	],
 	providers: [
-		HttpService, 
+		HttpService,
 		AuthService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    },
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: JwtInterceptor,
+			multi: true,
+		},
 	],
 	bootstrap: [AppComponent],
 })
