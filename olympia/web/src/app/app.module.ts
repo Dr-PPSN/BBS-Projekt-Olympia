@@ -26,6 +26,8 @@ import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
       }
     }),
 		ReactiveFormsModule,
+		BrowserAnimationsModule,
+		MatInputModule,
 	],
 	providers: [
 		HttpService, 

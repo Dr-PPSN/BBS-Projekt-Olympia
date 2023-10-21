@@ -1,14 +1,26 @@
 <form [formGroup]="formular" class="login-container">
-  <input
-    class="email"
-    [formControlName]="Formular.Email.NAME"
-    [type]="Formular.Email.TYPE"
-    [placeholder]="Formular.Email.PLACEHOLDER">
-  <input 
-    class="password"
-    [formControlName]="Formular.Password.NAME"
-    [type]="Formular.Password.TYPE"
-    [placeholder]="Formular.Password.PLACEHOLDER">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput [formControlName]="Formular.Email.NAME" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="formular.get('email')?.hasError('email') && !formular.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="formular.get('email')?.hasError('required')">
+      Email is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Passwort</mat-label>
+    <input type="password" matInput [formControlName]="Formular.Password.NAME" [errorStateMatcher]="matcher">
+    <!-- <mat-error *ngIf="formular.get('email')?.hasError('email') && !formular.hasError('required')">
+      Please enter a valid email address
+    </mat-error> -->
+    <mat-error *ngIf="formular.get('password')?.hasError('required')">
+      Password is required
+    </mat-error>
+  </mat-form-field>
 
   <div class="container">
     <a>Passwort vergessen</a>

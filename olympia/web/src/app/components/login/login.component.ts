@@ -1,8 +1,30 @@
 import { Component } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import {
+	FormGroup,
+	FormControl,
+	Validators,
+	FormGroupDirective,
+	NgForm,
+} from "@angular/forms";
 import { Formular } from "./login.constant";
 import { LoginService } from "./login.service";
+import { ErrorStateMatcher } from "@angular/material/core";
 import { AuthService } from "../../service/auth.service";
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+	isErrorState(
+		control: FormControl | null,
+		form: FormGroupDirective | NgForm | null,
+	): boolean {
+		const isSubmitted = form && form.submitted;
+		return !!(
+			control &&
+			control.invalid &&
+			(control.dirty || control.touched || isSubmitted)
+		);
+	}
+}
+
 @Component({
 	selector: "app-login",
 	templateUrl: "./login.component.html",
@@ -16,10 +38,11 @@ export class LoginComponent {
 
 	public Formular = Formular;
 
+	matcher = new MyErrorStateMatcher();
 
-	formular = new FormGroup({
-		email: new FormControl(""),
-		password: new FormControl(""),
+	public formular = new FormGroup({
+		email: new FormControl("", [Validators.required, Validators.email]),
+		password: new FormControl("", [Validators.required]),
 	});
 
 	login() {
