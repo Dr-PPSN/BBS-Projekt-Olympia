@@ -2,17 +2,20 @@ import { Component } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Formular } from "./login.constant";
 import { LoginService } from "./login.service";
+import { AuthService } from "../../service/auth.service";
 @Component({
 	selector: "app-login",
 	templateUrl: "./login.component.html",
 	styleUrls: ["./login.component.sass"],
 })
 export class LoginComponent {
-	constructor(private loginService: LoginService) {}
+	constructor(
+		private loginService: LoginService,
+		private authService: AuthService,
+	) {}
 
 	public Formular = Formular;
 
-	private jwtToken: string = "";
 
 	formular = new FormGroup({
 		email: new FormControl(""),
@@ -26,12 +29,12 @@ export class LoginComponent {
 			: "";
 
 		this.loginService.login(email, password).subscribe((data) => {
-			this.jwtToken = data.access_token;
+			this.authService.saveJwtToken(data.access_token);
 		});
 	}
 
 	test() {
-		this.loginService.test(this.jwtToken).subscribe((data) => {
+		this.loginService.test().subscribe((data) => {
 			console.log(data);
 		});
 	}

@@ -20,11 +20,9 @@ export class LoginService {
 		return throwError(error);
 	}
 
-	test(token: string): Observable<any> {
+	test(): Observable<any> {
 		return this.http
-			.get<any>("http://localhost:4200/api/test-user", {
-				headers: { Authorization: `Bearer ${token}` },
-			})
+			.get<any>("http://localhost:4200/api/test-user")
 			.pipe(catchError(this.handleError));
 	}
 }

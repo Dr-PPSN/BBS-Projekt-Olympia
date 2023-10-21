@@ -8,6 +8,7 @@ import { LandingPageComponent } from "./components/landing-page/landing-page.com
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { HttpService } from "./service/http.service";
+import { AuthService } from "./service/auth.service";
 
 @NgModule({
 	declarations: [AppComponent, LandingPageComponent, LoginComponent],
@@ -17,7 +18,7 @@ import { HttpService } from "./service/http.service";
 		AppRoutingModule,
 		ReactiveFormsModule,
 	],
-	providers: [HttpService],
+	providers: [HttpService, AuthService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
