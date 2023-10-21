@@ -8,8 +8,10 @@ import { LandingPageComponent } from "./components/landing-page/landing-page.com
 import { ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { HttpService } from "./service/http.service";
-import { AuthService } from "./service/auth.service";
-import { JwtInterceptor } from "@auth0/angular-jwt";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatInputModule } from "@angular/material/input";
+import { AuthService, getToken } from "./service/auth.service";
+import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
 
 @NgModule({
 	declarations: [AppComponent, LandingPageComponent, LoginComponent],
@@ -17,14 +19,23 @@ import { JwtInterceptor } from "@auth0/angular-jwt";
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: getToken,
+        allowedDomains: ["localhost:4200"],
+      }
+    }),
 		ReactiveFormsModule,
 	],
-	providers: [HttpService, AuthService, 
+	providers: [
+		HttpService, 
+		AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }],
+    },
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -3,6 +3,10 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 
 const JWT_KEY = "jwtToken";
 
+export function getToken(): string | null {
+  return localStorage.getItem(JWT_KEY);
+}
+
 @Injectable({
 	providedIn: "root",
 })
@@ -14,7 +18,7 @@ export class AuthService {
 	}
 
 	public getToken(): string | null {
-		return localStorage.getItem(JWT_KEY);
+		return getToken();
 	}
 
 	public jwtIsValid(): boolean {

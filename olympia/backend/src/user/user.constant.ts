@@ -3,7 +3,7 @@ import { User } from "./user.model";
 export const USERS: Array<User> = [
 	{
 		id: 1,
-		email: "john",
+		email: "john@j.com",
 		password: "changeme",
 		firstName: "John",
 		lastName: "Doe",
