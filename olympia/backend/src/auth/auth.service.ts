@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { User } from "../user/user.model";
 import { UserService } from "src/user/user.service";
+import { User } from "../user/user.model";
 
 @Injectable()
 export class AuthService {
@@ -10,6 +10,7 @@ export class AuthService {
 		private jwtService: JwtService,
 	) {}
 
+	// biome-ignore lint: muss any sein
 	async validateUser(email: string, pass: string): Promise<any> {
 		const user = await this.userService.findeUserMitEmail(email);
 		if (user?.password === pass) {

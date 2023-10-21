@@ -1,10 +1,10 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { LoggingMiddleware } from "./middleware/logging.middleware";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
+import { LoggingMiddleware } from "./middleware/logging.middleware";
 import { UserModule } from "./user/user.module";
 
 @Module({

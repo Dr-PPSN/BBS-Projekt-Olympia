@@ -6,12 +6,13 @@
 	"private": true,
 	"license": "UNLICENSED",
 	"scripts": {
-		"format": "biome format . --write",
 		"build": "nest build",
 		"start": "nest start",
 		"start:dev": "nest start --watch",
-		"start:debug": "nest start --debug --watch",
-		"start:prod": "node dist/main"
+		"start:prod": "node dist/main",
+		"format": "biome format . --write",
+		"lint_check": "biome check .",
+		"lint_fix": "biome check . --apply"
 	},
 	"dependencies": {
 		"@nestjs/common": "^10.0.0",

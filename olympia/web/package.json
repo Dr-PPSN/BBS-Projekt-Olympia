@@ -2,12 +2,12 @@
 	"name": "web",
 	"version": "0.0.0",
 	"scripts": {
-		"format": "biome format . --write",
-		"check_lint": "biome check .",
-		"fix_lint": "biome check . --apply",
 		"serve": "ng serve",
 		"build": "ng build",
-		"build watch": "ng build --watch --configuration development"
+		"build watch": "ng build --watch --configuration development",
+		"format": "biome format . --write",
+		"lint_check": "biome check .",
+		"lint_fix": "biome check . --apply"
 	},
 	"private": true,
 	"dependencies": {

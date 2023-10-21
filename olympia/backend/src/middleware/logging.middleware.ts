@@ -1,5 +1,5 @@
 import { Injectable, Logger, NestMiddleware } from "@nestjs/common";
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 
 const LOGGING_KONTEXT = "HTTP";
 const EVENT = "finish";
