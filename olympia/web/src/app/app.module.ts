@@ -13,6 +13,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { getToken } from "./service/auth/auth.constant";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
+import { environment } from "../environments/environment";
 
 @NgModule({
 	declarations: [AppComponent, LandingPageComponent, LoginComponent],
@@ -23,7 +24,7 @@ import { HttpService } from "./service/http/http.service";
 		JwtModule.forRoot({
 			config: {
 				tokenGetter: getToken,
-				allowedDomains: ["localhost:4200"],
+				allowedDomains: [environment.apiUrl],
 			},
 		}),
 		ReactiveFormsModule,

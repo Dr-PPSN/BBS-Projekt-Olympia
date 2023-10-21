@@ -6,6 +6,7 @@ import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
 import { UserModule } from "./user/user.module";
+import { ALL_ROUTES } from "./app.constant";
 
 @Module({
 	imports: [
@@ -32,6 +33,6 @@ import { UserModule } from "./user/user.module";
 })
 export class AppModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {
-		consumer.apply(LoggingMiddleware).forRoutes("*");
+		consumer.apply(LoggingMiddleware).forRoutes(ALL_ROUTES);
 	}
 }
