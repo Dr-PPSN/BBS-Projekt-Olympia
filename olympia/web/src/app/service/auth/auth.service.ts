@@ -1,11 +1,6 @@
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
-
-const JWT_KEY = "jwtToken";
-
-export function getToken(): string | null {
-	return localStorage.getItem(JWT_KEY);
-}
+import { LOCAL_STORAGE_KEY_JWT, getToken } from "./auth.constant";
 
 @Injectable({
 	providedIn: "root",
@@ -14,7 +9,7 @@ export class AuthService {
 	constructor(private jwtHelper: JwtHelperService) {}
 
 	public saveJwtToken(token: string) {
-		localStorage.setItem(JWT_KEY, token);
+		localStorage.setItem(LOCAL_STORAGE_KEY_JWT, token);
 	}
 
 	public getToken(): string | null {

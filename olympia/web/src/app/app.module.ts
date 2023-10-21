@@ -7,11 +7,12 @@ import { LoginComponent } from "./components/login/login.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { HttpService } from "./service/http.service";
+import { HttpService } from "./service/http/http.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatInputModule } from "@angular/material/input";
-import { AuthService, getToken } from "./service/auth.service";
+import { AuthService } from "./service/auth/auth.service";
 import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
+import { getToken } from "./service/auth/auth.constant";
 
 @NgModule({
 	declarations: [AppComponent, LandingPageComponent, LoginComponent],

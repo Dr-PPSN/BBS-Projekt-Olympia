@@ -9,7 +9,7 @@ import {
 import { Formular } from "./login.constant";
 import { LoginService } from "./login.service";
 import { ErrorStateMatcher } from "@angular/material/core";
-import { AuthService } from "../../service/auth.service";
+import { AuthService } from "../../service/auth/auth.service";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(
