@@ -11,11 +11,11 @@ export class Migrations1697980822131 implements MigrationInterface {
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      `ALTER TABLE nutzer
+		await queryRunner.query(
+			`ALTER TABLE nutzer
         ALTER COLUMN uuid TYPE INT,
         RENAME COLUMN uuid TO id;
       `,
-    );
-  }
+		);
+	}
 }

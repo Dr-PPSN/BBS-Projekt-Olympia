@@ -14,12 +14,14 @@ export class AuthService {
 	// biome-ignore lint: muss any sein
 	async validateUser(email: string, rawPassword: string): Promise<any> {
 		const user = await this.userService.findNutzerWithEmail(email);
-		console.log(user);
-		if (isPasswordValid(rawPassword, user.passwort, user.salt)) {
-			const { passwort, salt, ...result } = user;
-			return result;
+		if (!user) {
+			return null;
 		}
-		return null;
+		if (!isPasswordValid(rawPassword, user.passwort, user.salt)) {
+			return null;
+		}
+		const { passwort, salt, ...result } = user;
+		return result;
 	}
 
 	async login(user: Nutzer): Promise<{ access_token: string }> {

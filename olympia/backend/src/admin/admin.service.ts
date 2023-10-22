@@ -6,7 +6,20 @@ import { UserService } from "../user/user.service";
 export class AdminService {
 	constructor(private userService: UserService) {}
 
+	async getUsers(): Promise<Array<Nutzer>> {
+		return await this.userService.findAllNutzer();
+	}
+
+	async inviteUser(body): Promise<string> {
+		const user = await this.userService.findNutzerWithEmail(body.email);
+		return await this.userService.inviteNutzer(user);
+	}
+
 	async addUser(body): Promise<Nutzer> {
-		return this.userService.add(body);
+		return await this.userService.addUser(body);
+	}
+
+	async deleteUser(body): Promise<Nutzer> {
+		return await this.userService.deleteUser(body);
 	}
 }
