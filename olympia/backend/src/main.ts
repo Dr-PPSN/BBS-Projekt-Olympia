@@ -1,6 +1,6 @@
 import { NestFactory } from "@nestjs/core";
+import { API_PREFIX } from "./app.constants";
 import { AppModule } from "./app.module";
-import { API_PREFIX } from "./app.constant";
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);

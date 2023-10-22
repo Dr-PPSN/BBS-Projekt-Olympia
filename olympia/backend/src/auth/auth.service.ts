@@ -1,26 +1,28 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
+import { Nutzer } from "src/user/entity/nutzer.entity";
 import { UserService } from "src/user/user.service";
-import { User } from "../user/user.model";
+import { isPasswordValid } from "../user/user.constants";
 
 @Injectable()
 export class AuthService {
 	constructor(
-		private userService: UserService,
 		private jwtService: JwtService,
+		private userService: UserService,
 	) {}
 
 	// biome-ignore lint: muss any sein
-	async validateUser(email: string, pass: string): Promise<any> {
-		const user = await this.userService.findeUserMitEmail(email);
-		if (user?.password === pass) {
-			const { password, ...result } = user;
+	async validateUser(email: string, rawPassword: string): Promise<any> {
+		const user = await this.userService.findNutzerWithEmail(email);
+		console.log(user);
+		if (isPasswordValid(rawPassword, user.passwort, user.salt)) {
+			const { passwort, salt, ...result } = user;
 			return result;
 		}
 		return null;
 	}
 
-	async login(user: User) {
+	async login(user: Nutzer) {
 		const payload = { email: user.email, sub: user.id };
 		return {
 			access_token: this.jwtService.sign(payload),
