@@ -12,7 +12,7 @@
       <li class="menu-item"><a routerLink="/laender" routerLinkActive="active-route" ariaCurrentWhenActive="page">Länder</a></li>
       <li class="menu-item"><a routerLink="/ergebnisse" routerLinkActive="active-route" ariaCurrentWhenActive="page">Ergebnisse</a></li>
       <li class="menu-item"><a routerLink="/medaillenspiegel" routerLinkActive="active-route" ariaCurrentWhenActive="page">Medaillenspiegel</a></li>
-      <li class="menu-item"><a routerLink="/admin" routerLinkActive="active-route" ariaCurrentWhenActive="page">Admin</a></li>
+      <li class="menu-item" *ngIf="authService.jwtIsValidAdminToken()"><a routerLink="/admin" routerLinkActive="active-route" ariaCurrentWhenActive="page">Admin</a></li>
     </ul>
   
     <div class="spacer"></div>

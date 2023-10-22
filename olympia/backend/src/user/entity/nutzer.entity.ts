@@ -1,10 +1,11 @@
 import { Sportart } from "src/ergebnisse/entity/sportart.entity";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity()
+@Unique('nutzer_unique_contraint', ["email"])
 export class Nutzer {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn("uuid")
+	uuid: number;
 
 	@Column()
 	vorname: string;
@@ -15,10 +16,10 @@ export class Nutzer {
 	@Column()
 	email: string;
 
-	@Column()
+	@Column({ nullable: true })
 	passwort: string;
 
-	@Column()
+	@Column({ nullable: true })
 	salt: string;
 
 	@Column({ default: false })

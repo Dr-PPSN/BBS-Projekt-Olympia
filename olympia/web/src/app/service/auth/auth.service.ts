@@ -12,12 +12,30 @@ export class AuthService {
 		localStorage.setItem(LOCAL_STORAGE_KEY_JWT, token);
 	}
 
-	public getToken(): string | null {
-		return getToken();
+	public jwtIsExpired(): boolean {
+		const token = getToken();
+		return this.jwtHelper.isTokenExpired(token);
 	}
 
-	public jwtIsValid(): boolean {
-		const token = this.getToken();
-		return !this.jwtHelper.isTokenExpired(token);
+	public jwtIsValidAdminToken(): boolean {
+		return !this.jwtIsExpired() && this.jwtIsAdminToken();
+	}
+
+	public jwtIsAdminToken(): boolean {
+		const token = getToken();
+		if (!token) {
+			return false;
+		}
+		const tokenPayload = this.jwtHelper.decodeToken(token);
+		return tokenPayload.isAdmin;
+	}
+
+	public jwtIsKampfrichterToken(): boolean {
+		const token = getToken();
+		if (!token) {
+			return false;
+		}
+		const tokenPayload = this.jwtHelper.decodeToken(token);
+		return !tokenPayload.isAdmin;
 	}
 }

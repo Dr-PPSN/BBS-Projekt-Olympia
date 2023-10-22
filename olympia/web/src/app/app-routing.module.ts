@@ -1,7 +1,8 @@
-import { NgModule } from "@angular/core";
+import { NgModule, inject } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { LoginComponent } from "./components/login/login.component";
+import { AuthGuardService } from "./service/auth/auth.guard.service";
 
 const routes: Routes = [
 	{ path: "", title: "Olympia", component: LandingPageComponent },
@@ -15,7 +16,12 @@ const routes: Routes = [
 		title: "Medaillenspiegel",
 		component: LandingPageComponent,
 	},
-	{ path: "admin", title: "Admin", component: LandingPageComponent },
+	{
+		path: "admin",
+		title: "Admin",
+		component: LandingPageComponent,
+		canActivate: [() => inject(AuthGuardService).canActivate()],
+	},
 ];
 
 @NgModule({
