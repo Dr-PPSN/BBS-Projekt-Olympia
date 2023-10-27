@@ -1,0 +1,16 @@
+
+<div
+  class="app-nav-item"
+  style="height: 100%;"
+  [matMenuTriggerFor]="menu"
+  #menuTrigger="matMenuTrigger"
+  (mouseenter)="openMenu(menuTrigger)"
+  (mouseleave)="closeMenu(menuTrigger)"
+  >
+  <ng-content select="[trigger]"></ng-content>
+</div>
+<mat-menu #menu="matMenu" [hasBackdrop]="false">
+  <div (mouseenter)="openMenu(menuTrigger)" (mouseleave)="closeMenu(menuTrigger)">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</mat-menu>

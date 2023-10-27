@@ -10,7 +10,33 @@ const routes: Routes = [
 
 	// Platzhalter:
 	{ path: "laender", title: "Länder", component: LandingPageComponent },
-	{ path: "ergebnisse", title: "Ergebnisse", component: LandingPageComponent },
+	{
+		path: "ergebnisse",
+		title: "Ergebnisse",
+		component: LandingPageComponent,
+		children: [
+			{
+				path: "weitsprung",
+				title: "Ergebnisse | Weitsprung",
+				component: LandingPageComponent,
+			},
+			{
+				path: "100m-lauf",
+				title: "Ergebnisse | 100m-Lauf",
+				component: LandingPageComponent,
+			},
+			{
+				path: "springreiten",
+				title: "Ergebnisse | Springreiten",
+				component: LandingPageComponent,
+			},
+			{
+				path: "schwimmen",
+				title: "Ergebnisse | Schwimmen",
+				component: LandingPageComponent,
+			},
+		],
+	},
 	{
 		path: "medaillenspiegel",
 		title: "Medaillenspiegel",

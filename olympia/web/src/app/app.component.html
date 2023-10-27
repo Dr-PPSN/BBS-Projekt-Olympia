@@ -9,12 +9,36 @@
     </a>
   
     <ul>
-      <li class="menu-item"><a routerLink="/laender" routerLinkActive="active-route" ariaCurrentWhenActive="page">Länder</a></li>
-      <li class="menu-item"><a routerLink="/ergebnisse" routerLinkActive="active-route" ariaCurrentWhenActive="page">Ergebnisse</a></li>
-      <li class="menu-item"><a routerLink="/medaillenspiegel" routerLinkActive="active-route" ariaCurrentWhenActive="page">Medaillenspiegel</a></li>
-      <li class="menu-item" *ngIf="authService.jwtIsValidAdminToken()"><a routerLink="/admin" routerLinkActive="active-route" ariaCurrentWhenActive="page">Admin</a></li>
+      <li class="menu-item">
+        <a class="hover-underline-animation navigation-link" routerLink="/laender" ariaCurrentWhenActive="page">
+          <span>Länder</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <hover-over-menu class="d-inline-block h-100">
+          <div trigger class="hover-underline-animation navigation-link" routerLink="/ergebnisse" ariaCurrentWhenActive="page">
+            <span class="navigation-link">Ergebnisse</span>
+          </div>
+          <div content>
+            <a mat-menu-item class="navigation-link" routerLink="/ergebnisse/weitsprung" ariaCurrentWhenActive="page">Weitsprung</a>
+            <a mat-menu-item class="navigation-link" routerLink="/ergebnisse/100m-lauf" ariaCurrentWhenActive="page">100m-Lauf</a>
+            <a mat-menu-item class="navigation-link" routerLink="/ergebnisse/springreiten" ariaCurrentWhenActive="page">Springreiten</a>
+            <a mat-menu-item class="navigation-link" routerLink="/ergebnisse/schwimmen" ariaCurrentWhenActive="page">Schwimmen</a>
+          </div>
+        </hover-over-menu>
+      </li>
+      <li class="menu-item">
+        <a class="hover-underline-animation navigation-link" routerLink="/medaillenspiegel" ariaCurrentWhenActive="page">
+          <span>Medaillenspiegel</span>
+        </a>
+      </li>
+      <li class="menu-item" *ngIf="authService.jwtIsValidAdminToken()">
+        <a class="hover-underline-animation navigation-link" routerLink="/admin" ariaCurrentWhenActive="page">
+          <span>Admin</span>
+        </a>
+      </li>
     </ul>
-  
+    
     <div class="spacer"></div>
     <a *ngIf="!authService.jwtIsValidToken()" routerLink="/login" class="login">Anmelden</a>
     <a *ngIf="authService.jwtIsValidToken()" class="login" (click)="authService.deleteJwtToken()">Abmelden</a>

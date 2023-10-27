@@ -47,9 +47,6 @@ p
   .login:active
     background-color: #2522cb
 
-.active-route
-  text-decoration: underline !important
-
 .spacer
   flex: 1
 
@@ -62,14 +59,51 @@ p
   align-items: center
 
 ul
+  height: 100%
+  display: flex
+  align-items: center
   li
-    display: inline
-    a
-      margin: 0 16px
-      font-size: 18px
-      font-weight: 600
-      color: #000
-      text-decoration: none
+    display: inline-block
+    height: 100%
+    cursor: pointer
+  hover-over-menu
+    display: inline-block
+    height: 100%
+
+.navigation-link
+  display: flex
+  align-items: center
+  height: 100%  
+  padding: 0 16px
+  font-size: 18px
+  font-weight: 600
+  color: #000
+  text-decoration: none
+
+.active-route
+  text-decoration: underline !important
+
+
+.hover-underline-animation
+  position: relative
+
+.hover-underline-animation:after
+  content: ''
+  position: absolute
+  width: 100%
+  transform: scaleX(0)
+  height: 3px
+  border-radius: 2px
+  bottom: 0
+  left: 0
+  background-color: #0087ca
+  transform-origin: bottom right
+  transition: transform 0.25s ease-out
+
+.hover-underline-animation:hover:after
+  transform: scaleX(1)
+  transform-origin: bottom left
+
   
 footer
   display: flex
