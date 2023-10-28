@@ -52,6 +52,9 @@ export class LoginComponent {
 			? this.formular.value.password
 			: "";
 		this.couldNotLogIn = false;
+		if (this.formular.invalid) {
+			return;
+		}
 
 		this.loginService.login(email, password).subscribe(
 			(data) => {

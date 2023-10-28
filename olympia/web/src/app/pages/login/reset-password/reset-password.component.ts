@@ -25,6 +25,9 @@ export class ResetPasswordComponent {
 	public resetPassword() {
 		const email = this.formular.value.email ? this.formular.value.email : "";
 		this.showMailSentMessage = false;
+		if (this.formular.invalid) {
+			return;
+		}
 
 		this.loginService.resetPassword(email).subscribe(
 			() => {
