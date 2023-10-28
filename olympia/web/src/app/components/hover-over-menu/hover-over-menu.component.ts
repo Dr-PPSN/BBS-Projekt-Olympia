@@ -10,7 +10,6 @@ export class HoverOverMenuComponent {
 
 	// biome-ignore lint: muss any sein
 	openMenu(trigger: any) {
-		console.log(trigger);
 		if (this.timedOutCloser) {
 			clearTimeout(this.timedOutCloser);
 		}

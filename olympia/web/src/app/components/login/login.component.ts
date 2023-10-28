@@ -7,6 +7,7 @@ import {
 	Validators,
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
+import { Router } from "@angular/router";
 import { AuthService } from "../../service/auth/auth.service";
 import { Formular } from "./login.constant";
 import { LoginService } from "./login.service";
@@ -33,6 +34,7 @@ export class LoginComponent {
 	constructor(
 		private loginService: LoginService,
 		private authService: AuthService,
+		private router: Router,
 	) {}
 
 	public Formular = Formular;
@@ -52,7 +54,12 @@ export class LoginComponent {
 
 		this.loginService.login(email, password).subscribe((data) => {
 			this.authService.saveJwtToken(data.access_token);
+			this.navigateToLandingPage();
 		});
+	}
+
+	private navigateToLandingPage() {
+		this.router.navigate(["/"]);
 	}
 
 	test() {

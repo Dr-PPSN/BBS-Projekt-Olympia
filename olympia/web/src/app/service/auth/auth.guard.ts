@@ -4,7 +4,7 @@ import { LOGIN_ROUTE } from "./auth.constant";
 import { AuthService } from "./auth.service";
 
 @Injectable()
-export class AuthGuardService {
+export class AuthGuard {
 	constructor(public auth: AuthService, public router: Router) {}
 
 	canActivate(): boolean {

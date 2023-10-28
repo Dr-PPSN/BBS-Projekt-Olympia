@@ -8,6 +8,10 @@ import { LOCAL_STORAGE_KEY_JWT, getToken } from "./auth.constant";
 export class AuthService {
 	constructor(private jwtHelper: JwtHelperService) {}
 
+	public isLoggedIn(): boolean {
+		return !this.jwtIsExpired();
+	}
+
 	public saveJwtToken(token: string) {
 		localStorage.setItem(LOCAL_STORAGE_KEY_JWT, token);
 	}

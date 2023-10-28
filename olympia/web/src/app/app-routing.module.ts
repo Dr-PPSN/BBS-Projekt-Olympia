@@ -2,11 +2,17 @@ import { NgModule, inject } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { LoginComponent } from "./components/login/login.component";
-import { AuthGuardService } from "./service/auth/auth.guard.service";
+import { LoginGuard } from "./components/login/login.guard";
+import { AuthGuard } from "./service/auth/auth.guard";
 
 const routes: Routes = [
 	{ path: "", title: "Olympia", component: LandingPageComponent },
-	{ path: "login", title: "Login", component: LoginComponent },
+	{
+		path: "login",
+		title: "Login",
+		component: LoginComponent,
+		canActivate: [() => inject(LoginGuard).canActivate()],
+	},
 
 	// Platzhalter:
 	{ path: "laender", title: "Länder", component: LandingPageComponent },
@@ -46,7 +52,7 @@ const routes: Routes = [
 		path: "admin",
 		title: "Admin",
 		component: LandingPageComponent,
-		canActivate: [() => inject(AuthGuardService).canActivate()],
+		canActivate: [() => inject(AuthGuard).canActivate()],
 		children: [
 			{
 				path: "athleten",

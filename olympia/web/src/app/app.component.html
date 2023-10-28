@@ -46,8 +46,12 @@
     </ul>
     
     <div class="spacer"></div>
-    <a *ngIf="!authService.jwtIsValidToken()" routerLink="/login" class="login">Anmelden</a>
-    <a *ngIf="authService.jwtIsValidToken()" class="login" (click)="authService.deleteJwtToken()">Abmelden</a>
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/login" class="login">
+      Anmelden
+    </a>
+    <a *ngIf="authService.isLoggedIn()" class="login" (click)="authService.deleteJwtToken()">
+      Abmelden
+    </a>
 
   </div>
   

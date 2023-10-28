@@ -13,8 +13,9 @@ import { AppComponent } from "./app.component";
 import { HoverOverMenuComponent } from "./components/hover-over-menu/hover-over-menu.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { LoginComponent } from "./components/login/login.component";
+import { LoginGuard } from "./components/login/login.guard";
 import { getToken } from "./service/auth/auth.constant";
-import { AuthGuardService } from "./service/auth/auth.guard.service";
+import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
 
@@ -43,7 +44,8 @@ import { HttpService } from "./service/http/http.service";
 	providers: [
 		HttpService,
 		AuthService,
-		AuthGuardService,
+		AuthGuard,
+		LoginGuard,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: JwtInterceptor,
