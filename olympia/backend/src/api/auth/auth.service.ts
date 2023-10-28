@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Nutzer } from "src/user/entity/nutzer.entity";
 import { UserService } from "src/user/user.service";
-import { isPasswordValid } from "../user/user.constants";
+import { isPasswordValid } from "../../user/user.constants";
 
 @Injectable()
 export class AuthService {

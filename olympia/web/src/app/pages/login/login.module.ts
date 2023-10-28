@@ -15,7 +15,6 @@ import { ResetPasswordComponent } from "./reset-password/reset-password.componen
 		LoginRoutingModule,
 		MatInputModule,
 		ReactiveFormsModule,
-
 		NotifierModule.withConfig(notifierOptions),
 	],
 	providers: [],

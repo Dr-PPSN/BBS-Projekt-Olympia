@@ -1,4 +1,4 @@
-import { Sportart } from "src/ergebnisse/entity/sportart.entity";
+import { Sportart } from "src/api/ergebnisse/entity/sportart.entity";
 import {
 	Column,
 	Entity,
