@@ -1,6 +1,6 @@
 <form [formGroup]="formular" class="login-container">
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="login-input">
     <mat-label>Email</mat-label>
     <input type="email" matInput [formControlName]="Formular.Email.NAME" [errorStateMatcher]="matcher">
     <mat-error *ngIf="formular.get('email')?.hasError('email') && !formular.hasError('required')">
@@ -11,7 +11,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="login-input">
     <mat-label>Passwort</mat-label>
     <input type="password" matInput [formControlName]="Formular.Password.NAME" [errorStateMatcher]="matcher">
     <!-- <mat-error *ngIf="formular.get('email')?.hasError('email') && !formular.hasError('required')">
@@ -22,11 +22,13 @@
     </mat-error>
   </mat-form-field>
 
+  <div *ngIf="couldNotLogIn">
+    Email oder Passwort ist falsch!
+  </div>
+
   <div class="container">
     <a routerLink="./reset-password">Passwort vergessen</a>
     <div class="spacer"></div>
     <button class="login" (click)="login()">Anmelden</button>
   </div>
 </form>
-
-<button (click)="test()">Test</button>

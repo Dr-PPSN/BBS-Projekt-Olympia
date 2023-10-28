@@ -1,6 +1,9 @@
 import { Component } from "@angular/core";
-import { Formular } from "../login.constant";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { NotifierService } from "angular-notifier";
+import { Notification } from "../../../notifications/notification.constant";
+import { Formular } from "../login.constant";
+import { LoginService } from "../login.service";
 
 @Component({
 	selector: "app-reset-password",
@@ -8,12 +11,31 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 	styleUrls: ["./reset-password.component.sass"],
 })
 export class ResetPasswordComponent {
-	public Formular = Formular;
-	public formular = new FormGroup({
+	showMailSentMessage = false;
+	Formular = Formular;
+	formular = new FormGroup({
 		email: new FormControl("", [Validators.required, Validators.email]),
 	});
 
+	constructor(
+		private loginService: LoginService,
+		private notifier: NotifierService,
+	) {}
+
 	public resetPassword() {
-		console.log(this.formular.value);
+		const email = this.formular.value.email ? this.formular.value.email : "";
+		this.showMailSentMessage = false;
+
+		this.loginService.resetPassword(email).subscribe(
+			() => {
+				this.showMailSentMessage = true;
+			},
+			() => {
+				this.notifier.notify(
+					Notification.ERROR,
+					"Fehler beim Zurücksetzen des Passworts",
+				);
+			},
+		);
 	}
 }

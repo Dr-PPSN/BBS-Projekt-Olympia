@@ -37,11 +37,11 @@ export class LoginComponent {
 		private router: Router,
 	) {}
 
-	public Formular = Formular;
-
+	Formular = Formular;
 	matcher = new MyErrorStateMatcher();
+	couldNotLogIn = false;
 
-	public formular = new FormGroup({
+	formular = new FormGroup({
 		email: new FormControl("", [Validators.required, Validators.email]),
 		password: new FormControl("", [Validators.required]),
 	});
@@ -51,20 +51,24 @@ export class LoginComponent {
 		const password = this.formular.value.password
 			? this.formular.value.password
 			: "";
+		this.couldNotLogIn = false;
 
-		this.loginService.login(email, password).subscribe((data) => {
-			this.authService.saveJwtToken(data.access_token);
-			this.navigateToLandingPage();
-		});
+		this.loginService.login(email, password).subscribe(
+			(data) => {
+				this.authService.saveJwtToken(data.access_token);
+				this.navigateToLandingPage();
+			},
+			(error) => {
+				if (error.status === 401) {
+					this.couldNotLogIn = true;
+					return;
+				}
+				console.log(error);
+			},
+		);
 	}
 
 	private navigateToLandingPage() {
 		this.router.navigate(["/"]);
-	}
-
-	test() {
-		this.loginService.test().subscribe((data) => {
-			console.log(data);
-		});
 	}
 }

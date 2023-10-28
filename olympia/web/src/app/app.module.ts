@@ -6,20 +6,26 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
+import { NotifierModule } from "angular-notifier";
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HoverOverMenuComponent } from "./components/hover-over-menu/hover-over-menu.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { notifierOptions } from "./notifications/notification.constant";
+import { LoginGuard } from "./pages/login/login.guard";
 import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
-import { LoginGuard } from "./pages/login/login.guard";
-import { NotFoundComponent } from './components/not-found/not-found.component';
-
 @NgModule({
-	declarations: [AppComponent, LandingPageComponent, HoverOverMenuComponent, NotFoundComponent],
+	declarations: [
+		AppComponent,
+		LandingPageComponent,
+		HoverOverMenuComponent,
+		NotFoundComponent,
+	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
@@ -30,6 +36,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 				allowedDomains: [environment.apiUrl],
 			},
 		}),
+		NotifierModule.withConfig(notifierOptions),
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		MatMenuModule,

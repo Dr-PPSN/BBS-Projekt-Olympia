@@ -15,20 +15,13 @@ export class LoginService {
 			email,
 			password,
 		};
-		return this.httpService
-			.postData(Api.LOGIN, sendData)
-			.pipe(catchError(this.handleError));
+		return this.httpService.postData(Api.LOGIN, sendData);
 	}
 
-	test(): Observable<string> {
-		return this.httpService
-			.getData(Api.TEST)
-			.pipe(catchError(this.handleError));
-	}
-
-	// biome-ignore lint: muss any sein
-	private handleError(error: any) {
-		console.error(error);
-		return throwError(error);
+	resetPassword(email: string): Observable<string> {
+		const sendData = {
+			email,
+		};
+		return this.httpService.postData(Api.RESET_PASSWORD, sendData);
 	}
 }

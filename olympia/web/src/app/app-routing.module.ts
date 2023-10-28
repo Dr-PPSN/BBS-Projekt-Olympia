@@ -1,9 +1,9 @@
 import { NgModule, inject } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { LoginGuard } from "./pages/login/login.guard";
 import { AuthGuard } from "./service/auth/auth.guard";
-import { NotFoundComponent } from "./components/not-found/not-found.component";
 
 const routes: Routes = [
 	{ path: "", title: "Olympia", component: LandingPageComponent },

@@ -16,5 +16,6 @@ export namespace Formular {
 
 export namespace Api {
 	export const LOGIN = "auth/login";
+	export const RESET_PASSWORD = "auth/reset-password";
 	export const TEST = "test-user";
 }
