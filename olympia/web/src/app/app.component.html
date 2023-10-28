@@ -33,9 +33,15 @@
         </a>
       </li>
       <li class="menu-item" *ngIf="authService.jwtIsValidAdminToken()">
-        <a class="hover-underline-animation navigation-link" routerLink="/admin" ariaCurrentWhenActive="page">
-          <span>Admin</span>
-        </a>
+        <hover-over-menu class="d-inline-block h-100">
+          <div trigger class="hover-underline-animation navigation-link" routerLink="/ergebnisse" ariaCurrentWhenActive="page">
+            <span class="navigation-link">Admin</span>
+          </div>
+          <div content>
+            <a mat-menu-item class="navigation-link" routerLink="/admin/athleten" ariaCurrentWhenActive="page">Athleten</a>
+            <a mat-menu-item class="navigation-link" routerLink="/admin/kampfrichter" ariaCurrentWhenActive="page">Kampfrichter</a>
+          </div>
+        </hover-over-menu>
       </li>
     </ul>
     

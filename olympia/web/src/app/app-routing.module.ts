@@ -47,6 +47,18 @@ const routes: Routes = [
 		title: "Admin",
 		component: LandingPageComponent,
 		canActivate: [() => inject(AuthGuardService).canActivate()],
+		children: [
+			{
+				path: "athleten",
+				title: "Admin | Athleten",
+				component: LandingPageComponent,
+			},
+			{
+				path: "kampfrichter",
+				title: "Admin | Kampfrichter",
+				component: LandingPageComponent,
+			},
+		],
 	},
 ];
 
