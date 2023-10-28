@@ -1,16 +1,17 @@
 import { NgModule, inject } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
-import { LoginComponent } from "./components/login/login.component";
-import { LoginGuard } from "./components/login/login.guard";
+import { LoginGuard } from "./pages/login/login.guard";
 import { AuthGuard } from "./service/auth/auth.guard";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
 
 const routes: Routes = [
 	{ path: "", title: "Olympia", component: LandingPageComponent },
 	{
 		path: "login",
 		title: "Login",
-		component: LoginComponent,
+		loadChildren: () =>
+			import("./pages/login/login.module").then((m) => m.LoginModule),
 		canActivate: [() => inject(LoginGuard).canActivate()],
 	},
 
@@ -51,21 +52,11 @@ const routes: Routes = [
 	{
 		path: "admin",
 		title: "Admin",
-		component: LandingPageComponent,
+		loadChildren: () =>
+			import("./pages/admin/admin.module").then((m) => m.AdminModule),
 		canActivate: [() => inject(AuthGuard).canActivate()],
-		children: [
-			{
-				path: "athleten",
-				title: "Admin | Athleten",
-				component: LandingPageComponent,
-			},
-			{
-				path: "kampfrichter",
-				title: "Admin | Kampfrichter",
-				component: LandingPageComponent,
-			},
-		],
 	},
+	{ path: "**", component: NotFoundComponent },
 ];
 
 @NgModule({

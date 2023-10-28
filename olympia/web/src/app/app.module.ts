@@ -3,7 +3,6 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatInputModule } from "@angular/material/input";
 import { MatMenuModule } from "@angular/material/menu";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
@@ -12,20 +11,15 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HoverOverMenuComponent } from "./components/hover-over-menu/hover-over-menu.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
-import { LoginComponent } from "./components/login/login.component";
-import { LoginGuard } from "./components/login/login.guard";
 import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
+import { LoginGuard } from "./pages/login/login.guard";
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		LandingPageComponent,
-		LoginComponent,
-		HoverOverMenuComponent,
-	],
+	declarations: [AppComponent, LandingPageComponent, HoverOverMenuComponent, NotFoundComponent],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
@@ -38,7 +32,6 @@ import { HttpService } from "./service/http/http.service";
 		}),
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
-		MatInputModule,
 		MatMenuModule,
 	],
 	providers: [
