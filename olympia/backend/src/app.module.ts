@@ -5,8 +5,8 @@ import { ApiModule } from "./api/api.module";
 import { ALL_ROUTES } from "./app.constants";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
+import { MailModule } from "./mail/mail.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
-import { RouterModule } from "@nestjs/core";
 
 @Module({
 	imports: [
@@ -26,12 +26,7 @@ import { RouterModule } from "@nestjs/core";
 			synchronize: true,
 		}),
 		ApiModule,
-		// RouterModule.register([
-		// 	{
-		// 		path: "api",
-		// 		module: ApiModule,
-		// 	},
-		// ]),
+		MailModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
