@@ -5,7 +5,6 @@ import {
 	UnauthorizedException,
 } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { jwtConstants } from "credentials";
 import { Request } from "express";
 
 // Guard für alle Routen, die Authentifizierung benötigen
@@ -21,7 +20,7 @@ export class AuthGuard implements CanActivate {
 		}
 		try {
 			const payload = await this.jwtService.verifyAsync(token, {
-				secret: jwtConstants.secret,
+				secret: process.env.JWT_SECRET,
 			});
 			request.user = payload;
 		} catch {
