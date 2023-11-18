@@ -1,17 +1,18 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { LandingPageComponent } from "src/app/components/landing-page/landing-page.component";
+import { AthletenComponent } from "./admin-uebersicht/athleten/athleten.component";
+import { KampfrichterComponent } from "./admin-uebersicht/kampfrichter/kampfrichter.component";
 
 const routes: Routes = [
 	{
 		path: "athleten",
 		title: "Admin | Athleten",
-		component: LandingPageComponent,
+		component: AthletenComponent,
 	},
 	{
 		path: "kampfrichter",
 		title: "Admin | Kampfrichter",
-		component: LandingPageComponent,
+		component: KampfrichterComponent,
 	},
 	{
 		path: "",
