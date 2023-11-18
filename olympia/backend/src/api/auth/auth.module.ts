@@ -7,13 +7,17 @@ import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./guards/jwt.strategy";
 import { LocalStrategy } from "./guards/local.strategy";
+import { ConfigService } from "@nestjs/config";
 
 @Module({
 	imports: [
 		PassportModule,
-		JwtModule.register({
-			secret: process.env.JWT_SECRET,
-			signOptions: { expiresIn: "1800s" },
+		JwtModule.registerAsync({
+			useFactory: async (config: ConfigService) => ({
+				secret: config.get("JWT_SECRET"),
+				singOptions: { expiresIn: config.get("JWT_EXPIRES_IN") },
+			}),
+			inject: [ConfigService],
 		}),
 		UserModule,
 		MailModule,
