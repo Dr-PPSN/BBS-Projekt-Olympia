@@ -1,7 +1,7 @@
 import { NgModule, inject } from "@angular/core";
 import { RouterModule, Routes, TitleStrategy } from "@angular/router";
-import { LandingPageComponent } from "./components/landing-page/landing-page.component";
-import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
 import { LoginGuard } from "./pages/login/login.guard";
 import { MedaillenspiegelComponent } from "./pages/medaillenspiegel/medaillenspiegel/medaillenspiegel.component";
 import { AuthGuard } from "./service/auth/auth.guard";

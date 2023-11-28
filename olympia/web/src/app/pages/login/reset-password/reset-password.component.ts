@@ -6,7 +6,7 @@ import { Formular } from "../login.constant";
 import { LoginService } from "../login.service";
 
 @Component({
-	selector: "app-reset-password",
+	selector: "reset-password",
 	templateUrl: "./reset-password.component.html",
 	styleUrls: ["./reset-password.component.sass"],
 })
