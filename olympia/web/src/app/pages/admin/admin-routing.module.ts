@@ -6,12 +6,12 @@ import { KampfrichterComponent } from "./admin-uebersicht/kampfrichter/kampfrich
 const routes: Routes = [
 	{
 		path: "athleten",
-		title: "Admin | Athleten",
+		title: "Athleten",
 		component: AthletenComponent,
 	},
 	{
 		path: "kampfrichter",
-		title: "Admin | Kampfrichter",
+		title: "Kampfrichter",
 		component: KampfrichterComponent,
 	},
 	{

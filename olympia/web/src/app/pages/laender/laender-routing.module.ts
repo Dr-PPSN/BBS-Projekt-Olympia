@@ -6,12 +6,12 @@ import { LaenderUebersichtComponent } from "./laender-uebersicht/laender-uebersi
 const routes: Routes = [
 	{
 		path: "",
-		title: "Länder | Übersicht",
+		title: "",
 		component: LaenderUebersichtComponent,
 	},
 	{
 		path: ":land",
-		title: "Länder | Land",
+		title: "Land",
 		component: LandingPageComponent,
 	},
 ];

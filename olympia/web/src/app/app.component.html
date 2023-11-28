@@ -10,43 +10,43 @@
   
     <ul>
       <li class="menu-item">
-        <a class="hover-underline-animation navigation-link" routerLink="/laender" ariaCurrentWhenActive="page">
+        <a class="hover-underline-animation navigation-link" routerLink="/app/laender" ariaCurrentWhenActive="page">
           <span>Länder</span>
         </a>
       </li>
       <li class="menu-item">
         <hover-over-menu class="d-inline-block h-100">
-          <div trigger class="hover-underline-animation navigation-link" routerLink="/ergebnisse" ariaCurrentWhenActive="page">
+          <div trigger class="hover-underline-animation navigation-link" routerLink="/app/ergebnisse" ariaCurrentWhenActive="page">
             <span class="navigation-link">Ergebnisse</span>
           </div>
           <div content>
-            <a mat-menu-item class="navigation-link" routerLink="/ergebnisse/weitsprung" ariaCurrentWhenActive="page">Weitsprung</a>
-            <a mat-menu-item class="navigation-link" routerLink="/ergebnisse/100m-lauf" ariaCurrentWhenActive="page">100m-Lauf</a>
-            <a mat-menu-item class="navigation-link" routerLink="/ergebnisse/springreiten" ariaCurrentWhenActive="page">Springreiten</a>
-            <a mat-menu-item class="navigation-link" routerLink="/ergebnisse/schwimmen" ariaCurrentWhenActive="page">Schwimmen</a>
+            <a mat-menu-item class="navigation-link" routerLink="/app/ergebnisse/weitsprung" ariaCurrentWhenActive="page">Weitsprung</a>
+            <a mat-menu-item class="navigation-link" routerLink="/app/ergebnisse/100m-lauf" ariaCurrentWhenActive="page">100m-Lauf</a>
+            <a mat-menu-item class="navigation-link" routerLink="/app/ergebnisse/springreiten" ariaCurrentWhenActive="page">Springreiten</a>
+            <a mat-menu-item class="navigation-link" routerLink="/app/ergebnisse/schwimmen" ariaCurrentWhenActive="page">Schwimmen</a>
           </div>
         </hover-over-menu>
       </li>
       <li class="menu-item">
-        <a class="hover-underline-animation navigation-link" routerLink="/medaillenspiegel" ariaCurrentWhenActive="page">
+        <a class="hover-underline-animation navigation-link" routerLink="/app/medaillenspiegel" ariaCurrentWhenActive="page">
           <span>Medaillenspiegel</span>
         </a>
       </li>
       <li class="menu-item" *ngIf="authService.jwtIsValidAdminToken()">
         <hover-over-menu class="d-inline-block h-100">
-          <div trigger class="hover-underline-animation navigation-link" routerLink="/ergebnisse" ariaCurrentWhenActive="page">
+          <div trigger class="hover-underline-animation navigation-link" routerLink="/app/ergebnisse" ariaCurrentWhenActive="page">
             <span class="navigation-link">Admin</span>
           </div>
           <div content>
-            <a mat-menu-item class="navigation-link" routerLink="/admin/athleten" ariaCurrentWhenActive="page">Athleten</a>
-            <a mat-menu-item class="navigation-link" routerLink="/admin/kampfrichter" ariaCurrentWhenActive="page">Kampfrichter</a>
+            <a mat-menu-item class="navigation-link" routerLink="/app/admin/athleten" ariaCurrentWhenActive="page">Athleten</a>
+            <a mat-menu-item class="navigation-link" routerLink="/app/admin/kampfrichter" ariaCurrentWhenActive="page">Kampfrichter</a>
           </div>
         </hover-over-menu>
       </li>
     </ul>
     
     <div class="spacer"></div>
-    <a *ngIf="!authService.isLoggedIn()" routerLink="/login" class="login">
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/app/login" class="login">
       Anmelden
     </a>
     <a *ngIf="authService.isLoggedIn()" class="login" (click)="authService.deleteJwtToken()">

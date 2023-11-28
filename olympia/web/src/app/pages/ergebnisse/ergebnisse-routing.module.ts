@@ -9,27 +9,27 @@ import { WeitsprungComponent } from "./ergebnisse-uebersicht/weitsprung/weitspru
 const routes: Routes = [
 	{
 		path: "",
-		title: "Ergebnisse | Übersicht",
+		title: "",
 		component: ErgebnisseUebersichtComponent,
 	},
 	{
 		path: "weitsprung",
-		title: "Ergebnisse | Weitsprung",
+		title: "Weitsprung",
 		component: WeitsprungComponent,
 	},
 	{
 		path: "100m-lauf",
-		title: "Ergebnisse | 100m-Lauf",
+		title: "100m-Lauf",
 		component: LaufenComponent,
 	},
 	{
 		path: "springreiten",
-		title: "Ergebnisse | Springreiten",
+		title: "Springreiten",
 		component: SpringreitenComponent,
 	},
 	{
 		path: "schwimmen",
-		title: "Ergebnisse | Schwimmen",
+		title: "Schwimmen",
 		component: SchwimmenComponent,
 	},
 ];
