@@ -1,12 +1,12 @@
 import { NgModule, inject } from "@angular/core";
 import { RouterModule, Routes, TitleStrategy } from "@angular/router";
-import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
-import { NotFoundComponent } from "./pages/not-found/not-found.component";
-import { LoginGuard } from "./pages/login/login.guard";
-import { MedaillenspiegelComponent } from "./pages/medaillenspiegel/medaillenspiegel/medaillenspiegel.component";
-import { AuthGuard } from "./service/auth/auth.guard";
 import { BasePageComponent } from "./components/base-page/base-page.component";
 import { PageTitleStrategy } from "./page-title.strategy";
+import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
+import { LoginGuard } from "./pages/login/login.guard";
+import { MedaillenspiegelComponent } from "./pages/medaillenspiegel/medaillenspiegel/medaillenspiegel.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
+import { AuthGuard } from "./service/auth/auth.guard";
 
 const routes: Routes = [
 	{ path: "", redirectTo: "/home", pathMatch: "full" },

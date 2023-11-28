@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
-import { BreadcrumbsService } from "./breadcrumbs.service";
-import { Breadcrumb } from "./breadcrumbs.model";
 import { Observable } from "rxjs";
+import { Breadcrumb } from "./breadcrumbs.model";
+import { BreadcrumbsService } from "./breadcrumbs.service";
 
 @Component({
 	selector: "breadcrumbs",

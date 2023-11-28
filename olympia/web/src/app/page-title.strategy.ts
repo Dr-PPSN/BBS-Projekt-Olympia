@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { bootstrapApplication, Title } from "@angular/platform-browser";
+import { Title, bootstrapApplication } from "@angular/platform-browser";
 import {
 	ActivatedRouteSnapshot,
 	RouterStateSnapshot,

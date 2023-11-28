@@ -9,18 +9,18 @@ import { NotifierModule } from "angular-notifier";
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { BasePageComponent } from "./components/base-page/base-page.component";
+import { BreadcrumbsComponent } from "./components/base-page/breadcrumbs/breadcrumbs.component";
 import { HoverOverMenuComponent } from "./components/hover-over-menu/hover-over-menu.component";
-import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
-import { NotFoundComponent } from "./pages/not-found/not-found.component";
 import { notifierOptions } from "./notifications/notification.constant";
+import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { LoginGuard } from "./pages/login/login.guard";
 import { MedaillenspiegelModule } from "./pages/medaillenspiegel/medaillenspiegel.module";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
 import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
-import { BasePageComponent } from "./components/base-page/base-page.component";
-import { BreadcrumbsComponent } from "./components/base-page/breadcrumbs/breadcrumbs.component";
 
 @NgModule({
 	declarations: [
