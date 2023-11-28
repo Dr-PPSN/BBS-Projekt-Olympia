@@ -1,1 +1,11 @@
-<p>medaillenspiegel works!</p>
+<div class="chart-container" style="position: relative;  width: 80vw">
+  <canvas baseChart
+    [type]="DiagramSettings.TYPE"
+    [legend]="DiagramSettings.LEGEND"
+    [options]="DiagramSettings.OPTIONS"
+    [labels]="label"
+    [datasets]="datasets"
+    [plugins]="plugins"
+    >
+  </canvas>
+</div>
