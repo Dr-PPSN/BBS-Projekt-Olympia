@@ -33,7 +33,10 @@ const routes: Routes = [
 			{
 				path: "medaillenspiegel",
 				title: "Medaillenspiegel",
-				component: MedaillenspiegelComponent,
+				loadChildren: () =>
+					import("./pages/medaillenspiegel/medaillenspiegel.module").then(
+						(m) => m.MedaillenspiegelModule,
+					),
 			},
 			{
 				path: "login",
