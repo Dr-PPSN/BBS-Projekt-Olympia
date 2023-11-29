@@ -15,7 +15,6 @@ import { HoverOverMenuComponent } from "./components/hover-over-menu/hover-over-
 import { notifierOptions } from "./notifications/notification.constant";
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { LoginGuard } from "./pages/login/login.guard";
-import { MedaillenspiegelModule } from "./pages/medaillenspiegel/medaillenspiegel.module";
 import { NotFoundComponent } from "./pages/not-found/not-found.component";
 import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
@@ -45,7 +44,6 @@ import { HttpService } from "./service/http/http.service";
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		MatMenuModule,
-		MedaillenspiegelModule,
 	],
 	providers: [
 		HttpService,
