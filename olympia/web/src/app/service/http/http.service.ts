@@ -1,8 +1,13 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {
+	HttpClient,
+	HttpErrorResponse,
+	HttpHeaders,
+} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { ContentType, URL_SEPARATOR } from "./http.constant";
+import { catchError } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root",
@@ -15,9 +20,24 @@ export class HttpService {
 	// biome-ignore lint: muss any sein
 	getData(endpoint: string): Observable<any> {
 		const headers = this.getDefaultHeader();
-		return this.http.get(this.apiUrl + this.ensureSlashAtBeginning(endpoint), {
-			headers: headers,
-		});
+		return this.http
+			.get(this.apiUrl + this.ensureSlashAtBeginning(endpoint), {
+				headers: headers,
+			})
+			.pipe(
+				catchError((error) => {
+					if (error.status === 504) {
+						throw new HttpErrorResponse({
+							error: "Server nicht erreichbar",
+							headers: error.headers,
+							status: error.status,
+							statusText: "Server nicht erreichbar",
+							url: error.url,
+						});
+					}
+					throw error;
+				}),
+			);
 	}
 
 	postData(
