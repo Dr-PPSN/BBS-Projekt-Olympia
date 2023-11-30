@@ -28,11 +28,11 @@ export class HttpService {
 				catchError((error) => {
 					if (error.status === 504) {
 						throw new HttpErrorResponse({
-							error: "Server nicht erreichbar",
+							error: { message: "Server nicht erreichbar" },
 							headers: error.headers,
 							status: error.status,
 							statusText: "Server nicht erreichbar",
-							url: error.url,
+							url: error.url ? error.url : undefined,
 						});
 					}
 					throw error;
