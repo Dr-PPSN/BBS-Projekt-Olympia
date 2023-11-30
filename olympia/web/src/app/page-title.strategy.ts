@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Title, bootstrapApplication } from "@angular/platform-browser";
+import { Title } from "@angular/platform-browser";
 import {
 	ActivatedRouteSnapshot,
 	RouterStateSnapshot,
 	TitleStrategy,
 } from "@angular/router";
-import { AppComponent } from "./app.component";
 
 @Injectable({ providedIn: "root" })
 export class PageTitleStrategy extends TitleStrategy {
@@ -47,7 +46,3 @@ export class PageTitleStrategy extends TitleStrategy {
 		return newTitle;
 	}
 }
-
-bootstrapApplication(AppComponent, {
-	providers: [{ provide: TitleStrategy, useClass: PageTitleStrategy }],
-});
