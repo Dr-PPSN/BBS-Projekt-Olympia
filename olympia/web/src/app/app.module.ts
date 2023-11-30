@@ -2,6 +2,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatTableModule } from "@angular/material/table";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
@@ -20,6 +21,7 @@ import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
+import { OlympiaTableComponent } from "./components/olympia-table/olympia-table.component";
 
 @NgModule({
 	declarations: [
@@ -44,6 +46,8 @@ import { HttpService } from "./service/http/http.service";
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		MatMenuModule,
+		MatTableModule,
+		OlympiaTableComponent,
 	],
 	providers: [
 		HttpService,

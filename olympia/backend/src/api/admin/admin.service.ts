@@ -19,6 +19,10 @@ export class AdminService {
 		return await this.userService.addUser(body);
 	}
 
+	async editUser(body): Promise<Nutzer> {
+		return await this.userService.editUser(body);
+	}
+
 	async deleteUser(body): Promise<Nutzer> {
 		return await this.userService.deleteUser(body);
 	}

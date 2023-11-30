@@ -20,4 +20,6 @@ export class Einladung {
 	@OneToOne(() => Nutzer)
 	@JoinColumn()
 	nutzer: Nutzer;
+
+	// TODO: anlagedatum hinzufügen
 }

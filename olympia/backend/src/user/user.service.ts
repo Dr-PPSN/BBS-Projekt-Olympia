@@ -62,4 +62,8 @@ export class UserService {
 	async deleteUser(user: Nutzer): Promise<Nutzer> {
 		return await this.nutzerRepo.remove(user);
 	}
+
+	async editUser(user: Nutzer): Promise<Nutzer> {
+		return await this.nutzerRepo.save(user);
+	}
 }
