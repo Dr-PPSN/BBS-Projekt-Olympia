@@ -13,8 +13,23 @@ export class UserService {
 		@InjectRepository(Einladung) private einladungRepo: Repository<Einladung>,
 	) {}
 
-	async findAllNutzer(): Promise<Array<Nutzer>> {
-		return await this.nutzerRepo.find();
+	async findAllNutzer(requestingUserIsAdmin?: boolean): Promise<Array<Nutzer>> {
+		if (requestingUserIsAdmin === false) {
+			return await this.nutzerRepo.find({
+				select: [
+					"uuid",
+					"vorname",
+					"nachname",
+					"email",
+					"istAdmin",
+					"sportart",
+				],
+				where: { istAdmin: false },
+			});
+		}
+		return await this.nutzerRepo.find({
+			select: ["uuid", "vorname", "nachname", "email", "istAdmin", "sportart"],
+		});
 	}
 
 	async inviteNutzer(user: Nutzer): Promise<string> {
