@@ -4,7 +4,6 @@ import {
 	Get,
 	HttpCode,
 	Post,
-	Request,
 	UseGuards,
 } from "@nestjs/common";
 import { Nutzer } from "src/user/entity/nutzer.entity";
@@ -19,8 +18,8 @@ export class AdminController {
 
 	@HttpCode(200)
 	@Get(Api.GET_USERS)
-	async getUsers(@Request() request): Promise<Array<Nutzer>> {
-		return await this.adminService.getUsers(request.user.istAdmin);
+	async getUsers(): Promise<Array<Nutzer>> {
+		return await this.adminService.getUsers();
 	}
 
 	@HttpCode(200)

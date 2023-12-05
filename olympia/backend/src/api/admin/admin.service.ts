@@ -6,8 +6,8 @@ import { UserService } from "../../user/user.service";
 export class AdminService {
 	constructor(private userService: UserService) {}
 
-	async getUsers(requestingUserIsAdmin?: boolean): Promise<Array<Nutzer>> {
-		return await this.userService.findAllNutzer(requestingUserIsAdmin);
+	async getUsers(): Promise<Array<Nutzer>> {
+		return await this.userService.findAllNutzer();
 	}
 
 	async inviteUser(body): Promise<string> {
