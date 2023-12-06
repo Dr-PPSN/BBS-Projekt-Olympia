@@ -1,12 +1,22 @@
-import { Body, Controller, Get, HttpCode, Post } from "@nestjs/common";
+import {
+	Body,
+	Controller,
+	Get,
+	HttpCode,
+	Post,
+	UseGuards,
+} from "@nestjs/common";
 import { Nutzer } from "src/user/entity/nutzer.entity";
 import { AdminService } from "./admin.service";
 import { Api } from "./admin.constant";
+import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
 
+@UseGuards(JwtAuthGuard)
 @Controller(Api.TITLE)
 export class AdminController {
 	constructor(private adminService: AdminService) {}
 
+	@HttpCode(200)
 	@Get(Api.GET_USERS)
 	async getUsers(): Promise<Array<Nutzer>> {
 		return await this.adminService.getUsers();

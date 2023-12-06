@@ -14,7 +14,9 @@ export class UserService {
 	) {}
 
 	async findAllNutzer(): Promise<Array<Nutzer>> {
-		return await this.nutzerRepo.find();
+		return await this.nutzerRepo.find({
+			select: ["uuid", "vorname", "nachname", "email", "istAdmin", "sportart"],
+		});
 	}
 
 	async inviteNutzer(user: Nutzer): Promise<string> {

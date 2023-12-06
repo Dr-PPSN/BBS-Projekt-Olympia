@@ -18,6 +18,7 @@ export class KampfrichterComponent implements AfterViewInit {
 		{ name: "email", label: "Email" },
 		{ name: "vorname", label: "Vorname" },
 		{ name: "nachname", label: "Nachname" },
+		{ name: "istAdmin", label: "istAdmin" },
 	];
 	public data = [];
 
