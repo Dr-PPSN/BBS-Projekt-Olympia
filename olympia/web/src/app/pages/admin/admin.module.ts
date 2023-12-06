@@ -6,14 +6,10 @@ import { notifierOptions } from "../../notifications/notification.constant";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminUebersichtComponent } from "./admin-uebersicht/admin-uebersicht.component";
 import { AthletenComponent } from "./admin-uebersicht/athleten/athleten.component";
-import { KampfrichterComponent } from "./admin-uebersicht/kampfrichter/kampfrichter.component";
+import { NutzerComponent } from "./admin-uebersicht/nutzer/nutzer.component";
 
 @NgModule({
-	declarations: [
-		AdminUebersichtComponent,
-		KampfrichterComponent,
-		AthletenComponent,
-	],
+	declarations: [AdminUebersichtComponent, NutzerComponent, AthletenComponent],
 	imports: [
 		CommonModule,
 		AdminRoutingModule,

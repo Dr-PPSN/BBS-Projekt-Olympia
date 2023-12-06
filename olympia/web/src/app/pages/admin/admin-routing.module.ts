@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminUebersichtComponent } from "./admin-uebersicht/admin-uebersicht.component";
 import { AthletenComponent } from "./admin-uebersicht/athleten/athleten.component";
-import { KampfrichterComponent } from "./admin-uebersicht/kampfrichter/kampfrichter.component";
+import { NutzerComponent } from "./admin-uebersicht/nutzer/nutzer.component";
 
 const routes: Routes = [
 	{
@@ -16,9 +16,9 @@ const routes: Routes = [
 		component: AthletenComponent,
 	},
 	{
-		path: "kampfrichter",
-		title: "Kampfrichter",
-		component: KampfrichterComponent,
+		path: "nutzer",
+		title: "Nutzer",
+		component: NutzerComponent,
 	},
 ];
 

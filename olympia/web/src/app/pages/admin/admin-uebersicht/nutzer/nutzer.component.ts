@@ -5,14 +5,14 @@ import {
 	OlympiaTableComponent,
 } from "../../../../components/olympia-table/olympia-table.component";
 import { Notification } from "../../../../notifications/notification.constant";
-import { KampfrichterService } from "./kampfrichter.service";
+import { NutzerService } from "./nutzer.service";
 
 @Component({
-	selector: "app-kampfrichter",
-	templateUrl: "./kampfrichter.component.html",
-	styleUrls: ["./kampfrichter.component.sass"],
+	selector: "app-nutzer",
+	templateUrl: "./nutzer.component.html",
+	styleUrls: ["./nutzer.component.sass"],
 })
-export class KampfrichterComponent implements AfterViewInit {
+export class NutzerComponent implements AfterViewInit {
 	@ViewChild("table") table: OlympiaTableComponent | null = null;
 	public columns: Column[] = [
 		{ name: "email", label: "Email" },
@@ -23,7 +23,7 @@ export class KampfrichterComponent implements AfterViewInit {
 	public data = [];
 
 	constructor(
-		private kampfrichterService: KampfrichterService,
+		private nutzerService: NutzerService,
 		private notifier: NotifierService,
 	) {}
 
@@ -33,9 +33,9 @@ export class KampfrichterComponent implements AfterViewInit {
 
 	private loadData(): void {
 		this.table?.showLoadingAnimation();
-		this.kampfrichterService.getKampfrichter().subscribe({
+		this.nutzerService.getNutzer().subscribe({
 			next: () => {
-				this.data = this.kampfrichterService.kampfrichter;
+				this.data = this.nutzerService.nutzer;
 				this.table?.hideLoadingAnimation();
 			},
 			error: (error) => {
