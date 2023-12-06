@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AdminUebersichtComponent } from "./admin-uebersicht/admin-uebersicht.component";
 import { AthletenComponent } from "./admin-uebersicht/athleten/athleten.component";
 import { KampfrichterComponent } from "./admin-uebersicht/kampfrichter/kampfrichter.component";
-import { AdminUebersichtComponent } from "./admin-uebersicht/admin-uebersicht.component";
 
 const routes: Routes = [
 	{

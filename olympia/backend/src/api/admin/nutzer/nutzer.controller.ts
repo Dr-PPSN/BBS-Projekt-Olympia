@@ -1,9 +1,16 @@
-import { Body, Controller, Get, HttpCode, Post, UseGuards } from "@nestjs/common";
-import { JwtAuthGuard } from "../../auth/guards/jwt-auth.guard";
-import { Api } from "./nutzer.constant";
-import { Api as AdminApi} from "../admin.constant";
-import { AdminService } from "../admin.service";
+import {
+	Body,
+	Controller,
+	Get,
+	HttpCode,
+	Post,
+	UseGuards,
+} from "@nestjs/common";
 import { Nutzer } from "../../../user/entity/nutzer.entity";
+import { JwtAuthGuard } from "../../auth/guards/jwt-auth.guard";
+import { Api as AdminApi } from "../admin.constant";
+import { AdminService } from "../admin.service";
+import { Api } from "./nutzer.constant";
 
 @UseGuards(JwtAuthGuard)
 @Controller(AdminApi.TITLE + Api.TITLE)

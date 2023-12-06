@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpService } from "../../../../service/http/http.service";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { HttpService } from "../../../../service/http/http.service";
 
 @Injectable({
 	providedIn: "root",

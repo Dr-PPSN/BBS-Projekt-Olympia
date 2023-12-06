@@ -5,9 +5,9 @@ import {
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { catchError } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 import { ContentType, URL_SEPARATOR } from "./http.constant";
-import { catchError } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root",

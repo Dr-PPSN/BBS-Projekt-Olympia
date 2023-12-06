@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, ViewChild } from "@angular/core";
+import { NotifierService } from "angular-notifier";
 import {
 	Column,
 	OlympiaTableComponent,
 } from "../../../../components/olympia-table/olympia-table.component";
-import { KampfrichterService } from "./kampfrichter.service";
-import { NotifierService } from "angular-notifier";
 import { Notification } from "../../../../notifications/notification.constant";
+import { KampfrichterService } from "./kampfrichter.service";
 
 @Component({
 	selector: "app-kampfrichter",

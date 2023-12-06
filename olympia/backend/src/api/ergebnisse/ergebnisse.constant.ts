@@ -1,3 +1,3 @@
 export namespace Api {
-  export const TITLE = "/ergebnisse";
+	export const TITLE = "/ergebnisse";
 }
