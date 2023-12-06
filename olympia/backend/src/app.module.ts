@@ -1,12 +1,15 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { ApiModule } from "./api/api.module";
 import { ALL_ROUTES } from "./app.constants";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { MailModule } from "./mail/mail.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
+import { AdminModule } from "./api/admin/admin.module";
+import { AuthModule } from "./api/auth/auth.module";
+import { LaenderModule } from "./api/laender/laender.module";
+import { MedaillenspiegelModule } from "./api/medaillenspiegel/medaillenspiegel.module";
 
 @Module({
 	imports: [
@@ -25,7 +28,10 @@ import { LoggingMiddleware } from "./middleware/logging.middleware";
 			autoLoadEntities: true,
 			synchronize: true,
 		}),
-		ApiModule,
+		AdminModule,
+		AuthModule,
+		LaenderModule,
+		MedaillenspiegelModule,
 		MailModule,
 	],
 	controllers: [AppController],

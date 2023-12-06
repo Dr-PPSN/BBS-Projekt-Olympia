@@ -1,4 +1,5 @@
 import { Controller } from "@nestjs/common";
+import { Api } from "./medaillenspiegel.constant";
 
-@Controller("medaillenspiegel")
+@Controller(Api.TITLE)
 export class MedaillenspiegelController {}

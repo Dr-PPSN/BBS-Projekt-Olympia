@@ -13,7 +13,7 @@ export class KampfrichterService {
 
 	// biome-ignore lint/suspicious/noExplicitAny: muss any sein
 	public getKampfrichter(): Observable<any> {
-		return this.httpService.getData("/admin/users").pipe(
+		return this.httpService.getData("/admin/nutzer").pipe(
 			map((data) => {
 				this.kampfrichter = data;
 			}),

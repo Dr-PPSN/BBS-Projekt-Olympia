@@ -1,0 +1,36 @@
+import { Body, Controller, Get, HttpCode, Post, UseGuards } from "@nestjs/common";
+import { JwtAuthGuard } from "../../auth/guards/jwt-auth.guard";
+import { Api } from "./nutzer.constant";
+import { Api as AdminApi} from "../admin.constant";
+import { AdminService } from "../admin.service";
+import { Nutzer } from "../../../user/entity/nutzer.entity";
+
+@UseGuards(JwtAuthGuard)
+@Controller(AdminApi.TITLE + Api.TITLE)
+export class NutzerController {
+	constructor(private adminService: AdminService) {}
+
+	@HttpCode(200)
+	@Get()
+	async getUsers(): Promise<Array<Nutzer>> {
+		return await this.adminService.getUsers();
+	}
+
+	@HttpCode(200)
+	@Post(Api.ADD_USER)
+	async addUser(@Body() body): Promise<Nutzer> {
+		return await this.adminService.addUser(body);
+	}
+
+	@HttpCode(200)
+	@Post(Api.EDIT_USER)
+	async editUser(@Body() body): Promise<Nutzer> {
+		return await this.adminService.editUser(body);
+	}
+
+	@HttpCode(200)
+	@Post(Api.DELETE_USER)
+	async deleteUser(@Body() body): Promise<Nutzer> {
+		return await this.adminService.deleteUser(body);
+	}
+}
