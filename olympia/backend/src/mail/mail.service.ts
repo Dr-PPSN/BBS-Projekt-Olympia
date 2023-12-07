@@ -1,5 +1,6 @@
 import { MailerService } from "@nestjs-modules/mailer";
 import { Injectable } from "@nestjs/common";
+import { SentMessageInfo } from "nodemailer";
 import { Nutzer } from "src/user/entity/nutzer.entity";
 
 @Injectable()
@@ -18,6 +19,14 @@ export class MailService {
 				name: name,
 				url,
 			},
+		});
+	}
+
+	async sendTestEmail(email: string): Promise<SentMessageInfo> {
+		return await this.mailerService.sendMail({
+			to: email,
+			subject: "Test Mail",
+			template: "./test",
 		});
 	}
 }

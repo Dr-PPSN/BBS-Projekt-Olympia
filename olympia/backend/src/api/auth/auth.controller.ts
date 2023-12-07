@@ -14,11 +14,6 @@ import { LocalAuthGuard } from "./guards/local-auth.guard";
 export class AuthController {
 	constructor(private authService: AuthService) {}
 
-	@Get("test")
-	getHello(): string {
-		return "Hello World!";
-	}
-
 	// UseGuards hängt user an request an
 	@UseGuards(LocalAuthGuard)
 	@Post(Api.LOGIN)
