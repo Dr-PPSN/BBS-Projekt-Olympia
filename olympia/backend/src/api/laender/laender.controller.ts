@@ -1,4 +1,5 @@
 import { Controller } from "@nestjs/common";
+import { Api } from "./laender.constant";
 
-@Controller("laender")
+@Controller(Api.TITLE)
 export class LaenderController {}

@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
-import { MatTableModule } from "@angular/material/table";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatTableModule } from "@angular/material/table";
 
 export interface Column {
 	name: string;

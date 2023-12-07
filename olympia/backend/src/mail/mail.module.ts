@@ -11,7 +11,8 @@ import { MailService } from "./mail.service";
 			useFactory: async (config: ConfigService) => ({
 				transport: {
 					host: config.get("MAIL_HOST"),
-					secure: false,
+					secure: true,
+					port: config.get("MAIL_PORT"),
 					auth: {
 						user: config.get("MAIL_USER"),
 						pass: config.get("MAIL_PASSWORD"),

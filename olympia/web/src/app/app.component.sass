@@ -30,7 +30,7 @@ p
   background-color: #ffffff
   color: black
   font-weight: 600
-  outline: 2px solid $olympia-grey
+  box-shadow: 0px 1px 5px $olympia-grey
 
   img
     margin: 0 16px
@@ -50,13 +50,11 @@ p
     background-color: #2522cb
 
 .spacer
+  min-width: 10px
   flex: 1
 
 .content
   display: flex
-  margin: 82px auto 32px
-  padding: 0 16px
-  max-width: 960px
   flex-direction: column
   align-items: center
 
@@ -66,6 +64,7 @@ ul
   align-items: center
   margin-top: unset
   margin-bottom: unset
+  overflow-x: auto
   li
     display: inline-block
     height: 100%
