@@ -24,9 +24,8 @@ export class OlympiaTableComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	// biome-ignore lint/suspicious/noExplicitAny: muss any sein
-	public getKeys(objectArray: Array<any>, key: string): string[] {
-		return objectArray.map((object) => object[key]);
+	public getColumnNames(objectArray: Array<Column>): string[] {
+		return objectArray.map((object) => object.name);
 	}
 
 	public showLoadingAnimation(): void {
