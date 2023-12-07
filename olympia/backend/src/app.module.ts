@@ -14,7 +14,7 @@ import { LoggingMiddleware } from "./middleware/logging.middleware";
 @Module({
 	imports: [
 		ConfigModule.forRoot({
-			envFilePath: "../../.env",
+			envFilePath: ["../../.env", "../../mail.env"],
 			isGlobal: true,
 		}),
 		TypeOrmModule.forRoot({
