@@ -1,7 +1,8 @@
 import {
+	Body,
 	Controller,
-	Get,
 	HttpCode,
+	HttpException,
 	Post,
 	Request,
 	UseGuards,
@@ -9,6 +10,7 @@ import {
 import { Api } from "./auth.constants";
 import { AuthService } from "./auth.service";
 import { LocalAuthGuard } from "./guards/local-auth.guard";
+import { TOKEN_EXPIRED_OR_INVALID } from "../../user/tokens/token.constant";
 
 @Controller(Api.TITEL)
 export class AuthController {
@@ -20,5 +22,17 @@ export class AuthController {
 	@HttpCode(200)
 	async login(@Request() request) {
 		return this.authService.login(request.user);
+	}
+
+	@Post(Api.REQUEST_CHANGE_PASSWORD)
+	@HttpCode(200)
+	async requestChangePassword(@Body() body) {
+		this.authService.sendChangePasswordMail(body.email);
+	}
+
+	@Post(Api.CHANGE_PASSWORD)
+	@HttpCode(200)
+	async changePassword(@Body() body): Promise<void> {
+		return await this.authService.changePassword(body.token, body.newPassword);
 	}
 }

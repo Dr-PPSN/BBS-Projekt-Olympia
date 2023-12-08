@@ -1,37 +1,39 @@
 <div class="form-container">
 
   <form [formGroup]="formular" class="login-container">
-
     <mat-form-field class="login-input">
       <mat-label>Email</mat-label>
-      <input type="email" matInput [formControlName]="Formular.Email.NAME" [errorStateMatcher]="matcher">
-      <mat-error *ngIf="formular.get('email')?.hasError('email') && !formular.hasError('required')">
+      <input
+        matInput
+        [type]="Formular.Email.TYPE"
+        [formControlName]="Formular.Email.NAME"
+        [errorStateMatcher]="matcher">
+      <mat-error *ngIf="showEmailIsInvalid()">
         Please enter a valid email address
       </mat-error>
-      <mat-error *ngIf="formular.get('email')?.hasError('required')">
+      <mat-error *ngIf="showEmailIsRequired()">
         Email is required
       </mat-error>
     </mat-form-field>
   
     <mat-form-field class="login-input">
       <mat-label>Passwort</mat-label>
-      <input type="password" matInput [formControlName]="Formular.Password.NAME" [errorStateMatcher]="matcher">
-      <!-- <mat-error *ngIf="formular.get('email')?.hasError('email') && !formular.hasError('required')">
-        Please enter a valid email address
-      </mat-error> -->
-      <mat-error *ngIf="formular.get('password')?.hasError('required')">
+      <input 
+        matInput
+        [type]="Formular.Password.TYPE"
+        [formControlName]="Formular.Password.NAME"
+        [errorStateMatcher]="matcher">
+      <mat-error *ngIf="showPasswordIsRequired()">
         Password is required
       </mat-error>
     </mat-form-field>
   
-    <div *ngIf="couldNotLogIn">
-      Email oder Passwort ist falsch!
-    </div>
-  
     <div class="container">
-      <a routerLink="./reset-password">Passwort vergessen</a>
+      <a routerLink="./request-change-password">Passwort vergessen</a>
       <div class="spacer"></div>
       <button class="login" (click)="login()">Anmelden</button>
     </div>
   </form>
 </div>
+
+<notifier-container></notifier-container>

@@ -2,22 +2,26 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Nutzer } from "src/user/entity/nutzer.entity";
 import { UserService } from "src/user/user.service";
-import { isPasswordValid } from "../../user/user.constants";
+import { isPasswordValid } from "../../user/user.util";
+import { MailService } from "../../mail/mail.service";
+import { TokenService } from "../../user/tokens/token.service";
 
 @Injectable()
 export class AuthService {
 	constructor(
 		private jwtService: JwtService,
 		private userService: UserService,
+		private tokenService: TokenService,
+		private mailService: MailService,
 	) {}
 
 	// biome-ignore lint: muss any sein
 	async validateUser(email: string, rawPassword: string): Promise<any> {
-		const user = await this.userService.findNutzerWithEmail(email);
-		if (!user) {
+		const user = await this.userService.findUserWithEmail(email);
+		if (!user || !user.passwort || !user.salt) {
 			return null;
 		}
-		if (!isPasswordValid(rawPassword, user.passwort, user.salt)) {
+		if (!(await isPasswordValid(rawPassword, user.passwort, user.salt))) {
 			return null;
 		}
 		const { passwort, salt, ...result } = user;
@@ -33,5 +37,19 @@ export class AuthService {
 		return {
 			access_token: this.jwtService.sign(payload),
 		};
+	}
+
+	async sendChangePasswordMail(email: string): Promise<void> {
+		const user = await this.userService.findUserWithEmail(email);
+		if (!user) {
+			return;
+		}
+		const token = await this.tokenService.createChangePasswordToken(user);
+		this.mailService.sendChangePassword(user, token);
+		return;
+	}
+
+	async changePassword(token: string, newPassword: string): Promise<void> {
+		await this.userService.changePassword(token, newPassword);
 	}
 }

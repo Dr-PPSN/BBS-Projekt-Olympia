@@ -11,7 +11,7 @@ import {
 @Unique("nutzer_unique_contraint", ["email"])
 export class Nutzer {
 	@PrimaryGeneratedColumn("uuid")
-	uuid: number;
+	uuid: string;
 
 	@Column()
 	vorname: string;

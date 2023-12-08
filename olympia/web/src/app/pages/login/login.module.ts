@@ -6,10 +6,15 @@ import { NotifierModule } from "angular-notifier";
 import { notifierOptions } from "src/app/notifications/notification.constant";
 import { LoginRoutingModule } from "./login-routing.module";
 import { LoginComponent } from "./login.component";
-import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { ChangePasswordComponent } from "./change-password/change-password.component";
+import { RequestChangePasswordComponent } from "./request-change-password/request-change-password.component";
 
 @NgModule({
-	declarations: [ResetPasswordComponent, LoginComponent],
+	declarations: [
+		ChangePasswordComponent,
+		LoginComponent,
+		RequestChangePasswordComponent,
+	],
 	imports: [
 		CommonModule,
 		LoginRoutingModule,

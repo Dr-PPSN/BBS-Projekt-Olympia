@@ -2,15 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as bcrypt from "bcrypt";
 import { Repository } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
-import { Einladung } from "./entity/einladung.entity";
 import { Nutzer } from "./entity/nutzer.entity";
+import { TokenService } from "./tokens/token.service";
 
 @Injectable()
 export class UserService {
 	constructor(
 		@InjectRepository(Nutzer) private nutzerRepo: Repository<Nutzer>,
-		@InjectRepository(Einladung) private einladungRepo: Repository<Einladung>,
+		private tokenService: TokenService,
 	) {}
 
 	async findAllNutzer(): Promise<Array<Nutzer>> {
@@ -19,27 +18,33 @@ export class UserService {
 		});
 	}
 
-	async inviteNutzer(user: Nutzer): Promise<string> {
-		const invite = this.einladungRepo.create({
-			token: uuidv4(),
-			nutzer: user,
-		});
-		await this.einladungRepo.save(invite);
-		return invite.token;
-	}
-
-	async updatePassword(user: Nutzer): Promise<Nutzer> {
+	async changePassword(token: string, newPassword: string): Promise<Nutzer> {
+		let user = await this.tokenService.getUserByToken(token);
 		const salt = await bcrypt.genSalt();
-		const hashedPassword = await bcrypt.hash(user.passwort, salt);
-		return await this.nutzerRepo.save({
+		const hashedPassword = await bcrypt.hash(newPassword, salt);
+		user = await this.nutzerRepo.save({
 			...user,
 			passwort: hashedPassword,
 			salt,
 		});
+		this.tokenService.removeTokensForUser(user);
+		return user;
+	}
+
+	async addUser(user: Nutzer): Promise<Nutzer> {
+		return await this.nutzerRepo.save({
+			...user,
+			passwort: null,
+			salt: null,
+		});
+	}
+
+	async sendInvitation(user: Nutzer): Promise<void> {
+		const token = await this.tokenService.createChangePasswordToken(user);
 	}
 
 	// TODO: später entfernen
-	async addUser(user: Nutzer): Promise<Nutzer> {
+	async addUserDebug(user: Nutzer): Promise<Nutzer> {
 		const salt = await bcrypt.genSalt();
 		const hashedPassword = await bcrypt.hash(user.passwort, salt);
 		return await this.nutzerRepo.save({
@@ -49,15 +54,9 @@ export class UserService {
 		});
 	}
 
-	async findNutzerWithEmail(email: string): Promise<Nutzer> {
+	async findUserWithEmail(email: string): Promise<Nutzer> {
 		return await this.nutzerRepo.findOne({
 			where: { email },
-		});
-	}
-
-	async findInviteWithToken(token: string): Promise<Einladung> {
-		return await this.einladungRepo.findOne({
-			where: { token },
 		});
 	}
 

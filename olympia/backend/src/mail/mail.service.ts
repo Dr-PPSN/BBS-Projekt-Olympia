@@ -7,14 +7,14 @@ import { Nutzer } from "src/user/entity/nutzer.entity";
 export class MailService {
 	constructor(private mailerService: MailerService) {}
 
-	async sendUserConfirmation(user: Nutzer, token: string) {
-		const url = `example.com/auth/confirm?token=${token}`;
+	async sendInvitation(user: Nutzer, token: string) {
+		const url = `http://${process.env.WEBHOST}/auth/confirm?token=${token}`;
 		const name = `${user.vorname} ${user.nachname}`;
 
 		await this.mailerService.sendMail({
 			to: user.email,
-			subject: "Welcome to Nice App! Confirm your Email",
-			template: "./confirmation",
+			subject: "Invitation to join the olympic team",
+			template: "./invitation",
 			context: {
 				name: name,
 				url,
@@ -22,7 +22,25 @@ export class MailService {
 		});
 	}
 
-	async sendTestEmail(email: string): Promise<SentMessageInfo> {
+	async sendChangePassword(
+		user: Nutzer,
+		token: string,
+	): Promise<SentMessageInfo> {
+		const url = `http://${process.env.WEBHOST}/app/login/change-password/${token}`;
+		const name = `${user.vorname} ${user.nachname}`;
+
+		return this.mailerService.sendMail({
+			to: user.email,
+			subject: "Change your Password",
+			template: "./change-password",
+			context: {
+				name: name,
+				url,
+			},
+		});
+	}
+
+	async sendTest(email: string): Promise<SentMessageInfo> {
 		return await this.mailerService.sendMail({
 			to: email,
 			subject: "Test Mail",

@@ -49,8 +49,7 @@ export class MedaillenspiegelComponent {
 					y > chart.scales.y.top &&
 					y < chart.scales.y.bottom
 				) {
-					const labelIndex = chart.scales.y.getValueForPixel(y);
-					console.log(labelIndex); // gibt den Index des angeklickten Labels aus -> Routing zum entsprechenden Land
+					const labelIndex = chart.scales.y.getValueForPixel(y); // gibt den Index des angeklickten Labels aus -> Routing zum entsprechenden Land
 				}
 			},
 		},

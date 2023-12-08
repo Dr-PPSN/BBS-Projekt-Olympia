@@ -30,6 +30,12 @@ export class NutzerController {
 	}
 
 	@HttpCode(200)
+	@Post(Api.ADD_USER_DEBUG)
+	async addUserDebug(@Body() body): Promise<Nutzer> {
+		return await this.adminService.addUserDebug(body);
+	}
+
+	@HttpCode(200)
 	@Post(Api.EDIT_USER)
 	async editUser(@Body() body): Promise<Nutzer> {
 		return await this.adminService.editUser(body);

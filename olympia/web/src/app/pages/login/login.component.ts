@@ -11,6 +11,8 @@ import { Router } from "@angular/router";
 import { AuthService } from "../../service/auth/auth.service";
 import { Formular } from "./login.constant";
 import { LoginService } from "./login.service";
+import { NotifierService } from "angular-notifier";
+import { Notification } from "../../notifications/notification.constant";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(
@@ -35,12 +37,12 @@ export class LoginComponent {
 		private loginService: LoginService,
 		private authService: AuthService,
 		private router: Router,
+		private notifier: NotifierService,
 	) {}
 
-	Formular = Formular;
 	matcher = new MyErrorStateMatcher();
-	couldNotLogIn = false;
 
+	Formular = Formular;
 	formular = new FormGroup({
 		email: new FormControl("", [Validators.required, Validators.email]),
 		password: new FormControl("", [Validators.required]),
@@ -51,27 +53,45 @@ export class LoginComponent {
 		const password = this.formular.value.password
 			? this.formular.value.password
 			: "";
-		this.couldNotLogIn = false;
+
 		if (this.formular.invalid) {
 			return;
 		}
 
-		this.loginService.login(email, password).subscribe(
-			(data) => {
+		this.loginService.login(email, password).subscribe({
+			next: (data) => {
 				this.authService.saveJwtToken(data.access_token);
 				this.navigateToLandingPage();
 			},
-			(error) => {
+			error: (error) => {
 				if (error.status === 401) {
-					this.couldNotLogIn = true;
+					this.showLoginError();
 					return;
 				}
-				console.log(error);
 			},
+		});
+	}
+
+	public showEmailIsInvalid(): boolean | undefined {
+		return (
+			this.formular.get(Formular.Email.NAME)?.hasError("email") &&
+			!this.showEmailIsRequired()
 		);
+	}
+
+	public showEmailIsRequired(): boolean | undefined {
+		return this.formular.get(Formular.Email.NAME)?.hasError("required");
+	}
+
+	public showPasswordIsRequired(): boolean | undefined {
+		return this.formular.get(Formular.Password.NAME)?.hasError("required");
 	}
 
 	private navigateToLandingPage() {
 		this.router.navigate(["/"]);
+	}
+
+	private showLoginError() {
+		this.notifier.notify(Notification.ERROR, "Fehler bei der Anmeldung");
 	}
 }

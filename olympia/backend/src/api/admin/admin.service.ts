@@ -10,13 +10,14 @@ export class AdminService {
 		return await this.userService.findAllNutzer();
 	}
 
-	async inviteUser(body): Promise<string> {
-		const user = await this.userService.findNutzerWithEmail(body.email);
-		return await this.userService.inviteNutzer(user);
+	async addUser(body): Promise<Nutzer> {
+		const user = await this.userService.addUser(body);
+		this.userService.sendInvitation(user);
+		return user;
 	}
 
-	async addUser(body): Promise<Nutzer> {
-		return await this.userService.addUser(body);
+	async addUserDebug(user: Nutzer): Promise<Nutzer> {
+		return await this.userService.addUserDebug(user);
 	}
 
 	async editUser(body): Promise<Nutzer> {
