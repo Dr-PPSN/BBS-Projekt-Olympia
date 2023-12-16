@@ -5,9 +5,13 @@ import { Nutzer } from "./entity/nutzer.entity";
 import { UserService } from "./user.service";
 import { TokenService } from "./tokens/token.service";
 import { TokenCleanupService } from "./tokens/token-cleanup.service";
+import { MailModule } from "../mail/mail.module";
 
 @Module({
-	imports: [TypeOrmModule.forFeature([Nutzer, ChangePasswordToken])],
+	imports: [
+		TypeOrmModule.forFeature([Nutzer, ChangePasswordToken]),
+		MailModule,
+	],
 	providers: [UserService, TokenService, TokenCleanupService],
 	exports: [UserService, TokenService],
 })

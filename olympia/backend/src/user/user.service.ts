@@ -4,15 +4,18 @@ import * as bcrypt from "bcrypt";
 import { Repository } from "typeorm";
 import { Nutzer } from "./entity/nutzer.entity";
 import { TokenService } from "./tokens/token.service";
+import { MailService } from "../mail/mail.service";
+import { DefaultAdminUser } from "./user.constants";
 
 @Injectable()
 export class UserService {
 	constructor(
 		@InjectRepository(Nutzer) private nutzerRepo: Repository<Nutzer>,
 		private tokenService: TokenService,
+		private mailService: MailService,
 	) {}
 
-	async findAllNutzer(): Promise<Array<Nutzer>> {
+	async getAllUsers(): Promise<Array<Nutzer>> {
 		return await this.nutzerRepo.find({
 			select: ["uuid", "vorname", "nachname", "email", "istAdmin", "sportart"],
 		});
@@ -31,27 +34,24 @@ export class UserService {
 		return user;
 	}
 
-	async addUser(user: Nutzer): Promise<Nutzer> {
-		return await this.nutzerRepo.save({
+	async inviteUser(user: Nutzer): Promise<Nutzer> {
+		await this.nutzerRepo.save({
 			...user,
 			passwort: null,
 			salt: null,
 		});
-	}
-
-	async sendInvitation(user: Nutzer): Promise<void> {
 		const token = await this.tokenService.createChangePasswordToken(user);
+		this.mailService.sendInvitation(user, token);
+		return user;
 	}
 
-	// TODO: später entfernen
-	async addUserDebug(user: Nutzer): Promise<Nutzer> {
-		const salt = await bcrypt.genSalt();
-		const hashedPassword = await bcrypt.hash(user.passwort, salt);
-		return await this.nutzerRepo.save({
-			...user,
-			passwort: hashedPassword,
-			salt,
-		});
+	async sendChangePasswordMail(email: string): Promise<void> {
+		const user = await this.findUserWithEmail(email);
+		if (!user) {
+			return;
+		}
+		const token = await this.tokenService.createChangePasswordToken(user);
+		this.mailService.sendChangePassword(user, token);
 	}
 
 	async findUserWithEmail(email: string): Promise<Nutzer> {
@@ -66,5 +66,33 @@ export class UserService {
 
 	async editUser(user: Nutzer): Promise<Nutzer> {
 		return await this.nutzerRepo.save(user);
+	}
+
+	async checkAdminExists(): Promise<void> {
+		if (await this.adminExists()) {
+			return;
+		}
+		this.addUserWithPassword({
+			email: process.env.DEFAULT_ADMIN_EMAIL,
+			passwort: process.env.DEFAULT_ADMIN_PASSWORD,
+			vorname: DefaultAdminUser.FIRST_NAME,
+			nachname: DefaultAdminUser.LAST_NAME,
+			istAdmin: DefaultAdminUser.IS_ADMIN,
+		});
+	}
+
+	async adminExists(): Promise<boolean> {
+		return (await this.nutzerRepo.count({ where: { istAdmin: true } })) > 0;
+	}
+
+	// biome-ignore lint: muss any sein
+	async addUserWithPassword(user: any): Promise<Nutzer> {
+		const salt = await bcrypt.genSalt();
+		const hashedPassword = await bcrypt.hash(user.passwort, salt);
+		return await this.nutzerRepo.save({
+			...user,
+			passwort: hashedPassword,
+			salt,
+		});
 	}
 }

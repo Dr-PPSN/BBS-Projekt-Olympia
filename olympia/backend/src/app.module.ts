@@ -10,6 +10,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { MailModule } from "./mail/mail.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
+import { UserModule } from "./user/user.module";
 
 @Module({
 	imports: [
@@ -33,6 +34,7 @@ import { LoggingMiddleware } from "./middleware/logging.middleware";
 		LaenderModule,
 		MedaillenspiegelModule,
 		MailModule,
+		UserModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

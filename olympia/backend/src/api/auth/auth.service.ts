@@ -3,16 +3,12 @@ import { JwtService } from "@nestjs/jwt";
 import { Nutzer } from "src/user/entity/nutzer.entity";
 import { UserService } from "src/user/user.service";
 import { isPasswordValid } from "../../user/user.util";
-import { MailService } from "../../mail/mail.service";
-import { TokenService } from "../../user/tokens/token.service";
 
 @Injectable()
 export class AuthService {
 	constructor(
 		private jwtService: JwtService,
 		private userService: UserService,
-		private tokenService: TokenService,
-		private mailService: MailService,
 	) {}
 
 	// biome-ignore lint: muss any sein
@@ -40,13 +36,7 @@ export class AuthService {
 	}
 
 	async sendChangePasswordMail(email: string): Promise<void> {
-		const user = await this.userService.findUserWithEmail(email);
-		if (!user) {
-			return;
-		}
-		const token = await this.tokenService.createChangePasswordToken(user);
-		this.mailService.sendChangePassword(user, token);
-		return;
+		this.userService.sendChangePasswordMail(email);
 	}
 
 	async changePassword(token: string, newPassword: string): Promise<void> {
