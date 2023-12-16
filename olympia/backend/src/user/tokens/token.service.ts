@@ -4,6 +4,7 @@ import { MoreThan, Repository } from "typeorm";
 import { ChangePasswordToken } from "../entity/change_password_token.entity";
 import { User } from "../entity/user.entity";
 import { TOKEN_EXPIRED_OR_INVALID } from "./token.constant";
+import { getTokenExpirationDate } from "./token.utils";
 
 @Injectable()
 export class TokenService {
@@ -25,17 +26,12 @@ export class TokenService {
 	}
 
 	async getUserByToken(token: string): Promise<User> {
-		const expirationDate = new Date();
-		expirationDate.setMinutes(
-			expirationDate.getSeconds() - this.maxTokenAgeInSeconds,
-		);
-
+		const expirationDate = getTokenExpirationDate(this.maxTokenAgeInSeconds);
 		const changePasswordToken =
 			await this.changePasswordTokenRepository.findOne({
 				where: { uuid: token, createdAt: MoreThan(expirationDate) },
 				relations: ["user"],
 			});
-
 		if (!changePasswordToken) {
 			throw new BadRequestException(TOKEN_EXPIRED_OR_INVALID);
 		}
@@ -51,10 +47,7 @@ export class TokenService {
 	}
 
 	async removeExpiredTokens() {
-		const expirationDate = new Date();
-		expirationDate.setMinutes(
-			expirationDate.getSeconds() - this.maxTokenAgeInSeconds,
-		);
+		const expirationDate = getTokenExpirationDate(this.maxTokenAgeInSeconds);
 		const expiredTokens = await this.changePasswordTokenRepository
 			.createQueryBuilder("token")
 			.where("token.createdAt < :deleteDate", { deleteDate: expirationDate })
