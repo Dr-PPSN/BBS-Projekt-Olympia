@@ -9,7 +9,7 @@ export class SportsResult {
 	discipline: string;
 
 	@Column()
-	values: number;
+	value: number;
 
 	@Column()
 	medal: string;
