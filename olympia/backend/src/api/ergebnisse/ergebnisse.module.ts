@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Athlete } from "./entity/athlete.entity";
-import { SportsResult } from "./entity/sports_result.entity";
 import { Discipline } from "./entity/discipline.entity";
+import { SportsResult } from "./entity/sports_result.entity";
 import { ErgebnisseController } from "./ergebnisse.controller";
 import { ErgebnisseService } from "./ergebnisse.service";
 

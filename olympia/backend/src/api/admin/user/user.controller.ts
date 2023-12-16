@@ -7,10 +7,10 @@ import {
 	UseGuards,
 } from "@nestjs/common";
 import { User } from "../../../user/entity/user.entity";
+import { UserService } from "../../../user/user.service";
 import { JwtAuthGuard } from "../../auth/guards/jwt-auth.guard";
 import { Api as AdminApi } from "../admin.constant";
 import { Api } from "./user.constant";
-import { UserService } from "../../../user/user.service";
 
 @UseGuards(JwtAuthGuard)
 @Controller(AdminApi.TITLE + Api.TITLE)

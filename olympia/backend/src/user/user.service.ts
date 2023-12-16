@@ -2,9 +2,9 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as bcrypt from "bcrypt";
 import { Repository } from "typeorm";
+import { MailService } from "../mail/mail.service";
 import { User } from "./entity/user.entity";
 import { TokenService } from "./tokens/token.service";
-import { MailService } from "../mail/mail.service";
 import { DefaultAdminUser } from "./user.constants";
 
 @Injectable()

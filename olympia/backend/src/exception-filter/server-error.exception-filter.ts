@@ -1,9 +1,9 @@
 import {
+	ArgumentsHost,
 	Catch,
 	ExceptionFilter,
-	ArgumentsHost,
-	HttpStatus,
 	HttpException,
+	HttpStatus,
 } from "@nestjs/common";
 import { DEFAULT_ERROR_MESSAGE } from "./server-error.constant";
 

@@ -7,10 +7,10 @@ import {
 	Request,
 	UseGuards,
 } from "@nestjs/common";
+import { TOKEN_EXPIRED_OR_INVALID } from "../../user/tokens/token.constant";
 import { Api } from "./auth.constants";
 import { AuthService } from "./auth.service";
 import { LocalAuthGuard } from "./guards/local-auth.guard";
-import { TOKEN_EXPIRED_OR_INVALID } from "../../user/tokens/token.constant";
 
 @Controller(Api.TITEL)
 export class AuthController {

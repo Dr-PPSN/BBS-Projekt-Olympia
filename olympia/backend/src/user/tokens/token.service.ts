@@ -7,7 +7,7 @@ import { TOKEN_EXPIRED_OR_INVALID } from "./token.constant";
 
 @Injectable()
 export class TokenService {
-	private maxTokenAgeInSeconds: number = null;
+	private maxTokenAgeInSeconds = null;
 
 	constructor(
 		@InjectRepository(ChangePasswordToken)

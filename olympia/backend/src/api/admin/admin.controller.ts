@@ -1,8 +1,8 @@
 import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { SentMessageInfo } from "nodemailer";
+import { MailService } from "../../mail/mail.service";
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
 import { Api } from "./admin.constant";
-import { MailService } from "../../mail/mail.service";
-import { SentMessageInfo } from "nodemailer";
 
 @UseGuards(JwtAuthGuard)
 @Controller(Api.TITLE)
