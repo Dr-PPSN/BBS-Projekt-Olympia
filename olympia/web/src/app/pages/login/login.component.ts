@@ -13,6 +13,7 @@ import { Notification } from "../../notifications/notification.constant";
 import { AuthService } from "../../service/auth/auth.service";
 import { Formular } from "./login.constant";
 import { LoginService } from "./login.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(
@@ -65,9 +66,10 @@ export class LoginComponent {
 			},
 			error: (error) => {
 				if (error.status === 401) {
-					this.showLoginError();
+					this.showEmailOrPasswordInvalidError();
 					return;
 				}
+				this.showLoginError(error);
 			},
 		});
 	}
@@ -91,7 +93,11 @@ export class LoginComponent {
 		this.router.navigate(["/"]);
 	}
 
-	private showLoginError() {
-		this.notifier.notify(Notification.ERROR, "Fehler bei der Anmeldung");
+	private showEmailOrPasswordInvalidError() {
+		this.notifier.notify(Notification.ERROR, "Email oder Passwort inkorrekt");
+	}
+
+	private showLoginError(error: HttpErrorResponse) {
+		this.notifier.notify(Notification.ERROR, error.error);
 	}
 }
