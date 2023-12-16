@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { MoreThan, Repository } from "typeorm";
 import { ChangePasswordToken } from "../entity/change_password_token.entity";
-import { Nutzer } from "../entity/nutzer.entity";
+import { User } from "../entity/user.entity";
 import { TOKEN_EXPIRED_OR_INVALID } from "./token.constant";
 
 @Injectable()
@@ -16,15 +16,15 @@ export class TokenService {
 		this.setMaxTokenAgeInSeconds();
 	}
 
-	async createChangePasswordToken(user: Nutzer): Promise<string> {
+	async createChangePasswordToken(user: User): Promise<string> {
 		await this.removeTokensForUser(user);
 		const changePasswordToken = await this.changePasswordTokenRepository.save({
-			nutzer: user,
+			user,
 		});
 		return changePasswordToken.uuid;
 	}
 
-	async getUserByToken(token: string): Promise<Nutzer> {
+	async getUserByToken(token: string): Promise<User> {
 		const expirationDate = new Date();
 		expirationDate.setMinutes(
 			expirationDate.getSeconds() - this.maxTokenAgeInSeconds,
@@ -33,21 +33,21 @@ export class TokenService {
 		const changePasswordToken =
 			await this.changePasswordTokenRepository.findOne({
 				where: { uuid: token, createdAt: MoreThan(expirationDate) },
-				relations: ["nutzer"],
+				relations: ["user"],
 			});
 
 		if (!changePasswordToken) {
 			throw new BadRequestException(TOKEN_EXPIRED_OR_INVALID);
 		}
-		return changePasswordToken.nutzer;
+		return changePasswordToken.user;
 	}
 
 	async removeToken(token: string): Promise<void> {
 		await this.changePasswordTokenRepository.delete({ uuid: token });
 	}
 
-	async removeTokensForUser(user: Nutzer): Promise<void> {
-		await this.changePasswordTokenRepository.delete({ nutzer: user });
+	async removeTokensForUser(user: User): Promise<void> {
+		await this.changePasswordTokenRepository.delete({ user: user });
 	}
 
 	async removeExpiredTokens() {

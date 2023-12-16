@@ -1,15 +1,15 @@
 import { MailerService } from "@nestjs-modules/mailer";
 import { Injectable } from "@nestjs/common";
 import { SentMessageInfo } from "nodemailer";
-import { Nutzer } from "src/user/entity/nutzer.entity";
+import { User } from "src/user/entity/user.entity";
 
 @Injectable()
 export class MailService {
 	constructor(private mailerService: MailerService) {}
 
-	async sendInvitation(user: Nutzer, token: string) {
+	async sendInvitation(user: User, token: string) {
 		const url = `http://${process.env.WEBHOST}/auth/confirm?token=${token}`;
-		const name = `${user.vorname} ${user.nachname}`;
+		const name = `${user.firstName} ${user.lastName}`;
 
 		await this.mailerService.sendMail({
 			to: user.email,
@@ -23,11 +23,11 @@ export class MailService {
 	}
 
 	async sendChangePassword(
-		user: Nutzer,
+		user: User,
 		token: string,
 	): Promise<SentMessageInfo> {
 		const url = `http://${process.env.WEBHOST}/app/login/change-password/${token}`;
-		const name = `${user.vorname} ${user.nachname}`;
+		const name = `${user.firstName} ${user.lastName}`;
 
 		return this.mailerService.sendMail({
 			to: user.email,

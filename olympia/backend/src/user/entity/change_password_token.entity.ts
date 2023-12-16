@@ -6,17 +6,17 @@ import {
 	PrimaryGeneratedColumn,
 	Unique,
 } from "typeorm";
-import { Nutzer } from "./nutzer.entity";
+import { User } from "./user.entity";
 
 @Entity()
-@Unique("change_password_token_unique_contraint", ["nutzer"])
+@Unique("change_password_token_unique_contraint", ["user"])
 export class ChangePasswordToken {
 	@PrimaryGeneratedColumn("uuid")
 	uuid: string;
 
-	@OneToOne(() => Nutzer)
+	@OneToOne(() => User)
 	@JoinColumn()
-	nutzer: Nutzer;
+	user: User;
 
 	@Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
 	createdAt: Date;

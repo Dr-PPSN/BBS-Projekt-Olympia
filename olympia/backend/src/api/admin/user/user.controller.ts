@@ -6,7 +6,7 @@ import {
 	Post,
 	UseGuards,
 } from "@nestjs/common";
-import { Nutzer } from "../../../user/entity/nutzer.entity";
+import { User } from "../../../user/entity/user.entity";
 import { JwtAuthGuard } from "../../auth/guards/jwt-auth.guard";
 import { Api as AdminApi } from "../admin.constant";
 import { Api } from "./user.constant";
@@ -19,31 +19,31 @@ export class UserController {
 
 	@HttpCode(200)
 	@Get()
-	async getUsers(): Promise<Array<Nutzer>> {
+	async getUsers(): Promise<Array<User>> {
 		return await this.userSerivce.getAllUsers();
 	}
 
 	@HttpCode(200)
 	@Post(Api.INVITE_USER)
-	async inviteUser(@Body() body): Promise<Nutzer> {
+	async inviteUser(@Body() body): Promise<User> {
 		return await this.userSerivce.inviteUser(body);
 	}
 
 	@HttpCode(200)
 	@Post(Api.ADD_USER_DEBUG)
-	async addUserDebug(@Body() body): Promise<Nutzer> {
+	async addUserDebug(@Body() body): Promise<User> {
 		return await this.userSerivce.addUserWithPassword(body);
 	}
 
 	@HttpCode(200)
 	@Post(Api.EDIT_USER)
-	async editUser(@Body() body): Promise<Nutzer> {
+	async editUser(@Body() body): Promise<User> {
 		return await this.userSerivce.editUser(body);
 	}
 
 	@HttpCode(200)
 	@Post(Api.DELETE_USER)
-	async deleteUser(@Body() body): Promise<Nutzer> {
+	async deleteUser(@Body() body): Promise<User> {
 		return await this.userSerivce.deleteUser(body);
 	}
 }

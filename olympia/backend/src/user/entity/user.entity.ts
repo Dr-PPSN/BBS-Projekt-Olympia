@@ -1,4 +1,4 @@
-import { Sportart } from "src/api/ergebnisse/entity/sportart.entity";
+import { Discipline } from "src/api/ergebnisse/entity/discipline.entity";
 import {
 	Column,
 	Entity,
@@ -8,29 +8,29 @@ import {
 } from "typeorm";
 
 @Entity()
-@Unique("nutzer_unique_contraint", ["email"])
-export class Nutzer {
+@Unique("user_unique_contraint", ["email"])
+export class User {
 	@PrimaryGeneratedColumn("uuid")
 	uuid: string;
 
 	@Column()
-	vorname: string;
+	firstName: string;
 
 	@Column()
-	nachname: string;
+	lastName: string;
 
 	@Column()
 	email: string;
 
 	@Column({ nullable: true })
-	passwort: string;
+	password: string;
 
 	@Column({ nullable: true })
 	salt: string;
 
 	@Column({ default: false })
-	istAdmin: boolean;
+	isAdmin: boolean;
 
-	@OneToOne(() => Sportart)
-	sportart?: string;
+	@OneToOne(() => Discipline)
+	discipline?: string;
 }

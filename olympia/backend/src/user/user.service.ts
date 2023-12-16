@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as bcrypt from "bcrypt";
 import { Repository } from "typeorm";
-import { Nutzer } from "./entity/nutzer.entity";
+import { User } from "./entity/user.entity";
 import { TokenService } from "./tokens/token.service";
 import { MailService } from "../mail/mail.service";
 import { DefaultAdminUser } from "./user.constants";
@@ -10,34 +10,41 @@ import { DefaultAdminUser } from "./user.constants";
 @Injectable()
 export class UserService {
 	constructor(
-		@InjectRepository(Nutzer) private nutzerRepo: Repository<Nutzer>,
+		@InjectRepository(User) private userRepository: Repository<User>,
 		private tokenService: TokenService,
 		private mailService: MailService,
 	) {}
 
-	async getAllUsers(): Promise<Array<Nutzer>> {
-		return await this.nutzerRepo.find({
-			select: ["uuid", "vorname", "nachname", "email", "istAdmin", "sportart"],
+	async getAllUsers(): Promise<Array<User>> {
+		return await this.userRepository.find({
+			select: [
+				"uuid",
+				"firstName",
+				"lastName",
+				"email",
+				"isAdmin",
+				"discipline",
+			],
 		});
 	}
 
-	async changePassword(token: string, newPassword: string): Promise<Nutzer> {
+	async changePassword(token: string, newPassword: string): Promise<User> {
 		let user = await this.tokenService.getUserByToken(token);
 		const salt = await bcrypt.genSalt();
 		const hashedPassword = await bcrypt.hash(newPassword, salt);
-		user = await this.nutzerRepo.save({
+		user = await this.userRepository.save({
 			...user,
-			passwort: hashedPassword,
+			password: hashedPassword,
 			salt,
 		});
 		this.tokenService.removeTokensForUser(user);
 		return user;
 	}
 
-	async inviteUser(user: Nutzer): Promise<Nutzer> {
-		await this.nutzerRepo.save({
+	async inviteUser(user: User): Promise<User> {
+		await this.userRepository.save({
 			...user,
-			passwort: null,
+			password: null,
 			salt: null,
 		});
 		const token = await this.tokenService.createChangePasswordToken(user);
@@ -54,18 +61,18 @@ export class UserService {
 		this.mailService.sendChangePassword(user, token);
 	}
 
-	async findUserWithEmail(email: string): Promise<Nutzer> {
-		return await this.nutzerRepo.findOne({
+	async findUserWithEmail(email: string): Promise<User> {
+		return await this.userRepository.findOne({
 			where: { email },
 		});
 	}
 
-	async deleteUser(user: Nutzer): Promise<Nutzer> {
-		return await this.nutzerRepo.remove(user);
+	async deleteUser(user: User): Promise<User> {
+		return await this.userRepository.remove(user);
 	}
 
-	async editUser(user: Nutzer): Promise<Nutzer> {
-		return await this.nutzerRepo.save(user);
+	async editUser(user: User): Promise<User> {
+		return await this.userRepository.save(user);
 	}
 
 	async checkAdminExists(): Promise<void> {
@@ -74,24 +81,24 @@ export class UserService {
 		}
 		this.addUserWithPassword({
 			email: process.env.DEFAULT_ADMIN_EMAIL,
-			passwort: process.env.DEFAULT_ADMIN_PASSWORD,
-			vorname: DefaultAdminUser.FIRST_NAME,
-			nachname: DefaultAdminUser.LAST_NAME,
-			istAdmin: DefaultAdminUser.IS_ADMIN,
+			password: process.env.DEFAULT_ADMIN_PASSWORD,
+			firstName: DefaultAdminUser.FIRST_NAME,
+			lastName: DefaultAdminUser.LAST_NAME,
+			isAdmin: DefaultAdminUser.IS_ADMIN,
 		});
 	}
 
 	async adminExists(): Promise<boolean> {
-		return (await this.nutzerRepo.count({ where: { istAdmin: true } })) > 0;
+		return (await this.userRepository.count({ where: { isAdmin: true } })) > 0;
 	}
 
 	// biome-ignore lint: muss any sein
-	async addUserWithPassword(user: any): Promise<Nutzer> {
+	async addUserWithPassword(user: any): Promise<User> {
 		const salt = await bcrypt.genSalt();
-		const hashedPassword = await bcrypt.hash(user.passwort, salt);
-		return await this.nutzerRepo.save({
+		const hashedPassword = await bcrypt.hash(user.password, salt);
+		return await this.userRepository.save({
 			...user,
-			passwort: hashedPassword,
+			password: hashedPassword,
 			salt,
 		});
 	}
