@@ -1,10 +1,26 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+	Column,
+	Entity,
+	OneToMany,
+	PrimaryGeneratedColumn,
+	Unique,
+} from "typeorm";
+import { Athlete } from "./athlete.entity";
 
 @Entity()
+@Unique("discipline_unique_contraint", ["title"])
 export class Discipline {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn("uuid", {
+		primaryKeyConstraintName: "pk_discipline_uuid",
+	})
+	uuid: number;
 
 	@Column()
 	title: string;
+
+	@OneToMany(
+		() => Athlete,
+		(athlete) => athlete.discipline,
+	)
+	athletes: Athlete[];
 }

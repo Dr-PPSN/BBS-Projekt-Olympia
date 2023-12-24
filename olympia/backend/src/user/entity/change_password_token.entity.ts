@@ -11,7 +11,9 @@ import { User } from "./user.entity";
 @Entity()
 @Unique("change_password_token_unique_contraint", ["user"])
 export class ChangePasswordToken {
-	@PrimaryGeneratedColumn("uuid")
+	@PrimaryGeneratedColumn("uuid", {
+		primaryKeyConstraintName: "pk_change_password_token_uuid",
+	})
 	uuid: string;
 
 	@OneToOne(() => User)

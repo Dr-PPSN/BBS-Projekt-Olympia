@@ -10,7 +10,7 @@ import {
 @Entity()
 @Unique("user_unique_contraint", ["email"])
 export class User {
-	@PrimaryGeneratedColumn("uuid")
+	@PrimaryGeneratedColumn("uuid", { primaryKeyConstraintName: "pk_user_uuid" })
 	uuid: string;
 
 	@Column()

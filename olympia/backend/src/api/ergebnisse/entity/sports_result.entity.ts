@@ -1,16 +1,39 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+	Column,
+	Entity,
+	JoinColumn,
+	OneToOne,
+	PrimaryGeneratedColumn,
+} from "typeorm";
+import { Athlete } from "./athlete.entity";
+
+export enum Medals {
+	GOLD = "gold",
+	SILVER = "silver",
+	BRONZE = "bronze",
+}
 
 @Entity()
 export class SportsResult {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn("uuid", {
+		primaryKeyConstraintName: "pk_sports_result_uuid",
+	})
+	uuid: number;
 
-	@Column()
-	discipline: string;
+	@OneToOne(
+		() => Athlete,
+		(athlete) => athlete.sportsResult,
+	)
+	@JoinColumn()
+	athlete: Athlete;
 
 	@Column()
 	value: number;
 
-	@Column()
-	medal: string;
+	@Column({
+		type: "enum",
+		enum: Medals,
+		default: null,
+	})
+	medal: Medals;
 }

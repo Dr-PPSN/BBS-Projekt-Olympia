@@ -1,17 +1,26 @@
 import {
 	Column,
 	Entity,
+	ManyToOne,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	Unique,
 } from "typeorm";
 import { Discipline } from "./discipline.entity";
+import { SportsResult } from "./sports_result.entity";
 
 @Entity()
-@Unique(["firstName", "lastName", "birthDate", "country"])
+@Unique("athlete_unique_contraint", [
+	"firstName",
+	"lastName",
+	"birthDate",
+	"country",
+])
 export class Athlete {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryGeneratedColumn("uuid", {
+		primaryKeyConstraintName: "pk_athlete_uuid",
+	})
+	uuid: number;
 
 	@Column()
 	firstName: string;
@@ -28,7 +37,15 @@ export class Athlete {
 	@Column()
 	birthDate: Date;
 
-	@Column()
-	@OneToOne(() => Discipline)
-	discipline: string;
+	@ManyToOne(
+		() => Discipline,
+		(discipline) => discipline.athletes,
+	)
+	discipline: Discipline;
+
+	@OneToOne(
+		() => SportsResult,
+		(sportsResult) => sportsResult.athlete,
+	)
+	sportsResult: SportsResult;
 }

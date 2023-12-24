@@ -10,7 +10,7 @@ services:
       - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/example-data.sql:/docker-entrypoint-initdb.d/init.sql
 
   pgadmin:
     container_name: pgadmin4
@@ -22,7 +22,7 @@ services:
       - "5050:80"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-      - ./db/pgadmin_servers.json:/pgadmin4/servers.json
+      - ./db/pgadmin-servers.json:/pgadmin4/servers.json
     depends_on:
       - db
 
