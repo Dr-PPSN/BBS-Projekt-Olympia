@@ -11,6 +11,7 @@ import { AppService } from "./app.service";
 import { MailModule } from "./mail/mail.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
 import { UserModule } from "./user/user.module";
+import { ErgebnisseModule } from "./api/ergebnisse/ergebnisse.module";
 
 @Module({
 	imports: [
@@ -32,6 +33,7 @@ import { UserModule } from "./user/user.module";
 		AdminModule,
 		AuthModule,
 		LaenderModule,
+		ErgebnisseModule,
 		MedaillenspiegelModule,
 		MailModule,
 		UserModule,
