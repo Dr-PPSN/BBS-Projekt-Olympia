@@ -18,7 +18,7 @@ export class SportsResult {
 	@PrimaryGeneratedColumn("uuid", {
 		primaryKeyConstraintName: "pk_sports_result_uuid",
 	})
-	uuid: number;
+	uuid: string;
 
 	@OneToOne(
 		() => Athlete,

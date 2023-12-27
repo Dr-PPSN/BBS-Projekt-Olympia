@@ -13,7 +13,7 @@ export class Discipline {
 	@PrimaryGeneratedColumn("uuid", {
 		primaryKeyConstraintName: "pk_discipline_uuid",
 	})
-	uuid: number;
+	uuid: string;
 
 	@Column()
 	title: string;

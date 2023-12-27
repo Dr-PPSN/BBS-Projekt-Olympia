@@ -20,7 +20,7 @@ export class Athlete {
 	@PrimaryGeneratedColumn("uuid", {
 		primaryKeyConstraintName: "pk_athlete_uuid",
 	})
-	uuid: number;
+	uuid: string;
 
 	@Column()
 	firstName: string;
