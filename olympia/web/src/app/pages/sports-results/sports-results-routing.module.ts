@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { SportsResultsComponent } from "./sports-results/sports-results.component";
 import { LaufenComponent } from "./sports-results/laufen/laufen.component";
 import { SchwimmenComponent } from "./sports-results/schwimmen/schwimmen.component";
+import { SportsResultsComponent } from "./sports-results/sports-results.component";
 import { SpringreitenComponent } from "./sports-results/springreiten/springreiten.component";
 import { WeitsprungComponent } from "./sports-results/weitsprung/weitsprung.component";
 

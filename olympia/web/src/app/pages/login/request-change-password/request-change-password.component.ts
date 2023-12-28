@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
 import { Formular } from "../login.constant";
 import { LoginService } from "../login.service";
-import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: "request-change-password",

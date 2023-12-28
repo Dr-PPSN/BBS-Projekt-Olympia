@@ -1,9 +1,9 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, signal } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 import { DiagramSettings } from "../medal-count.constant";
 import { MedalCountService } from "../medal-count.service";
 import { getCountries, getMedalCountData } from "../medal-count.utils";
-import { HttpErrorResponse } from "@angular/common/http";
-import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: "app-medaillenspiegel",

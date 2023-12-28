@@ -6,6 +6,7 @@ import { MatTableModule } from "@angular/material/table";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
+import { ToastrModule } from "ngx-toastr";
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -20,7 +21,6 @@ import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
-import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
 	declarations: [

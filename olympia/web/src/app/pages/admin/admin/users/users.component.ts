@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 import {
 	Column,
 	OlympiaTableComponent,
 } from "../../../../components/olympia-table/olympia-table.component";
 import { UserService } from "./users.service";
-import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: "app-users",
