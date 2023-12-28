@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, signal } from "@angular/core";
 import { DiagramSettings } from "../medal-count.constant";
 import { MedalCountService } from "../medal-count.service";
 import { getCountries, getMedalCountData } from "../medal-count.utils";
@@ -19,7 +19,7 @@ export class MedalCountComponent {
 		label: string;
 		backgroundColor: string;
 	}[] = [];
-	loadingAnimationIsActive = true;
+	loadingAnimationIsActive = signal(true);
 
 	constructor(
 		public medalCountService: MedalCountService,
@@ -49,11 +49,11 @@ export class MedalCountComponent {
 	}
 
 	public showLoadingAnimation(): void {
-		this.loadingAnimationIsActive = true;
+		this.loadingAnimationIsActive.set(true);
 	}
 
 	public hideLoadingAnimation(): void {
-		this.loadingAnimationIsActive = false;
+		this.loadingAnimationIsActive.set(false);
 	}
 
 	private showErrorNotification(error: HttpErrorResponse) {

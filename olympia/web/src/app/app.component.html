@@ -5,9 +5,9 @@
         width="80"
         alt="Olympia Logo"
         src="../assets/olympia_logo.svg"
-      />
+        />
     </a>
-  
+
     <ul>
       <li class="menu-item">
         <a class="hover-underline-animation navigation-link" routerLink="/app/countries" ariaCurrentWhenActive="page">
@@ -32,29 +32,31 @@
           <span>Medaillenspiegel</span>
         </a>
       </li>
-      <li class="menu-item" *ngIf="authService.jwtIsValidAdminToken()">
-        <hover-over-menu class="d-inline-block h-100">
-          <div trigger class="hover-underline-animation navigation-link" routerLink="/app/admin" ariaCurrentWhenActive="page">
-            <span class="navigation-link">Admin</span>
-          </div>
-          <div content>
-            <a mat-menu-item class="navigation-link" routerLink="/app/admin/athletes" ariaCurrentWhenActive="page">Athleten</a>
-            <a mat-menu-item class="navigation-link" routerLink="/app/admin/users" ariaCurrentWhenActive="page">Nutzer</a>
-          </div>
-        </hover-over-menu>
-      </li>
+      @if (authService.jwtIsValidAdminToken()) {
+        <li class="menu-item">
+          <hover-over-menu class="d-inline-block h-100">
+            <div trigger class="hover-underline-animation navigation-link" routerLink="/app/admin" ariaCurrentWhenActive="page">
+              <span class="navigation-link">Admin</span>
+            </div>
+            <div content>
+              <a mat-menu-item class="navigation-link" routerLink="/app/admin/athletes" ariaCurrentWhenActive="page">Athleten</a>
+              <a mat-menu-item class="navigation-link" routerLink="/app/admin/users" ariaCurrentWhenActive="page">Nutzer</a>
+            </div>
+          </hover-over-menu>
+        </li>
+      }
     </ul>
-    
+
     <div class="spacer"></div>
-    <a *ngIf="!authService.isLoggedIn()" routerLink="/app/login" class="login">
-      Anmelden
-    </a>
-    <a *ngIf="authService.isLoggedIn()" class="login" (click)="authService.deleteJwtToken()">
-      Abmelden
-    </a>
+    @if (!authService.isLoggedIn()) {
+      <a routerLink="/app/login" class="login">Anmelden</a>
+    }
+    @if (authService.isLoggedIn()) {
+      <a class="login" (click)="authService.deleteJwtToken()">Abmelden</a>
+    }
 
   </div>
-  
+
   <div class="content">
     <router-outlet></router-outlet>
   </div>

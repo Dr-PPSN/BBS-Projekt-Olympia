@@ -1,6 +1,12 @@
 <ul>
-  <li *ngFor="let breadcrumb of (breadcrumbs | async); last as isLast">
-    <span *ngIf="isLast" class="breadcrumb-item">{{ breadcrumb.title }}</span>
-    <a *ngIf="!isLast" class="breadcrumb-item" [href]="breadcrumb.url">{{ breadcrumb.title }}</a>
-  </li>
+  @for (breadcrumb of (breadcrumbs | async); track breadcrumb; let isLast = $last) {
+    <li>
+      @if (isLast) {
+        <span class="breadcrumb-item">{{ breadcrumb.title }}</span>
+      }
+      @if (!isLast) {
+        <a class="breadcrumb-item" [href]="breadcrumb.url">{{ breadcrumb.title }}</a>
+      }
+    </li>
+  }
 </ul>

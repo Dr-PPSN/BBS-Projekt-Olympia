@@ -8,26 +8,32 @@
         [type]="Formular.Email.TYPE"
         [formControlName]="Formular.Email.NAME"
         [errorStateMatcher]="matcher">
-      <mat-error *ngIf="showEmailIsInvalid()">
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="showEmailIsRequired()">
-        Email is required
-      </mat-error>
+      @if (showEmailIsInvalid()) {
+        <mat-error>
+          Please enter a valid email address
+        </mat-error>
+      }
+      @if (showEmailIsRequired()) {
+        <mat-error>
+          Email is required
+        </mat-error>
+      }
     </mat-form-field>
-  
+
     <mat-form-field class="login-input">
       <mat-label>Passwort</mat-label>
-      <input 
+      <input
         matInput
         [type]="Formular.Password.TYPE"
         [formControlName]="Formular.Password.NAME"
         [errorStateMatcher]="matcher">
-      <mat-error *ngIf="showPasswordIsRequired()">
-        Password is required
-      </mat-error>
+      @if (showPasswordIsRequired()) {
+        <mat-error>
+          Password is required
+        </mat-error>
+      }
     </mat-form-field>
-  
+
     <div class="container">
       <a routerLink="./request-change-password">Passwort vergessen</a>
       <div class="spacer"></div>
