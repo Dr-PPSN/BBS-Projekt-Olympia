@@ -1,16 +1,20 @@
 <div class="medal-count-container">
 
   @if (!loadingAnimationIsActive()) {
-    <div class="chart-container" style="position: relative; width: 80%">
-      <canvas baseChart
-        [type]="DiagramSettings.TYPE"
-        [legend]="DiagramSettings.LEGEND"
-        [options]="DiagramSettings.OPTIONS"
-        [labels]="labels"
-        [datasets]="data"
-        >
-      </canvas>
-    </div>
+    @if (dataIsLoaded()) {
+      <div class="chart-container">
+        <canvas baseChart
+          [type]="DiagramSettings.TYPE"
+          [legend]="DiagramSettings.LEGEND"
+          [options]="DiagramSettings.OPTIONS"
+          [labels]="labels"
+          [datasets]="data"
+          >
+        </canvas>
+      </div>
+    } @else {
+      <h3 class="w-100 d-flex justify-content-center">Keine Daten vorhanden</h3>
+    }
   }
 
   @if (loadingAnimationIsActive()) {

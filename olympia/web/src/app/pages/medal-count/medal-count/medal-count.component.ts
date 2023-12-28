@@ -48,11 +48,15 @@ export class MedalCountComponent {
 		});
 	}
 
-	public showLoadingAnimation(): void {
+	dataIsLoaded(): boolean {
+		return this.data.length !== 0;
+	}
+
+	showLoadingAnimation(): void {
 		this.loadingAnimationIsActive.set(true);
 	}
 
-	public hideLoadingAnimation(): void {
+	hideLoadingAnimation(): void {
 		this.loadingAnimationIsActive.set(false);
 	}
 
