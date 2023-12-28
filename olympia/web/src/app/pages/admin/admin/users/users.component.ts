@@ -16,9 +16,9 @@ export class UsersComponent implements AfterViewInit {
 	@ViewChild("table") table: OlympiaTableComponent | null = null;
 	public columns: Column[] = [
 		{ name: "email", label: "Email" },
-		{ name: "vorname", label: "Vorname" },
-		{ name: "nachname", label: "Nachname" },
-		{ name: "istAdmin", label: "istAdmin" },
+		{ name: "firstName", label: "Vorname" },
+		{ name: "lastName", label: "Nachname" },
+		{ name: "isAdmin", label: "istAdmin" },
 	];
 	public data = [];
 
