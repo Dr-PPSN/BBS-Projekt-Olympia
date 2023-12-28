@@ -1,10 +1,9 @@
 import { Component } from "@angular/core";
-import { DiagramSettings, TEST_DATA } from "../medal-count.constant";
+import { DiagramSettings } from "../medal-count.constant";
 import { MedalCountService } from "../medal-count.service";
 import { getCountries, getMedalCountData } from "../medal-count.utils";
-import { NotifierService } from "angular-notifier";
-import { Notification } from "../../../notifications/notification.constant";
 import { HttpErrorResponse } from "@angular/common/http";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: "app-medaillenspiegel",
@@ -24,7 +23,7 @@ export class MedalCountComponent {
 
 	constructor(
 		public medalCountService: MedalCountService,
-		private notifier: NotifierService,
+		private toastrService: ToastrService,
 	) {}
 
 	ngOnInit(): void {
@@ -58,6 +57,6 @@ export class MedalCountComponent {
 	}
 
 	private showErrorNotification(error: HttpErrorResponse) {
-		this.notifier.notify(Notification.ERROR, error.error);
+		this.toastrService.error(error.error.message);
 	}
 }

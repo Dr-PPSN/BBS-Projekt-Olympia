@@ -6,7 +6,6 @@ import { MatTableModule } from "@angular/material/table";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
-import { NotifierModule } from "angular-notifier";
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -14,7 +13,6 @@ import { BasePageComponent } from "./components/base-page/base-page.component";
 import { BreadcrumbsComponent } from "./components/base-page/breadcrumbs/breadcrumbs.component";
 import { HoverOverMenuComponent } from "./components/hover-over-menu/hover-over-menu.component";
 import { OlympiaTableComponent } from "./components/olympia-table/olympia-table.component";
-import { notifierOptions } from "./notifications/notification.constant";
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { LoginGuard } from "./pages/login/login.guard";
 import { NotFoundComponent } from "./pages/not-found/not-found.component";
@@ -22,6 +20,7 @@ import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
 	declarations: [
@@ -34,6 +33,7 @@ import { HttpService } from "./service/http/http.service";
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		HttpClientModule,
 		AppRoutingModule,
 		JwtModule.forRoot({
@@ -42,9 +42,12 @@ import { HttpService } from "./service/http/http.service";
 				allowedDomains: [environment.apiUrl],
 			},
 		}),
-		NotifierModule.withConfig(notifierOptions),
+		ToastrModule.forRoot({
+			timeOut: 5000,
+			positionClass: "toast-bottom-right",
+			preventDuplicates: true,
+		}),
 		ReactiveFormsModule,
-		BrowserAnimationsModule,
 		MatMenuModule,
 		MatTableModule,
 		OlympiaTableComponent,

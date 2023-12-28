@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { NotifierService } from "angular-notifier";
-import { Notification } from "../../../notifications/notification.constant";
 import { Formular } from "../login.constant";
 import { LoginService } from "../login.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: "request-change-password",
@@ -18,7 +17,7 @@ export class RequestChangePasswordComponent {
 
 	constructor(
 		private loginService: LoginService,
-		private notifier: NotifierService,
+		private toastrService: ToastrService,
 	) {}
 
 	public sendPasswordChangeRequest() {
@@ -49,8 +48,7 @@ export class RequestChangePasswordComponent {
 	}
 
 	private showMailSentNotification() {
-		this.notifier.notify(
-			Notification.SUCCESS,
+		this.toastrService.info(
 			"Falls die Mail existiert, wurde eine Mail zum Zurücksetzen des Passworts versendet.",
 		);
 	}

@@ -9,10 +9,9 @@ import {
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { ActivatedRoute } from "@angular/router";
-import { NotifierService } from "angular-notifier";
-import { Notification } from "../../../notifications/notification.constant";
 import { Formular } from "../login.constant";
 import { LoginService } from "../login.service";
+import { ToastrService } from "ngx-toastr";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(
@@ -44,8 +43,8 @@ export class ChangePasswordComponent {
 
 	constructor(
 		private loginService: LoginService,
-		private notifier: NotifierService,
 		private route: ActivatedRoute,
+		private toastrService: ToastrService,
 	) {}
 
 	public ngOnInit(): void {
@@ -92,20 +91,14 @@ export class ChangePasswordComponent {
 	}
 
 	private showInvalidTokenError() {
-		this.notifier.notify(
-			Notification.ERROR,
-			"Ungültiger Link zum Zurücksetzen des Passworts",
-		);
+		this.toastrService.error("Ungültiger Link zum Zurücksetzen des Passworts");
 	}
 
 	private showPasswordChangedNotification() {
-		this.notifier.notify(
-			Notification.SUCCESS,
-			"Das Passwort wurde erfolgreich geändert",
-		);
+		this.toastrService.success("Das Passwort wurde erfolgreich geändert");
 	}
 
 	private showPasswordChangeError(error: HttpErrorResponse) {
-		this.notifier.notify(Notification.ERROR, error.error.message);
+		this.toastrService.error(error.error.message);
 	}
 }

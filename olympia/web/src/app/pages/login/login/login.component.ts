@@ -8,12 +8,11 @@ import {
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { Router } from "@angular/router";
-import { NotifierService } from "angular-notifier";
-import { Notification } from "../../../notifications/notification.constant";
 import { AuthService } from "../../../service/auth/auth.service";
 import { Formular } from "../login.constant";
 import { LoginService } from "../login.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { ToastrService } from "ngx-toastr";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(
@@ -38,7 +37,7 @@ export class LoginComponent {
 		private loginService: LoginService,
 		private authService: AuthService,
 		private router: Router,
-		private notifier: NotifierService,
+		private toastrService: ToastrService,
 	) {}
 
 	matcher = new MyErrorStateMatcher();
@@ -94,10 +93,10 @@ export class LoginComponent {
 	}
 
 	private showEmailOrPasswordInvalidError() {
-		this.notifier.notify(Notification.ERROR, "Email oder Passwort inkorrekt");
+		this.toastrService.error("Email oder Passwort inkorrekt");
 	}
 
 	private showLoginError(error: HttpErrorResponse) {
-		this.notifier.notify(Notification.ERROR, error.error);
+		this.toastrService.error(error.error.message);
 	}
 }

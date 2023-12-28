@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from "@angular/core";
-import { NotifierService } from "angular-notifier";
 import {
 	Column,
 	OlympiaTableComponent,
 } from "../../../../components/olympia-table/olympia-table.component";
-import { Notification } from "../../../../notifications/notification.constant";
 import { UserService } from "./users.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: "app-users",
@@ -24,7 +23,7 @@ export class UsersComponent implements AfterViewInit {
 
 	constructor(
 		private userService: UserService,
-		private notifier: NotifierService,
+		private toastrService: ToastrService,
 	) {}
 
 	ngAfterViewInit(): void {
@@ -46,6 +45,6 @@ export class UsersComponent implements AfterViewInit {
 	}
 
 	private showErrorMessage(error: string): void {
-		this.notifier.notify(Notification.ERROR, error);
+		this.toastrService.error(error);
 	}
 }
