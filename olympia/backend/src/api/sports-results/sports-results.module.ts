@@ -3,12 +3,12 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Athlete } from "./entity/athlete.entity";
 import { Discipline } from "./entity/discipline.entity";
 import { SportsResult } from "./entity/sports_result.entity";
-import { ErgebnisseController } from "./ergebnisse.controller";
-import { ErgebnisseService } from "./ergebnisse.service";
+import { SportsResultsController } from "./sports-results.controller";
+import { SportsResultsService } from "./sports-results.service";
 
 @Module({
 	imports: [TypeOrmModule.forFeature([Discipline, SportsResult, Athlete])],
-	providers: [ErgebnisseService],
-	controllers: [ErgebnisseController],
+	providers: [SportsResultsService],
+	controllers: [SportsResultsController],
 })
-export class ErgebnisseModule {}
+export class SportsResultsModule {}

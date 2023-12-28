@@ -1,16 +1,16 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ErgebnisseUebersichtComponent } from "./ergebnisse-uebersicht/ergebnisse-uebersicht.component";
-import { LaufenComponent } from "./ergebnisse-uebersicht/laufen/laufen.component";
-import { SchwimmenComponent } from "./ergebnisse-uebersicht/schwimmen/schwimmen.component";
-import { SpringreitenComponent } from "./ergebnisse-uebersicht/springreiten/springreiten.component";
-import { WeitsprungComponent } from "./ergebnisse-uebersicht/weitsprung/weitsprung.component";
+import { SportsResultsComponent } from "./sports-results/sports-results.component";
+import { LaufenComponent } from "./sports-results/laufen/laufen.component";
+import { SchwimmenComponent } from "./sports-results/schwimmen/schwimmen.component";
+import { SpringreitenComponent } from "./sports-results/springreiten/springreiten.component";
+import { WeitsprungComponent } from "./sports-results/weitsprung/weitsprung.component";
 
 const routes: Routes = [
 	{
 		path: "",
 		title: "",
-		component: ErgebnisseUebersichtComponent,
+		component: SportsResultsComponent,
 	},
 	{
 		path: "weitsprung",
@@ -38,4 +38,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class ErgebnisseRoutingModule {}
+export class SportsResultsRoutingModule {}

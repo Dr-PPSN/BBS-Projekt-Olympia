@@ -1,4 +1,4 @@
-import { Discipline } from "src/api/ergebnisse/entity/discipline.entity";
+import { Discipline } from "src/api/sports-results/entity/discipline.entity";
 import {
 	Column,
 	Entity,

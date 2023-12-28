@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
-import { DiagramSettings, TEST_DATA } from "./medal-count.constant";
-import { MedalCountService } from "./medal-count.service";
-import { getCountries, getMedalCountData } from "./medal-count.utils";
+import { DiagramSettings, TEST_DATA } from "../medal-count.constant";
+import { MedalCountService } from "../medal-count.service";
+import { getCountries, getMedalCountData } from "../medal-count.utils";
 import { NotifierService } from "angular-notifier";
 import { Notification } from "../../../notifications/notification.constant";
 import { HttpErrorResponse } from "@angular/common/http";

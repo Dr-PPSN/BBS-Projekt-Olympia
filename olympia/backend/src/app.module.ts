@@ -3,7 +3,7 @@ import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AdminModule } from "./api/admin/admin.module";
 import { AuthModule } from "./api/auth/auth.module";
-import { LaenderModule } from "./api/laender/laender.module";
+import { CountriesModule } from "./api/countries/countries.module";
 import { MedalCountModule } from "./api/medal-count/medal-count.module";
 import { ALL_ROUTES } from "./app.constants";
 import { AppController } from "./app.controller";
@@ -11,7 +11,7 @@ import { AppService } from "./app.service";
 import { MailModule } from "./mail/mail.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
 import { UserModule } from "./user/user.module";
-import { ErgebnisseModule } from "./api/ergebnisse/ergebnisse.module";
+import { SportsResultsModule } from "./api/sports-results/sports-results.module";
 
 @Module({
 	imports: [
@@ -32,8 +32,8 @@ import { ErgebnisseModule } from "./api/ergebnisse/ergebnisse.module";
 		}),
 		AdminModule,
 		AuthModule,
-		LaenderModule,
-		ErgebnisseModule,
+		CountriesModule,
+		SportsResultsModule,
 		MedalCountModule,
 		MailModule,
 		UserModule,

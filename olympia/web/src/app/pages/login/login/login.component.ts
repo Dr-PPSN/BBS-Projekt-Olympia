@@ -9,10 +9,10 @@ import {
 import { ErrorStateMatcher } from "@angular/material/core";
 import { Router } from "@angular/router";
 import { NotifierService } from "angular-notifier";
-import { Notification } from "../../notifications/notification.constant";
-import { AuthService } from "../../service/auth/auth.service";
-import { Formular } from "./login.constant";
-import { LoginService } from "./login.service";
+import { Notification } from "../../../notifications/notification.constant";
+import { AuthService } from "../../../service/auth/auth.service";
+import { Formular } from "../login.constant";
+import { LoginService } from "../login.service";
 import { HttpErrorResponse } from "@angular/common/http";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {

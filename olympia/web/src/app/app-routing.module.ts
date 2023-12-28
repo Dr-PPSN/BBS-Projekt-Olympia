@@ -16,17 +16,19 @@ const routes: Routes = [
 		component: BasePageComponent,
 		children: [
 			{
-				path: "laender",
+				path: "countries",
 				title: "Länder",
 				loadChildren: () =>
-					import("./pages/laender/laender.module").then((m) => m.LaenderModule),
+					import("./pages/countries/countries.module").then(
+						(m) => m.CountriesModule,
+					),
 			},
 			{
-				path: "ergebnisse",
+				path: "sports-results",
 				title: "Ergebnisse",
 				loadChildren: () =>
-					import("./pages/ergebnisse/ergebnisse.module").then(
-						(m) => m.ErgebnisseModule,
+					import("./pages/sports-results/sports-results.module").then(
+						(m) => m.SportsResultsModule,
 					),
 			},
 			{

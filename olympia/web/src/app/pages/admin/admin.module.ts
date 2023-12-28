@@ -4,12 +4,12 @@ import { NotifierModule } from "angular-notifier";
 import { OlympiaTableComponent } from "../../components/olympia-table/olympia-table.component";
 import { notifierOptions } from "../../notifications/notification.constant";
 import { AdminRoutingModule } from "./admin-routing.module";
-import { AdminUebersichtComponent } from "./admin-uebersicht/admin-uebersicht.component";
-import { AthletenComponent } from "./admin-uebersicht/athleten/athleten.component";
-import { NutzerComponent } from "./admin-uebersicht/nutzer/nutzer.component";
+import { AdminComponent } from "./admin/admin.component";
+import { AthletenComponent } from "./admin/athleten/athleten.component";
+import { NutzerComponent } from "./admin/nutzer/nutzer.component";
 
 @NgModule({
-	declarations: [AdminUebersichtComponent, NutzerComponent, AthletenComponent],
+	declarations: [AdminComponent, NutzerComponent, AthletenComponent],
 	imports: [
 		CommonModule,
 		AdminRoutingModule,

@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectDataSource } from "@nestjs/typeorm";
 import { DataSource } from "typeorm";
-import { Athlete } from "../ergebnisse/entity/athlete.entity";
-import { SportsResult } from "../ergebnisse/entity/sports_result.entity";
+import { Athlete } from "../sports-results/entity/athlete.entity";
+import { SportsResult } from "../sports-results/entity/sports_result.entity";
 
 @Injectable()
 export class MedalCountService {
