@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { MedaillenspiegelComponent } from "./medaillenspiegel/medaillenspiegel.component";
+import { MedalCountComponent } from "./medal-count/medal-count.component";
 
 const routes: Routes = [
 	{
 		path: "",
 		title: "",
-		component: MedaillenspiegelComponent,
+		component: MedalCountComponent,
 	},
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class MedaillenspiegelRoutingModule {}
+export class MedalCountRoutingModule {}

@@ -4,7 +4,6 @@ import { BasePageComponent } from "./components/base-page/base-page.component";
 import { PageTitleStrategy } from "./page-title.strategy";
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { LoginGuard } from "./pages/login/login.guard";
-import { MedaillenspiegelComponent } from "./pages/medaillenspiegel/medaillenspiegel/medaillenspiegel.component";
 import { NotFoundComponent } from "./pages/not-found/not-found.component";
 import { AuthGuard } from "./service/auth/auth.guard";
 
@@ -31,11 +30,11 @@ const routes: Routes = [
 					),
 			},
 			{
-				path: "medaillenspiegel",
+				path: "medal-count",
 				title: "Medaillenspiegel",
 				loadChildren: () =>
-					import("./pages/medaillenspiegel/medaillenspiegel.module").then(
-						(m) => m.MedaillenspiegelModule,
+					import("./pages/medal-count/medal-count.module").then(
+						(m) => m.MedalCountModule,
 					),
 			},
 			{
