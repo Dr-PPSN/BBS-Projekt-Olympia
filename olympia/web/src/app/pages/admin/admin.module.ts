@@ -5,11 +5,11 @@ import { OlympiaTableComponent } from "../../components/olympia-table/olympia-ta
 import { notifierOptions } from "../../notifications/notification.constant";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin/admin.component";
-import { AthletenComponent } from "./admin/athleten/athleten.component";
-import { NutzerComponent } from "./admin/nutzer/nutzer.component";
+import { AthletesComponent } from "./admin/athletes/athletes.component";
+import { UsersComponent } from "./admin/users/users.component";
 
 @NgModule({
-	declarations: [AdminComponent, NutzerComponent, AthletenComponent],
+	declarations: [AdminComponent, UsersComponent, AthletesComponent],
 	imports: [
 		CommonModule,
 		AdminRoutingModule,

@@ -6,16 +6,16 @@ import { HttpService } from "../../../../service/http/http.service";
 @Injectable({
 	providedIn: "root",
 })
-export class NutzerService {
-	public nutzer = [];
+export class UserService {
+	public users = [];
 
 	constructor(private httpService: HttpService) {}
 
 	// biome-ignore lint/suspicious/noExplicitAny: muss any sein
-	public getNutzer(): Observable<any> {
-		return this.httpService.getData("/admin/nutzer").pipe(
+	public getUsers(): Observable<any> {
+		return this.httpService.getData("/admin/users").pipe(
 			map((data) => {
-				this.nutzer = data;
+				this.users = data;
 			}),
 		);
 	}

@@ -5,14 +5,14 @@ import {
 	OlympiaTableComponent,
 } from "../../../../components/olympia-table/olympia-table.component";
 import { Notification } from "../../../../notifications/notification.constant";
-import { NutzerService } from "./nutzer.service";
+import { UserService } from "./users.service";
 
 @Component({
-	selector: "app-nutzer",
-	templateUrl: "./nutzer.component.html",
-	styleUrls: ["./nutzer.component.sass"],
+	selector: "app-users",
+	templateUrl: "./users.component.html",
+	styleUrls: ["./users.component.sass"],
 })
-export class NutzerComponent implements AfterViewInit {
+export class UsersComponent implements AfterViewInit {
 	@ViewChild("table") table: OlympiaTableComponent | null = null;
 	public columns: Column[] = [
 		{ name: "email", label: "Email" },
@@ -23,7 +23,7 @@ export class NutzerComponent implements AfterViewInit {
 	public data = [];
 
 	constructor(
-		private nutzerService: NutzerService,
+		private userService: UserService,
 		private notifier: NotifierService,
 	) {}
 
@@ -33,9 +33,9 @@ export class NutzerComponent implements AfterViewInit {
 
 	private loadData(): void {
 		this.table?.showLoadingAnimation();
-		this.nutzerService.getNutzer().subscribe({
+		this.userService.getUsers().subscribe({
 			next: () => {
-				this.data = this.nutzerService.nutzer;
+				this.data = this.userService.users;
 				this.table?.hideLoadingAnimation();
 			},
 			error: (error) => {

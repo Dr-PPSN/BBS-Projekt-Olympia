@@ -1,5 +1,5 @@
 export namespace Api {
-	export const TITLE = "/user";
+	export const TITLE = "/users";
 
 	export const INVITE_USER = "invite-user";
 	export const ADD_USER_DEBUG = "add-user-debug";

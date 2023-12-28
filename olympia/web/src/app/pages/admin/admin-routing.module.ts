@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin/admin.component";
-import { AthletenComponent } from "./admin/athleten/athleten.component";
-import { NutzerComponent } from "./admin/nutzer/nutzer.component";
+import { AthletesComponent } from "./admin/athletes/athletes.component";
+import { UsersComponent } from "./admin/users/users.component";
 
 const routes: Routes = [
 	{
@@ -11,14 +11,14 @@ const routes: Routes = [
 		component: AdminComponent,
 	},
 	{
-		path: "athleten",
+		path: "athletes",
 		title: "Athleten",
-		component: AthletenComponent,
+		component: AthletesComponent,
 	},
 	{
-		path: "nutzer",
+		path: "users",
 		title: "Nutzer",
-		component: NutzerComponent,
+		component: UsersComponent,
 	},
 ];
 
