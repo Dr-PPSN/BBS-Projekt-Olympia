@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { Component, signal } from "@angular/core";
+import { Component, OnInit, signal } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { DiagramSettings } from "../medal-count.constant";
 import { MedalCountService } from "../medal-count.service";
@@ -10,7 +10,7 @@ import { getCountries, getMedalCountData } from "../medal-count.utils";
 	templateUrl: "./medal-count.component.html",
 	styleUrls: ["./medal-count.component.sass"],
 })
-export class MedalCountComponent {
+export class MedalCountComponent implements OnInit {
 	DiagramSettings = DiagramSettings;
 
 	labels: Array<string | undefined> = [];

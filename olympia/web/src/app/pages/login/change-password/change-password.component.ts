@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
 	FormControl,
 	FormGroup,
@@ -31,7 +31,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 	templateUrl: "./change-password.component.html",
 	styleUrls: ["./change-password.component.sass"],
 })
-export class ChangePasswordComponent {
+export class ChangePasswordComponent implements OnInit {
 	resetPasswordToken: string | null = null;
 
 	Formular = Formular;

@@ -1,10 +1,31 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { LaufenComponent } from "./sports-results/laufen/laufen.component";
-import { SchwimmenComponent } from "./sports-results/schwimmen/schwimmen.component";
+import {
+	ActivatedRouteSnapshot,
+	ResolveFn,
+	RouterModule,
+	RouterStateSnapshot,
+	Routes,
+} from "@angular/router";
 import { SportsResultsComponent } from "./sports-results/sports-results.component";
-import { SpringreitenComponent } from "./sports-results/springreiten/springreiten.component";
-import { WeitsprungComponent } from "./sports-results/weitsprung/weitsprung.component";
+import { SportsResultsDisciplineComponent } from "./sports-results/sports-results-discipline/sports-results-discipline.component";
+import { getDisciplineFromRouteParameter } from "./sports-results.utils";
+
+const disciplineTitleResolver: ResolveFn<string> = (
+	route: ActivatedRouteSnapshot,
+	state: RouterStateSnapshot,
+) => {
+	// biome-ignore lint/complexity/useLiteralKeys: ignoriert
+	const discipline = route.params["discipline"];
+	return getDisciplineFromRouteParameter(discipline);
+};
+
+const disciplineResolver: ResolveFn<string> = (
+	route: ActivatedRouteSnapshot,
+	state: RouterStateSnapshot,
+) => {
+	// biome-ignore lint/complexity/useLiteralKeys: ignoriert
+	return route.params["discipline"];
+};
 
 const routes: Routes = [
 	{
@@ -13,24 +34,12 @@ const routes: Routes = [
 		component: SportsResultsComponent,
 	},
 	{
-		path: "weitsprung",
-		title: "Weitsprung",
-		component: WeitsprungComponent,
-	},
-	{
-		path: "100m-lauf",
-		title: "100m-Lauf",
-		component: LaufenComponent,
-	},
-	{
-		path: "springreiten",
-		title: "Springreiten",
-		component: SpringreitenComponent,
-	},
-	{
-		path: "schwimmen",
-		title: "Schwimmen",
-		component: SchwimmenComponent,
+		path: ":discipline",
+		title: disciplineTitleResolver,
+		component: SportsResultsDisciplineComponent,
+		resolve: {
+			discipline: disciplineResolver,
+		},
 	},
 ];
 
