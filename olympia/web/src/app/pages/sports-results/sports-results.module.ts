@@ -6,6 +6,9 @@ import { SportsResultsDisciplineComponent } from "./sports-results/sports-result
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatButtonModule } from "@angular/material/button";
 import { WinnersPodiumComponent } from "./sports-results/sports-results-discipline/winners-podium/winners-podium.component";
+import { SportsResultsService } from "./sports-results.service";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { OlympiaTableComponent } from "../../components/olympia-table/olympia-table.component";
 
 @NgModule({
 	declarations: [
@@ -18,6 +21,9 @@ import { WinnersPodiumComponent } from "./sports-results/sports-results-discipli
 		SportsResultsRoutingModule,
 		MatButtonModule,
 		MatExpansionModule,
+		MatProgressSpinnerModule,
+		OlympiaTableComponent,
 	],
+	providers: [SportsResultsService],
 })
 export class SportsResultsModule {}

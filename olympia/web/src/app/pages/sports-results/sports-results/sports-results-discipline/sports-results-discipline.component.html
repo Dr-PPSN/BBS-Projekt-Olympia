@@ -1,35 +1,44 @@
+@if (!loadingAnimationIsActive()) {
+  @if (dataIsLoaded()) {
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Männer
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-<mat-accordion multi>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Männer
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+        <winners-podium></winners-podium>
+        <olympia-table
+          #table
+          [displayedColumns]="columns"
+          [data]="sportResultsMales"
+          >
+        </olympia-table>
 
-    <winners-podium
-      [discipline]="discipline"
-      [gender]="Gender.MALE">
-    </winners-podium>
-    <div>
-      Sportergebnisse Männer
-    </div>
+      </mat-expansion-panel>
 
-  </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Frauen
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Frauen
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <winners-podium
-      [discipline]="discipline"
-      [gender]="Gender.FEMALE">
-    </winners-podium>
-    <div>
-      Sportergebnisse Frauen
-    </div> 
-  </mat-expansion-panel>
-</mat-accordion>
+        <winners-podium></winners-podium>
+        <olympia-table
+          #table
+          [displayedColumns]="columns"
+          [data]="sportResultsFemales"
+          >
+        </olympia-table>
+      </mat-expansion-panel>
+    </mat-accordion>
+  } @else {
+    <h3 class="w-100 d-flex justify-content-center">Keine Daten vorhanden</h3>
+  }
+} @else {
+  <div class="w-100 d-flex justify-content-center">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+}

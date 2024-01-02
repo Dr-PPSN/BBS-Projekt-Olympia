@@ -1,5 +1,4 @@
 <div class="medal-count-container">
-
   @if (!loadingAnimationIsActive()) {
     @if (dataIsLoaded()) {
       <div class="chart-container">
@@ -15,9 +14,7 @@
     } @else {
       <h3 class="w-100 d-flex justify-content-center">Keine Daten vorhanden</h3>
     }
-  }
-
-  @if (loadingAnimationIsActive()) {
+  } @else {
     <div class="w-100 d-flex justify-content-center">
       <mat-spinner diameter="50"></mat-spinner>
     </div>

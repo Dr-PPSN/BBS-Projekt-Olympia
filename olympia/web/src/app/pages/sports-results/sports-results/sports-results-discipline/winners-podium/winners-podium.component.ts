@@ -6,6 +6,5 @@ import { Component, Input } from "@angular/core";
 	styleUrl: "./winners-podium.component.sass",
 })
 export class WinnersPodiumComponent {
-	@Input() discipline: string | null = null;
-	@Input() gender: string | null = null;
+	@Input() winners: string | null = null;
 }
