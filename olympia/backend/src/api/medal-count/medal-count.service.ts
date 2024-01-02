@@ -36,6 +36,18 @@ export class MedalCountService {
 					"count (CASE WHEN sports_result.medal is not null THEN 1 END)",
 					"DESC",
 				)
+				.addOrderBy(
+					"count (CASE WHEN sports_result.medal = :gold THEN 1 END)",
+					"DESC",
+				)
+				.addOrderBy(
+					"count (CASE WHEN sports_result.medal = :silver THEN 1 END)",
+					"DESC",
+				)
+				.addOrderBy(
+					"count (CASE WHEN sports_result.medal = :bronze THEN 1 END)",
+					"DESC",
+				)
 				.setParameter("gold", "gold")
 				.setParameter("silver", "silver")
 				.setParameter("bronze", "bronze")
