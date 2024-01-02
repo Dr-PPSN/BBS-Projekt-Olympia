@@ -20,23 +20,27 @@ BEGIN
 
 -- Disciplines
 INSERT INTO
-  public.discipline(uuid, title)
+  public.discipline(uuid, title, "routeParameter")
 VALUES
   (
     weitsprung_uuid,
-    'Weitsprung'
+    'Weitsprung',
+    'weitsprung'
   ),
   (
     springreiten_uuid,
-    'Springreiten'
+    'Springreiten',
+    'springreiten'
   ),
   (
     lauf100m_uuid,
-    '100m-Lauf'
+    '100m-Lauf',
+    '100m-lauf'
   ),
   (
     schwimmen_uuid,
-    'Schwimmen'
+    'Schwimmen',
+    'schwimmen'
   );
 
 -- Athletes

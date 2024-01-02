@@ -9,6 +9,11 @@ import {
 import { Discipline } from "./discipline.entity";
 import { SportsResult } from "./sports_result.entity";
 
+export enum Gender {
+	MALE = "male",
+	FEMALE = "female",
+}
+
 @Entity()
 @Unique("athlete_unique_contraint", [
 	"firstName",
@@ -28,7 +33,10 @@ export class Athlete {
 	@Column()
 	lastName: string;
 
-	@Column()
+	@Column({
+		type: "enum",
+		enum: Gender,
+	})
 	gender: string;
 
 	@Column()

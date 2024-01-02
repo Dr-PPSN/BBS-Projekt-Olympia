@@ -18,6 +18,9 @@ export class Discipline {
 	@Column()
 	title: string;
 
+	@Column()
+	routeParameter: string;
+
 	@OneToMany(
 		() => Athlete,
 		(athlete) => athlete.discipline,
