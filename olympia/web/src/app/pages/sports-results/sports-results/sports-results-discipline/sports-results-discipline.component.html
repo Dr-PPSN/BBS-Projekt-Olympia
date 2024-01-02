@@ -1,1 +1,35 @@
-<p>sports-results-discipline works!</p>
+
+<mat-accordion multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Männer
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <winners-podium
+      [discipline]="discipline"
+      [gender]="Gender.MALE">
+    </winners-podium>
+    <div>
+      Sportergebnisse Männer
+    </div>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Frauen
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <winners-podium
+      [discipline]="discipline"
+      [gender]="Gender.FEMALE">
+    </winners-podium>
+    <div>
+      Sportergebnisse Frauen
+    </div> 
+  </mat-expansion-panel>
+</mat-accordion>

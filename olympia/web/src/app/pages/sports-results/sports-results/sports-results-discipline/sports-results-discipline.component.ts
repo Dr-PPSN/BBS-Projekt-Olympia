@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
+import { Gender } from "../../sports-results.constant";
 
 @Component({
 	selector: "app-sports-results-discipline",
@@ -10,6 +11,8 @@ import { Subscription } from "rxjs";
 export class SportsResultsDisciplineComponent implements OnInit {
 	discipline: string | null = null;
 	routerSubscription: Subscription | null = null;
+
+	Gender = Gender;
 
 	constructor(private activatedRoute: ActivatedRoute) {}
 
