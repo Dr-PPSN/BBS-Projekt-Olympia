@@ -1,70 +1,70 @@
-<main>
-  <div class="toolbar" role="banner">
-    <a routerLink="/">
-      <img
-        width="80"
-        alt="Olympia Logo"
-        src="../assets/olympia_logo.svg"
-        />
-    </a>
 
-    <ul>
-      <li class="menu-item">
-        <a class="hover-underline-animation navigation-link" routerLink="/app/countries" ariaCurrentWhenActive="page">
-          <span>Länder</span>
-        </a>
-      </li>
+<div class="toolbar fixed-top" role="banner">
+  <a routerLink="/">
+    <img
+      width="80"
+      alt="Olympia Logo"
+      src="../assets/olympia_logo.svg"
+      />
+  </a>
+
+  <ul>
+    <li class="menu-item">
+      <a class="hover-underline-animation navigation-link" routerLink="/app/countries" ariaCurrentWhenActive="page">
+        <span>Länder</span>
+      </a>
+    </li>
+    <li class="menu-item">
+      <hover-over-menu class="d-inline-block h-100">
+        <div trigger class="hover-underline-animation navigation-link" routerLink="/app/sports-results" ariaCurrentWhenActive="page">
+          <span class="navigation-link">Ergebnisse</span>
+        </div>
+        <div content>
+          <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/weitsprung" ariaCurrentWhenActive="page">Weitsprung</a>
+          <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/100m-lauf" ariaCurrentWhenActive="page">100m-Lauf</a>
+          <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/springreiten" ariaCurrentWhenActive="page">Springreiten</a>
+          <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/schwimmen" ariaCurrentWhenActive="page">Schwimmen</a>
+        </div>
+      </hover-over-menu>
+    </li>
+    <li class="menu-item">
+      <a class="hover-underline-animation navigation-link" routerLink="/app/medal-count" ariaCurrentWhenActive="page">
+        <span>Medaillenspiegel</span>
+      </a>
+    </li>
+    @if (authService.jwtIsValidAdminToken()) {
       <li class="menu-item">
         <hover-over-menu class="d-inline-block h-100">
-          <div trigger class="hover-underline-animation navigation-link" routerLink="/app/sports-results" ariaCurrentWhenActive="page">
-            <span class="navigation-link">Ergebnisse</span>
+          <div trigger class="hover-underline-animation navigation-link" routerLink="/app/admin" ariaCurrentWhenActive="page">
+            <span class="navigation-link">Admin</span>
           </div>
           <div content>
-            <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/weitsprung" ariaCurrentWhenActive="page">Weitsprung</a>
-            <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/100m-lauf" ariaCurrentWhenActive="page">100m-Lauf</a>
-            <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/springreiten" ariaCurrentWhenActive="page">Springreiten</a>
-            <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/schwimmen" ariaCurrentWhenActive="page">Schwimmen</a>
+            <a mat-menu-item class="navigation-link" routerLink="/app/admin/athletes" ariaCurrentWhenActive="page">Athleten</a>
+            <a mat-menu-item class="navigation-link" routerLink="/app/admin/users" ariaCurrentWhenActive="page">Nutzer</a>
           </div>
         </hover-over-menu>
       </li>
-      <li class="menu-item">
-        <a class="hover-underline-animation navigation-link" routerLink="/app/medal-count" ariaCurrentWhenActive="page">
-          <span>Medaillenspiegel</span>
-        </a>
-      </li>
-      @if (authService.jwtIsValidAdminToken()) {
-        <li class="menu-item">
-          <hover-over-menu class="d-inline-block h-100">
-            <div trigger class="hover-underline-animation navigation-link" routerLink="/app/admin" ariaCurrentWhenActive="page">
-              <span class="navigation-link">Admin</span>
-            </div>
-            <div content>
-              <a mat-menu-item class="navigation-link" routerLink="/app/admin/athletes" ariaCurrentWhenActive="page">Athleten</a>
-              <a mat-menu-item class="navigation-link" routerLink="/app/admin/users" ariaCurrentWhenActive="page">Nutzer</a>
-            </div>
-          </hover-over-menu>
-        </li>
-      }
-    </ul>
-
-    <div class="spacer"></div>
-    @if (!authService.isLoggedIn()) {
-      <a routerLink="/app/login" class="login">Anmelden</a>
     }
-    @if (authService.isLoggedIn()) {
-      <a class="login" (click)="authService.deleteJwtToken()">Abmelden</a>
-    }
+  </ul>
 
-  </div>
+  <div class="spacer"></div>
+  @if (!authService.isLoggedIn()) {
+    <a routerLink="/app/login" class="login">Anmelden</a>
+  }
+  @if (authService.isLoggedIn()) {
+    <a class="login" (click)="authService.deleteJwtToken()">Abmelden</a>
+  }
 
+</div>
+
+<main>
   <div class="content">
     <router-outlet></router-outlet>
   </div>
-
-  <footer class="footer fixed-bottom">
-    <span class="footer-text">BBS PROJEKT OLYMPIA</span>
-    <div class="spacer"></div>
-    <span class="footer-text">KAI, DENNIS, ROBERT</span>
-  </footer>
-
 </main>
+
+<footer class="footer fixed-bottom">
+  <span class="footer-text">BBS PROJEKT OLYMPIA</span>
+  <div class="spacer"></div>
+  <span class="footer-text">KAI, DENNIS, ROBERT</span>
+</footer>
