@@ -1,24 +1,24 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AthletenComponent } from "./admin-uebersicht/athleten/athleten.component";
-import { KampfrichterComponent } from "./admin-uebersicht/kampfrichter/kampfrichter.component";
-import { AdminUebersichtComponent } from "./admin-uebersicht/admin-uebersicht.component";
+import { AdminComponent } from "./admin/admin.component";
+import { AthletesComponent } from "./admin/athletes/athletes.component";
+import { UsersComponent } from "./admin/users/users.component";
 
 const routes: Routes = [
 	{
 		path: "",
 		title: "",
-		component: AdminUebersichtComponent,
+		component: AdminComponent,
 	},
 	{
-		path: "athleten",
+		path: "athletes",
 		title: "Athleten",
-		component: AthletenComponent,
+		component: AthletesComponent,
 	},
 	{
-		path: "kampfrichter",
-		title: "Kampfrichter",
-		component: KampfrichterComponent,
+		path: "users",
+		title: "Nutzer",
+		component: UsersComponent,
 	},
 ];
 

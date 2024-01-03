@@ -1,0 +1,43 @@
+<div class="form-container">
+
+  <form [formGroup]="formular" class="login-container">
+    <mat-form-field class="login-input">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        [type]="Formular.Email.TYPE"
+        [formControlName]="Formular.Email.NAME"
+        [errorStateMatcher]="matcher">
+      @if (showEmailIsInvalid()) {
+        <mat-error>
+          Please enter a valid email address
+        </mat-error>
+      }
+      @if (showEmailIsRequired()) {
+        <mat-error>
+          Email is required
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="login-input">
+      <mat-label>Passwort</mat-label>
+      <input
+        matInput
+        [type]="Formular.Password.TYPE"
+        [formControlName]="Formular.Password.NAME"
+        [errorStateMatcher]="matcher">
+      @if (showPasswordIsRequired()) {
+        <mat-error>
+          Password is required
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <div class="container">
+      <a routerLink="./request-change-password">Passwort vergessen</a>
+      <div class="spacer"></div>
+      <button class="login" (click)="login()">Anmelden</button>
+    </div>
+  </form>
+</div>

@@ -1,24 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { AdminRoutingModule } from "./admin-routing.module";
 import { OlympiaTableComponent } from "../../components/olympia-table/olympia-table.component";
-import { AdminUebersichtComponent } from "./admin-uebersicht/admin-uebersicht.component";
-import { KampfrichterComponent } from "./admin-uebersicht/kampfrichter/kampfrichter.component";
-import { AthletenComponent } from "./admin-uebersicht/athleten/athleten.component";
-import { NotifierModule } from "angular-notifier";
-import { notifierOptions } from "../../notifications/notification.constant";
+import { AdminRoutingModule } from "./admin-routing.module";
+import { AdminComponent } from "./admin/admin.component";
+import { AthletesComponent } from "./admin/athletes/athletes.component";
+import { UsersComponent } from "./admin/users/users.component";
 
 @NgModule({
-	declarations: [
-		AdminUebersichtComponent,
-		KampfrichterComponent,
-		AthletenComponent,
-	],
-	imports: [
-		CommonModule,
-		AdminRoutingModule,
-		OlympiaTableComponent,
-		NotifierModule.withConfig(notifierOptions),
-	],
+	declarations: [AdminComponent, UsersComponent, AthletesComponent],
+	imports: [CommonModule, AdminRoutingModule, OlympiaTableComponent],
 })
 export class AdminModule {}

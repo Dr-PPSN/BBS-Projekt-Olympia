@@ -1,7 +1,6 @@
-import { NgFor, NgIf } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
-import { MatTableModule } from "@angular/material/table";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatTableModule } from "@angular/material/table";
 
 export interface Column {
 	name: string;
@@ -13,7 +12,7 @@ export interface Column {
 	templateUrl: "./olympia-table.component.html",
 	styleUrls: ["./olympia-table.component.sass"],
 	standalone: true,
-	imports: [MatTableModule, NgFor, NgIf, MatProgressSpinnerModule],
+	imports: [MatTableModule, MatProgressSpinnerModule],
 })
 export class OlympiaTableComponent implements OnInit {
 	@Input() public displayedColumns: Column[] = [];

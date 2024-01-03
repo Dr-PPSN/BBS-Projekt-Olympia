@@ -60,3 +60,10 @@ In beiden Instanzen folgenden Befehl ausführen
 1. NPM-Script ```serve``` ausführen
 
     Die Website ist unter [localhost:4200](localhost:4200) erreichbar.
+
+
+## Debugging
+
+In VSCode muss das Feature ```Debug: Toggle Auto Attach``` in den Commands (```STRG``` + ```SHIFT``` + ```P```) auf ```Only with Flag``` eingestellt sein. 
+
+Dann einfach das Script ```start:debug``` ausführen.

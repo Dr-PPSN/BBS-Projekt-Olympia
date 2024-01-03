@@ -2,70 +2,104 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as bcrypt from "bcrypt";
 import { Repository } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
-import { Einladung } from "./entity/einladung.entity";
-import { Nutzer } from "./entity/nutzer.entity";
+import { MailService } from "../mail/mail.service";
+import { User } from "./entity/user.entity";
+import { TokenService } from "./tokens/token.service";
+import { DefaultAdminUser } from "./user.constants";
 
 @Injectable()
 export class UserService {
 	constructor(
-		@InjectRepository(Nutzer) private nutzerRepo: Repository<Nutzer>,
-		@InjectRepository(Einladung) private einladungRepo: Repository<Einladung>,
+		@InjectRepository(User) private userRepository: Repository<User>,
+		private tokenService: TokenService,
+		private mailService: MailService,
 	) {}
 
-	async findAllNutzer(): Promise<Array<Nutzer>> {
-		return await this.nutzerRepo.find({
-			select: ["uuid", "vorname", "nachname", "email", "istAdmin", "sportart"],
+	async getAllUsers(): Promise<Array<User>> {
+		return await this.userRepository.find({
+			select: [
+				"uuid",
+				"firstName",
+				"lastName",
+				"email",
+				"isAdmin",
+				"discipline",
+			],
 		});
 	}
 
-	async inviteNutzer(user: Nutzer): Promise<string> {
-		const invite = this.einladungRepo.create({
-			token: uuidv4(),
-			nutzer: user,
-		});
-		await this.einladungRepo.save(invite);
-		return invite.token;
-	}
-
-	async updatePassword(user: Nutzer): Promise<Nutzer> {
+	async changePassword(token: string, newPassword: string): Promise<User> {
+		let user = await this.tokenService.getUserByToken(token);
 		const salt = await bcrypt.genSalt();
-		const hashedPassword = await bcrypt.hash(user.passwort, salt);
-		return await this.nutzerRepo.save({
+		const hashedPassword = await bcrypt.hash(newPassword, salt);
+		user = await this.userRepository.save({
 			...user,
-			passwort: hashedPassword,
+			password: hashedPassword,
 			salt,
 		});
+		this.tokenService.removeTokensForUser(user);
+		return user;
 	}
 
-	// TODO: später entfernen
-	async addUser(user: Nutzer): Promise<Nutzer> {
-		const salt = await bcrypt.genSalt();
-		const hashedPassword = await bcrypt.hash(user.passwort, salt);
-		return await this.nutzerRepo.save({
+	async inviteUser(user: User): Promise<User> {
+		await this.userRepository.save({
 			...user,
-			passwort: hashedPassword,
-			salt,
+			password: null,
+			salt: null,
 		});
+		const token = await this.tokenService.createChangePasswordToken(user);
+		this.mailService.sendInvitation(user, token);
+		return user;
 	}
 
-	async findNutzerWithEmail(email: string): Promise<Nutzer> {
-		return await this.nutzerRepo.findOne({
+	async sendChangePasswordMail(email: string): Promise<void> {
+		const user = await this.findUserWithEmail(email);
+		if (!user) {
+			return;
+		}
+		const token = await this.tokenService.createChangePasswordToken(user);
+		this.mailService.sendChangePassword(user, token);
+	}
+
+	async findUserWithEmail(email: string): Promise<User> {
+		return await this.userRepository.findOne({
 			where: { email },
 		});
 	}
 
-	async findInviteWithToken(token: string): Promise<Einladung> {
-		return await this.einladungRepo.findOne({
-			where: { token },
+	async deleteUser(user: User): Promise<User> {
+		return await this.userRepository.remove(user);
+	}
+
+	async editUser(user: User): Promise<User> {
+		return await this.userRepository.save(user);
+	}
+
+	async checkAdminExists(): Promise<void> {
+		if (await this.adminExists()) {
+			return;
+		}
+		this.addUserWithPassword({
+			email: process.env.DEFAULT_ADMIN_EMAIL,
+			password: process.env.DEFAULT_ADMIN_PASSWORD,
+			firstName: DefaultAdminUser.FIRST_NAME,
+			lastName: DefaultAdminUser.LAST_NAME,
+			isAdmin: DefaultAdminUser.IS_ADMIN,
 		});
 	}
 
-	async deleteUser(user: Nutzer): Promise<Nutzer> {
-		return await this.nutzerRepo.remove(user);
+	async adminExists(): Promise<boolean> {
+		return (await this.userRepository.count({ where: { isAdmin: true } })) > 0;
 	}
 
-	async editUser(user: Nutzer): Promise<Nutzer> {
-		return await this.nutzerRepo.save(user);
+	// biome-ignore lint: muss any sein
+	async addUserWithPassword(user: any): Promise<User> {
+		const salt = await bcrypt.genSalt();
+		const hashedPassword = await bcrypt.hash(user.password, salt);
+		return await this.userRepository.save({
+			...user,
+			password: hashedPassword,
+			salt,
+		});
 	}
 }

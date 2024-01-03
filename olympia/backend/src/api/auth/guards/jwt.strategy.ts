@@ -15,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 	// biome-ignore lint: muss any sein
 	async validate(payload: any) {
 		return {
-			id: payload.sub,
+			uuid: payload.sub,
 			email: payload.email,
 			istAdmin: payload.istAdmin,
 		};

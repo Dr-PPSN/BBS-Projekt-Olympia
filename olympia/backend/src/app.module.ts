@@ -1,17 +1,22 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { ApiModule } from "./api/api.module";
+import { AdminModule } from "./api/admin/admin.module";
+import { AuthModule } from "./api/auth/auth.module";
+import { CountriesModule } from "./api/countries/countries.module";
+import { MedalCountModule } from "./api/medal-count/medal-count.module";
 import { ALL_ROUTES } from "./app.constants";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { MailModule } from "./mail/mail.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
+import { UserModule } from "./user/user.module";
+import { SportsResultsModule } from "./api/sports-results/sports-results.module";
 
 @Module({
 	imports: [
 		ConfigModule.forRoot({
-			envFilePath: "../../.env",
+			envFilePath: ["../../.env", "../../mail.env"],
 			isGlobal: true,
 		}),
 		TypeOrmModule.forRoot({
@@ -25,8 +30,13 @@ import { LoggingMiddleware } from "./middleware/logging.middleware";
 			autoLoadEntities: true,
 			synchronize: true,
 		}),
-		ApiModule,
+		AdminModule,
+		AuthModule,
+		CountriesModule,
+		SportsResultsModule,
+		MedalCountModule,
 		MailModule,
+		UserModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

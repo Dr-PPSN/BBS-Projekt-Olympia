@@ -1,42 +1,17 @@
-import {
-	Body,
-	Controller,
-	Get,
-	HttpCode,
-	Post,
-	UseGuards,
-} from "@nestjs/common";
-import { Nutzer } from "src/user/entity/nutzer.entity";
-import { AdminService } from "./admin.service";
-import { Api } from "./admin.constant";
+import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { SentMessageInfo } from "nodemailer";
+import { MailService } from "../../mail/mail.service";
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
+import { Api } from "./admin.constant";
 
 @UseGuards(JwtAuthGuard)
 @Controller(Api.TITLE)
 export class AdminController {
-	constructor(private adminService: AdminService) {}
+	constructor(private mailService: MailService) {}
 
-	@HttpCode(200)
-	@Get(Api.GET_USERS)
-	async getUsers(): Promise<Array<Nutzer>> {
-		return await this.adminService.getUsers();
-	}
-
-	@HttpCode(200)
-	@Post(Api.ADD_USER)
-	async addUser(@Body() body): Promise<Nutzer> {
-		return await this.adminService.addUser(body);
-	}
-
-	@HttpCode(200)
-	@Post(Api.EDIT_USER)
-	async editUser(@Body() body): Promise<Nutzer> {
-		return await this.adminService.editUser(body);
-	}
-
-	@HttpCode(200)
-	@Post(Api.DELETE_USER)
-	async deleteUser(@Body() body): Promise<Nutzer> {
-		return await this.adminService.deleteUser(body);
+	@Post(Api.TEST_MAIL)
+	async testEmail(@Body() body): Promise<SentMessageInfo> {
+		const email = body.email;
+		return await this.mailService.sendTest(email);
 	}
 }

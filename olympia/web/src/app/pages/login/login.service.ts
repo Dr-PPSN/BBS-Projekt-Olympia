@@ -18,10 +18,18 @@ export class LoginService {
 		return this.httpService.postData(Api.LOGIN, sendData);
 	}
 
-	resetPassword(email: string): Observable<string> {
+	sendPasswordChangeRequest(email: string): Observable<string> {
 		const sendData = {
 			email,
 		};
-		return this.httpService.postData(Api.RESET_PASSWORD, sendData);
+		return this.httpService.postData(Api.REQUEST_PASSWORD_RESET, sendData);
+	}
+
+	changePassword(token: string, newPassword: string): Observable<string> {
+		const sendData = {
+			token,
+			newPassword,
+		};
+		return this.httpService.postData(Api.CHANGE_PASSWORD, sendData);
 	}
 }

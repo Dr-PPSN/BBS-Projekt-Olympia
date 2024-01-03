@@ -1,0 +1,44 @@
+@if (!loadingAnimationIsActive()) {
+  @if (dataIsLoaded()) {
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Männer
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <winners-podium></winners-podium>
+        <olympia-table
+          #table
+          [displayedColumns]="columns"
+          [data]="sportResultsMales"
+          >
+        </olympia-table>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Frauen
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <winners-podium></winners-podium>
+        <olympia-table
+          #table
+          [displayedColumns]="columns"
+          [data]="sportResultsFemales"
+          >
+        </olympia-table>
+      </mat-expansion-panel>
+    </mat-accordion>
+  } @else {
+    <h3 class="w-100 d-flex justify-content-center">Keine Daten vorhanden</h3>
+  }
+} @else {
+  <div class="w-100 d-flex justify-content-center">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+}

@@ -9,13 +9,19 @@ export namespace Formular {
 
 	export namespace Password {
 		export const NAME = "password";
-		export const TYPE = "string";
+		export const TYPE = "password";
 		export const PLACEHOLDER = "Passwort";
+	}
+
+	export namespace PasswordRepeat {
+		export const NAME = "passwordRepeat";
+		export const TYPE = "password";
+		export const PLACEHOLDER = "Passwort wiederholen";
 	}
 }
 
 export namespace Api {
 	export const LOGIN = "auth/login";
-	export const RESET_PASSWORD = "auth/reset-password";
-	export const TEST = "test-user";
+	export const REQUEST_PASSWORD_RESET = "auth/request-change-password";
+	export const CHANGE_PASSWORD = "auth/change-password";
 }
