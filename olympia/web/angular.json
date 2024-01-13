@@ -8,7 +8,8 @@
 			"schematics": {
 				"@schematics/angular:component": {
 					"style": "sass",
-					"skipTests": true
+					"skipTests": true,
+					"standalone": false
 				},
 				"@schematics/angular:class": {
 					"skipTests": true
@@ -51,9 +52,9 @@
 						"production": {
 							"budgets": [
 								{
-									 "type": "initial",
-									 "maximumWarning": "2mb",
-									 "maximumError": "5mb"
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
 								},
 								{
 									"type": "anyComponentStyle",
