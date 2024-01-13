@@ -11,7 +11,11 @@
 				"noInferrableTypes": "warn"
 			},
 			"suspicious": {
-				"noExplicitAny": "warn"
+				"noExplicitAny": "warn",
+				"noPrototypeBuiltins": "warn"
+			},
+			"complexity": {
+				"useLiteralKeys": "off"
 			}
 		}
 	},
