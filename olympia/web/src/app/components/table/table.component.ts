@@ -12,14 +12,11 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
   styleUrl: './table.component.sass'
 })
 export class TableComponent implements OnChanges{
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 @Input() dataSource: any[] = [];
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 @Input() columns: any[] = [];
   displayedColumns: string[] = [];
   sortDirection: SortDirection = "asc";
 
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   matTableDataSource: MatTableDataSource<any> = new MatTableDataSource;
 
   @ViewChild(MatSort) sort!: MatSort;

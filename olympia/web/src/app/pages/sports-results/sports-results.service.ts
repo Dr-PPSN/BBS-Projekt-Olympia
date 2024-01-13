@@ -42,5 +42,28 @@ export class SportsResultsService {
 				medal: sportsResult.sportsResult.medal,
 			};
 		});
+
+//biome-ignore lint:any
+let heros: any[] = [
+	{ id: 12, name: 
+	{	
+	value: 12, 
+	medal: "gold"
+	} 
+	},
+	];
+
+	heros[0].name.value
+
+
+
 	}
+
+
+
+
+
+
+
+
 }
