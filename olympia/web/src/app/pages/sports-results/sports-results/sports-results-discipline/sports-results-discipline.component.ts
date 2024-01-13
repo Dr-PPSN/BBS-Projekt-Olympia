@@ -1,10 +1,10 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Subscription } from "rxjs";
-import { SportsResultsService } from "../../sports-results.service";
 import { ToastrService } from "ngx-toastr";
-import { HttpErrorResponse } from "@angular/common/http";
+import { Subscription } from "rxjs";
 import { Column } from "../../../../components/olympia-table/olympia-table.component";
+import { SportsResultsService } from "../../sports-results.service";
 
 export interface SportsResult {
 	uuid: string;

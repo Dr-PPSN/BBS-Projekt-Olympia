@@ -6,9 +6,9 @@ import {
 	RouterStateSnapshot,
 	Routes,
 } from "@angular/router";
-import { SportsResultsComponent } from "./sports-results/sports-results.component";
-import { SportsResultsDisciplineComponent } from "./sports-results/sports-results-discipline/sports-results-discipline.component";
 import { getDisciplineFromRouteParameter } from "./sports-results.utils";
+import { SportsResultsDisciplineComponent } from "./sports-results/sports-results-discipline/sports-results-discipline.component";
+import { SportsResultsComponent } from "./sports-results/sports-results.component";
 
 const disciplineTitleResolver: ResolveFn<string> = (
 	route: ActivatedRouteSnapshot,
