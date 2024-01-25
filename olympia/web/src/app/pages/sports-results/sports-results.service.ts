@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpService } from "../../service/http/http.service";
 import { map } from "rxjs";
+import { HttpService } from "../../service/http/http.service";
 import { SportsResult } from "./sports-results/sports-results-discipline/sports-results-discipline.component";
 
 @Injectable({
