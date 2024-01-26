@@ -5,9 +5,15 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin/admin.component";
 import { AthletesComponent } from "./admin/athletes/athletes.component";
 import { UsersComponent } from "./admin/users/users.component";
+import { OlympiaFileUploadComponent } from "../../components/olympia-file-upload/olympia-file-upload.component";
 
 @NgModule({
 	declarations: [AdminComponent, UsersComponent, AthletesComponent],
-	imports: [CommonModule, AdminRoutingModule, OlympiaTableComponent],
+	imports: [
+		CommonModule,
+		AdminRoutingModule,
+		OlympiaTableComponent,
+		OlympiaFileUploadComponent,
+	],
 })
 export class AdminModule {}
