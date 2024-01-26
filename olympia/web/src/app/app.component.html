@@ -10,37 +10,37 @@
 
   <ul>
     <li class="menu-item">
-      <a class="hover-underline-animation navigation-link" routerLink="/app/countries" ariaCurrentWhenActive="page">
+      <a class="hover-underline-animation navigation-link text-uppercase" routerLink="/app/countries" ariaCurrentWhenActive="page">
         <span>Länder</span>
       </a>
     </li>
     <li class="menu-item">
       <hover-over-menu class="d-inline-block h-100">
-        <div trigger class="hover-underline-animation navigation-link" routerLink="/app/sports-results" ariaCurrentWhenActive="page">
+        <div trigger class="hover-underline-animation navigation-link text-uppercase" routerLink="/app/sports-results" ariaCurrentWhenActive="page">
           <span class="navigation-link">Ergebnisse</span>
         </div>
         <div content>
-          <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/weitsprung" ariaCurrentWhenActive="page">Weitsprung</a>
-          <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/100m-lauf" ariaCurrentWhenActive="page">100m-Lauf</a>
-          <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/springreiten" ariaCurrentWhenActive="page">Springreiten</a>
-          <a mat-menu-item class="navigation-link" routerLink="/app/sports-results/schwimmen" ariaCurrentWhenActive="page">Schwimmen</a>
+          <a mat-menu-item class="navigation-link text-uppercase" routerLink="/app/sports-results/weitsprung" ariaCurrentWhenActive="page">Weitsprung</a>
+          <a mat-menu-item class="navigation-link text-uppercase" routerLink="/app/sports-results/100m-lauf" ariaCurrentWhenActive="page">100m-Lauf</a>
+          <a mat-menu-item class="navigation-link text-uppercase" routerLink="/app/sports-results/springreiten" ariaCurrentWhenActive="page">Springreiten</a>
+          <a mat-menu-item class="navigation-link text-uppercase" routerLink="/app/sports-results/schwimmen" ariaCurrentWhenActive="page">Schwimmen</a>
         </div>
       </hover-over-menu>
     </li>
     <li class="menu-item">
-      <a class="hover-underline-animation navigation-link" routerLink="/app/medal-count" ariaCurrentWhenActive="page">
+      <a class="hover-underline-animation navigation-link text-uppercase" routerLink="/app/medal-count" ariaCurrentWhenActive="page">
         <span>Medaillenspiegel</span>
       </a>
     </li>
     @if (authService.jwtIsValidAdminToken()) {
       <li class="menu-item">
         <hover-over-menu class="d-inline-block h-100">
-          <div trigger class="hover-underline-animation navigation-link" routerLink="/app/admin" ariaCurrentWhenActive="page">
+          <div trigger class="hover-underline-animation navigation-link text-uppercase" routerLink="/app/admin" ariaCurrentWhenActive="page">
             <span class="navigation-link">Admin</span>
           </div>
           <div content>
-            <a mat-menu-item class="navigation-link" routerLink="/app/admin/athletes" ariaCurrentWhenActive="page">Athleten</a>
-            <a mat-menu-item class="navigation-link" routerLink="/app/admin/users" ariaCurrentWhenActive="page">Nutzer</a>
+            <a mat-menu-item class="navigation-link text-uppercase" routerLink="/app/admin/athletes" ariaCurrentWhenActive="page">Athleten</a>
+            <a mat-menu-item class="navigation-link text-uppercase" routerLink="/app/admin/users" ariaCurrentWhenActive="page">Nutzer</a>
           </div>
         </hover-over-menu>
       </li>
