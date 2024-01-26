@@ -5,7 +5,7 @@
         <span class="breadcrumb-item">{{ breadcrumb.title }}</span>
       }
       @if (!isLast) {
-        <a class="breadcrumb-item" [href]="breadcrumb.url">{{ breadcrumb.title }}</a>
+        <a class="breadcrumb-item" [routerLink]="breadcrumb.url">{{ breadcrumb.title }}</a>
       }
     </li>
   }
