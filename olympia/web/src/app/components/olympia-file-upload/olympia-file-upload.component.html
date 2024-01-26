@@ -1,0 +1,27 @@
+<input
+  type="file"
+  class="file-input"
+  [accept]="requiredFileType"
+  (change)="onFileSelected($event)"
+  #fileUpload>
+
+<button
+  class="upload-button"
+  (click)="fileUpload.click()">
+  <i class="fa-solid fa-upload"></i>
+</button>
+
+@if (uploadProgress()) {
+  <div class="progress">
+    <mat-progress-spinner
+      class="progress-bar"
+      mode="determinate"
+      [value]="uploadProgress()">
+    </mat-progress-spinner>
+    <i
+      class="fa-solid fa-xmark"
+      (click)="cancelUpload()">
+    </i>
+  </div>
+}
+

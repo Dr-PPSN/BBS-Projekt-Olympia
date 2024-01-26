@@ -4,10 +4,20 @@ import { MailModule } from "../../mail/mail.module";
 import { AdminController } from "./admin.controller";
 import { AdminService } from "./admin.service";
 import { UserController } from "./user/user.controller";
+import { AthleteController } from "./athletes/athlete.controller";
+import { AthleteService } from "./athletes/athlete.service";
+import { ImageModule } from "../images/image.module";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { Athlete } from "../sports-results/entity/athlete.entity";
 
 @Module({
-	controllers: [AdminController, UserController],
-	providers: [AdminService],
-	imports: [UserModule, MailModule],
+	controllers: [AdminController, UserController, AthleteController],
+	providers: [AdminService, AthleteService],
+	imports: [
+		TypeOrmModule.forFeature([Athlete]),
+		UserModule,
+		MailModule,
+		ImageModule,
+	],
 })
 export class AdminModule {}
