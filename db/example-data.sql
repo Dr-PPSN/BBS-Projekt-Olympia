@@ -360,7 +360,7 @@ VALUES
     'Galina',
     'Chistyakova',
     'female',
-    'URS',
+    'RUS',
     '1962-06-26',
     weitsprung_uuid
   ),
