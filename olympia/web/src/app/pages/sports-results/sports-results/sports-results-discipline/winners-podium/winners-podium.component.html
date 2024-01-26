@@ -1,28 +1,34 @@
-<div class="winners-podium-container">
-  <div class="winner">
-    <img class="athlete-avatar" src="assets/avatar.png">
-    <div>Peter Lustig</div>
-    <div class="medal-with-result">
-      <div class="medal gold">1</div>
-      <span class="ms-1">10,53m</span>
-    </div>
+@if (winners && someWinnersAreDefined()) {
+  <div class="winners-podium-container">
+    @if (winners.gold) {
+      <div class="winner">
+        <img class="athlete-avatar" src="assets/avatar.png">
+        <div>{{winners.gold.name}}</div>
+        <div class="medal-with-result">
+          <div class="medal gold">1</div>
+          <span class="ms-1">{{winners.gold.sportsResult}}</span>
+        </div>
+      </div>
+    }
+    @if (winners.silver) {
+      <div class="winner">
+        <img class="athlete-avatar" src="assets/avatar.png">
+        <div>{{winners.silver.name}}</div>
+        <div class="medal-with-result">
+          <div class="medal silver">2</div>
+          <span class="ms-1">{{winners.silver.sportsResult}}</span>
+        </div>
+      </div>
+    }
+    @if (winners.bronze) {
+      <div class="winner">
+        <img class="athlete-avatar" src="assets/avatar.png">
+        <div>{{winners.bronze.name}}</div>
+        <div class="medal-with-result">
+          <div class="medal bronze">3</div>
+          <span class="ms-1">{{winners.bronze.sportsResult}}</span>
+        </div>
+      </div>
+    }
   </div>
-
-  <div class="winner">
-    <img class="athlete-avatar" src="assets/avatar.png">
-    <div>Peter Lustig</div>
-    <div class="medal-with-result">
-      <div class="medal silver">2</div>
-      <span class="ms-1">10,53m</span>
-    </div>
-  </div>
-
-  <div class="winner">
-    <img class="athlete-avatar" src="assets/avatar.png">
-    <div>Peter Lustig</div>
-    <div class="medal-with-result">
-      <div class="medal bronze">3</div>
-      <span class="ms-1">10,53m</span>
-    </div>
-  </div>
-</div>
+}

@@ -14,3 +14,18 @@ export function getDisciplineFromRouteParameter(
 			return "";
 	}
 }
+
+export function getDisciplineUnit(discipline: string | null): string {
+	switch (discipline) {
+		case "weitsprung":
+			return "m";
+		case "100m-lauf":
+			return "s";
+		case "springreiten":
+			return "Fehlerpunkt(e)";
+		case "schwimmen":
+			return "s";
+		default:
+			return "";
+	}
+}

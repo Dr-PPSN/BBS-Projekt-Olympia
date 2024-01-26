@@ -1,5 +1,5 @@
 @if (!loadingAnimationIsActive()) {
-  @if (dataIsLoaded()) {
+  @if (sportsResultsService.dataIsLoaded()) {
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -8,11 +8,10 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <winners-podium></winners-podium>
+        <winners-podium [winners]="sportsResultsService.winners.male"></winners-podium>
         <olympia-table
-          #table
           [displayedColumns]="columns"
-          [data]="sportResultsMales"
+          [data]="sportsResultsService.sportsResults.male"
           >
         </olympia-table>
 
@@ -25,11 +24,10 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <winners-podium></winners-podium>
+        <winners-podium [winners]="sportsResultsService.winners.female"></winners-podium>
         <olympia-table
-          #table
           [displayedColumns]="columns"
-          [data]="sportResultsFemales"
+          [data]="sportsResultsService.sportsResults.female"
           >
         </olympia-table>
       </mat-expansion-panel>
