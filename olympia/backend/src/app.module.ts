@@ -4,15 +4,15 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AdminModule } from "./api/admin/admin.module";
 import { AuthModule } from "./api/auth/auth.module";
 import { CountriesModule } from "./api/countries/countries.module";
+import { ImageModule } from "./api/images/image.module";
 import { MedalCountModule } from "./api/medal-count/medal-count.module";
+import { SportsResultsModule } from "./api/sports-results/sports-results.module";
 import { ALL_ROUTES } from "./app.constants";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { MailModule } from "./mail/mail.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
 import { UserModule } from "./user/user.module";
-import { SportsResultsModule } from "./api/sports-results/sports-results.module";
-import { ImageModule } from "./api/images/image.module";
 
 @Module({
 	imports: [

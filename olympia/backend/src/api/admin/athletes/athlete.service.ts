@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import { ImageService } from "../../images/image.service";
-import { Image } from "../../images/entity/image.entity";
-import { Repository } from "typeorm";
-import { Athlete } from "../../sports-results/entity/athlete.entity";
 import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Image } from "../../images/entity/image.entity";
+import { ImageService } from "../../images/image.service";
+import { Athlete } from "../../sports-results/entity/athlete.entity";
 
 @Injectable()
 export class AthleteService {

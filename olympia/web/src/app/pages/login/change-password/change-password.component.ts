@@ -48,7 +48,6 @@ export class ChangePasswordComponent implements OnInit {
 	) {}
 
 	public ngOnInit(): void {
-		// biome-ignore lint/complexity/useLiteralKeys: ignoriert
 		this.resetPasswordToken = this.route.snapshot.params["token"];
 	}
 

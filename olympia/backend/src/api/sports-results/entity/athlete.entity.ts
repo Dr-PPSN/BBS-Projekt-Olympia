@@ -7,9 +7,9 @@ import {
 	PrimaryGeneratedColumn,
 	Unique,
 } from "typeorm";
+import { Image } from "../../images/entity/image.entity";
 import { Discipline } from "./discipline.entity";
 import { SportsResult } from "./sports_result.entity";
-import { Image } from "../../images/entity/image.entity";
 
 export enum Gender {
 	MALE = "male",

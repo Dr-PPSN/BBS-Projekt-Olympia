@@ -9,8 +9,8 @@ import {
 	UseInterceptors,
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { AthleteService } from "./athlete.service";
 import { Api, FileValidation } from "./athlete.constant";
+import { AthleteService } from "./athlete.service";
 
 @Controller(Api.TITLE)
 export class AthleteController {

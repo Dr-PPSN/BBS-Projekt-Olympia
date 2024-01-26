@@ -1,6 +1,6 @@
 import { Controller, Get, Param, StreamableFile } from "@nestjs/common";
-import { ImageService } from "./image.service";
 import { Api } from "./image.constant";
+import { ImageService } from "./image.service";
 
 @Controller(Api.TITLE)
 export class ImageController {

@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Observable } from "rxjs";
 import { HttpService } from "../../service/http/http.service";
 import { Api } from "./login.constant";
 
