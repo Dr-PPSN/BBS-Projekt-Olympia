@@ -26,6 +26,9 @@ export class TokenService {
 	}
 
 	async getUserByToken(token: string): Promise<User> {
+		if (!token) {
+			throw new BadRequestException(TOKEN_EXPIRED_OR_INVALID);
+		}
 		const expirationDate = getTokenExpirationDate(this.maxTokenAgeInSeconds);
 		const changePasswordToken =
 			await this.changePasswordTokenRepository.findOne({

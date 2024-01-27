@@ -10,6 +10,9 @@ export class ImageService {
 	) {}
 
 	findOne(uuid: string): Promise<Image> {
+		if (!uuid) {
+			throw new Error("No image uuid provided");
+		}
 		return this.imageRepository.findOneOrFail({ where: { uuid } });
 	}
 
