@@ -7,10 +7,8 @@ export class ImageController {
 	constructor(private imageService: ImageService) {}
 
 	@Get(Api.UUID)
-	async getImage(
-		@Param() params: { imageUuid: string },
-	): Promise<StreamableFile> {
-		const image = await this.imageService.findOne(params.imageUuid);
+	async getImage(@Param() params: { uuid: string }): Promise<StreamableFile> {
+		const image = await this.imageService.findOne(params.uuid);
 		return new StreamableFile(image.file, {
 			type: image.mimeType,
 			disposition: `inline; filename=${image.filename}`,
