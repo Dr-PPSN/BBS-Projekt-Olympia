@@ -5,7 +5,7 @@ export function getDisciplineFromRouteParameter(
 		case "weitsprung":
 			return "Weitsprung";
 		case "100m-lauf":
-			return "100m Lauf";
+			return "100m-Lauf";
 		case "springreiten":
 			return "Springreiten";
 		case "schwimmen":
