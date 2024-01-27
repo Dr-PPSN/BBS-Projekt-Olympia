@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { Image } from "../../images/entity/image.entity";
 import { ImageService } from "../../images/image.service";
 import { Athlete } from "../../sports-results/entity/athlete.entity";
+import { Image } from "../../images/entity/image.entity";
 
 @Injectable()
 export class AthleteService {
@@ -13,25 +13,24 @@ export class AthleteService {
 	) {}
 
 	async updateAthleteImage(athleteUuid: string, file: Express.Multer.File) {
+		if (!athleteUuid) throw new Error("No athlete uuid provided");
 		const athlete = await this.athleteRepository.findOneOrFail({
 			where: { uuid: athleteUuid },
 			relations: {
 				image: true,
 			},
 		});
-		await this.deleteOldImage(athlete.image);
-		athlete.image = await this.saveImage(file);
-		await this.athleteRepository.save(athlete);
-	}
-
-	private async deleteOldImage(image: Image) {
-		if (image) {
-			await this.imageService.deleteImage(image);
+		if (!athlete.image) {
+			athlete.image = await this.createNewImage(file);
+			await this.athleteRepository.save(athlete);
+			return;
 		}
+		athlete.image.updateImageData(file);
+		await this.imageService.saveImage(athlete.image);
 	}
 
-	private saveImage(file: Express.Multer.File) {
+	private async createNewImage(file: Express.Multer.File) {
 		const image = new Image(file);
-		return this.imageService.saveImage(image);
+		return await this.imageService.saveImage(image);
 	}
 }

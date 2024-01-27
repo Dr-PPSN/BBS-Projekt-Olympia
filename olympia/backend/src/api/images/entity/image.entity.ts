@@ -16,6 +16,14 @@ export class Image {
 		this.lastModified = new Date();
 	}
 
+	updateImageData(file: Express.Multer.File) {
+		this.filename = file.originalname;
+		this.file = file.buffer;
+		this.mimeType = file.mimetype;
+		this.filesizeInByte = file.size;
+		this.lastModified = new Date();
+	}
+
 	@PrimaryGeneratedColumn("uuid", {
 		primaryKeyConstraintName: "pk_image_uuid",
 	})
@@ -40,5 +48,6 @@ export class Image {
 	@BeforeUpdate()
 	updateLastModified() {
 		this.lastModified = new Date();
+		this.filesizeInByte = this.file.length;
 	}
 }
