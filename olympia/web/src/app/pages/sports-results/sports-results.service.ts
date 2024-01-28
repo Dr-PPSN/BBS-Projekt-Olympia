@@ -107,7 +107,6 @@ export class SportsResultsService {
 		if (!athlete) {
 			return undefined;
 		}
-		console.log(athlete);
 		return {
 			uuid: athlete.uuid,
 			name: `${athlete.firstName} ${athlete.lastName}`,
