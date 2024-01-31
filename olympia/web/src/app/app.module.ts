@@ -21,6 +21,7 @@ import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
+import { ImagesModule } from "./images/images.module";
 
 @NgModule({
 	declarations: [
@@ -51,6 +52,7 @@ import { HttpService } from "./service/http/http.service";
 		MatMenuModule,
 		MatTableModule,
 		OlympiaTableComponent,
+		ImagesModule,
 	],
 	providers: [
 		HttpService,
