@@ -7,12 +7,23 @@ import { ChartType } from "angular-google-charts";
 	styleUrls: ["./countries.component.sass"],
 })
 export class CountriesComponent {
-	public ChartType = ChartType;
-	public chartData = [
-		["London", 8136000],
-		["New York", 8538000],
-		["Paris", 2244000],
-		["Berlin", 3470000],
-		["Kairo", 19500000],
+	ChartType = ChartType;
+	chartData = [
+		["South America", 600],
+		["Canada", 500],
+		["France", 600],
+		["Russia", 700],
+		["Australia", 600],
 	];
+	chartColumns = ["City", "Inhabitants"];
+	geoChartOptions = {
+		backgroundColor: "#81d4fa",
+		legend: "none",
+		region: "world",
+		enableRegionInteractivity: true,
+	};
+
+	onSelect(event: any) {
+		console.log(event);
+	}
 }

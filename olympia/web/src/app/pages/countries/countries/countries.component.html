@@ -1,4 +1,13 @@
-<google-chart
-  [type]="ChartType.Map"
-  [data]="chartData"
-></google-chart>
+<div class="round-corners">
+
+  <google-chart
+    [type]="ChartType.GeoChart"
+    [data]="chartData"
+    [dynamicResize]="true"
+    style="width: 100%;"
+    [options]="geoChartOptions"
+    (regionClick)="onSelect($event)"
+    (select)="onSelect($event)"
+    [columns]="chartColumns"
+  ></google-chart>
+</div>
