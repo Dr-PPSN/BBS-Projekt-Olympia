@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
+import { Image } from "../../images/images.db";
 import { ImagesModule } from "../../images/images.module";
 import { ImagesService } from "../../images/images.service";
-import { Image } from "../../images/images.db";
 import { ensureIsImageType } from "./olympia-image.utils";
 
 @Component({

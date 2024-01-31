@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { map } from "rxjs";
 import { HttpService } from "../../service/http/http.service";
+import { getDisciplineUnit } from "./sports-results.utils";
 import { SportsResult } from "./sports-results/sports-results-discipline/sports-results-discipline.component";
 import {
 	WinnersPodium,
 	WinnersPodiumAthlete,
 } from "./sports-results/sports-results-discipline/winners-podium/winners-podium.component";
-import { getDisciplineUnit } from "./sports-results.utils";
 
 export interface Athlete {
 	uuid: string;

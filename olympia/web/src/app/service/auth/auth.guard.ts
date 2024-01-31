@@ -5,7 +5,10 @@ import { AuthService } from "./auth.service";
 
 @Injectable()
 export class AuthGuard {
-	constructor(public auth: AuthService, public router: Router) {}
+	constructor(
+		public auth: AuthService,
+		public router: Router,
+	) {}
 
 	canActivate(): boolean {
 		if (this.auth.jwtIsExpired() || !this.auth.jwtIsAdminToken()) {
