@@ -21,7 +21,7 @@ export class ImageController {
 		});
 	}
 
-	@Get(Api.UUID + Api.LAST_MODIFIED)
+	@Get(Api.LAST_MODIFIED)
 	async getLastModified(
 		@Param() params: { uuid: string },
 	): Promise<{ lastModified: string }> {

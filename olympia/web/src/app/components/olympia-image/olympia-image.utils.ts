@@ -11,5 +11,5 @@ export function ensureIsImageType(blob: Blob) {
 	if (ALLOWED_IMAGE_TYPES.includes(blob.type)) {
 		return;
 	}
-	throw new Error("Image type not supported");
+	throw new Error(`Image type not supported: ${blob.type}`);
 }

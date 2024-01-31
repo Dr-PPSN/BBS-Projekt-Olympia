@@ -23,7 +23,8 @@ export class OlympiaImageComponent {
 	get uuid(): string | undefined {
 		return this._uuid;
 	}
-	@Input() defaultImagePath: string | undefined;
+	@Input() defaultImagePath = "assets/avatar.png";
+	@Input() size = "100px";
 	image: Image | undefined;
 
 	constructor(private imagesService: ImagesService) {}
@@ -38,9 +39,5 @@ export class OlympiaImageComponent {
 		if (!this.image) return;
 		ensureIsImageType(this.image.file);
 		this.image.safeUrl = URL.createObjectURL(this.image.file);
-	}
-
-	defaultImagePathIsSet() {
-		return this.defaultImagePath !== undefined;
 	}
 }
