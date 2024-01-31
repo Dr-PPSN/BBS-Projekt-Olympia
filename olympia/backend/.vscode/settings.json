@@ -6,5 +6,6 @@
 		"titleBar.activeForeground": "#FEFCFE",
 		"titleBar.inactiveBackground": "#4f2c4b",
 		"titleBar.inactiveForeground": "#FEFCFE"
-	}
+	},
+	"npm.packageManager": "npm"
 }

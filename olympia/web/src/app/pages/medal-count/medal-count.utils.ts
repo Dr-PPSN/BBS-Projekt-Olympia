@@ -35,3 +35,7 @@ export function getMedalCountData(data: {
 		},
 	];
 }
+
+export function calculateChartHeight(dataLength: number): number {
+	return 60 + dataLength * 35;
+}

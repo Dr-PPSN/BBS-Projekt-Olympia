@@ -1,10 +1,10 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Subscription } from "rxjs";
-import { SportsResultsService } from "../../sports-results.service";
 import { ToastrService } from "ngx-toastr";
-import { HttpErrorResponse } from "@angular/common/http";
+import { Subscription } from "rxjs";
 import { Column } from "../../../../components/olympia-table/olympia-table.component";
+import { SportsResultsService } from "../../sports-results.service";
 
 export interface SportsResult {
 	uuid: string;
@@ -15,11 +15,6 @@ export interface SportsResult {
 	medal: string | null;
 }
 
-export interface SportsResults {
-	male: SportsResult[];
-	female: SportsResult[];
-}
-
 @Component({
 	selector: "app-sports-results-discipline",
 	templateUrl: "./sports-results-discipline.component.html",
@@ -27,9 +22,6 @@ export interface SportsResults {
 })
 export class SportsResultsDisciplineComponent implements OnInit {
 	private routerSubscription: Subscription | null = null;
-	private discipline: string | null = null;
-	sportResultsMales: SportsResult[] = [];
-	sportResultsFemales: SportsResult[] = [];
 	loadingAnimationIsActive = signal(true);
 	columns: Column[] = [
 		{ name: "firstName", label: "Vorname" },
@@ -40,8 +32,8 @@ export class SportsResultsDisciplineComponent implements OnInit {
 	];
 
 	constructor(
+		public sportsResultsService: SportsResultsService,
 		private activatedRoute: ActivatedRoute,
-		private sportsResultsService: SportsResultsService,
 		private toastrService: ToastrService,
 	) {}
 
@@ -52,24 +44,16 @@ export class SportsResultsDisciplineComponent implements OnInit {
 	private subscribeToDisciplineChange(): void {
 		this.routerSubscription = this.activatedRoute.data.subscribe(
 			({ discipline }) => {
-				this.discipline = discipline;
+				this.sportsResultsService.setDiscipline(discipline);
 				this.loadSportsResults();
 			},
 		);
 	}
 
 	private loadSportsResults(): void {
-		if (!this.discipline) {
-			return;
-		}
-
-		this.sportResultsMales = [];
-		this.sportResultsFemales = [];
 		this.showLoadingAnimation();
-		this.sportsResultsService.getSportsResults(this.discipline).subscribe({
-			next: (data: SportsResults) => {
-				this.sportResultsMales = data.male;
-				this.sportResultsFemales = data.female;
+		this.sportsResultsService.loadSportsResults().subscribe({
+			next: () => {
 				this.hideLoadingAnimation();
 			},
 			error: (error) => {
@@ -77,13 +61,6 @@ export class SportsResultsDisciplineComponent implements OnInit {
 				this.hideLoadingAnimation();
 			},
 		});
-	}
-
-	dataIsLoaded(): boolean {
-		return (
-			this.sportResultsMales.length !== 0 &&
-			this.sportResultsFemales.length !== 0
-		);
 	}
 
 	showLoadingAnimation(): void {

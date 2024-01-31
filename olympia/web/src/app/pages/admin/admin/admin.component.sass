@@ -1,0 +1,36 @@
+@import src/styles.sass
+
+.navigation-container
+  display: flex
+  flex-flow: column
+  gap: 20px
+
+.navigation-link
+  height: 150px
+  border-radius: 20px
+  display: block
+  position: relative
+  overflow: hidden
+  background-color: #e1e1e1
+
+  .navigation-image
+    height: 150px
+    border-radius: 20px
+    object-fit: cover
+    width: 100%
+    border: none
+    user-select: none
+
+  .navigation-label
+    position: absolute
+    top: 50%
+    left: 50px
+    transform: translate(0, -50%)
+    font-size: 1.5rem
+    font-weight: bold
+    color: white
+    text-shadow: 0 0 10px black
+    user-select: none
+
+.navigation-link:hover
+  transform: scale(1.01) perspective(1px)

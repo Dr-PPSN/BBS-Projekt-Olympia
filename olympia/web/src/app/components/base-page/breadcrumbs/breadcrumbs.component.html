@@ -2,10 +2,10 @@
   @for (breadcrumb of (breadcrumbs | async); track breadcrumb; let isLast = $last) {
     <li>
       @if (isLast) {
-        <span class="breadcrumb-item">{{ breadcrumb.title }}</span>
+        <span class="breadcrumb-item text-uppercase">{{ breadcrumb.title }}</span>
       }
       @if (!isLast) {
-        <a class="breadcrumb-item" [href]="breadcrumb.url">{{ breadcrumb.title }}</a>
+        <a class="breadcrumb-item text-uppercase" [routerLink]="breadcrumb.url">{{ breadcrumb.title }}</a>
       }
     </li>
   }

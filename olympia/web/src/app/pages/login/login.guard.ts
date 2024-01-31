@@ -4,7 +4,10 @@ import { AuthService } from "../../service/auth/auth.service";
 
 @Injectable()
 export class LoginGuard {
-	constructor(public authService: AuthService, public router: Router) {}
+	constructor(
+		public authService: AuthService,
+		public router: Router,
+	) {}
 
 	canActivate(): boolean {
 		return !this.authService.isLoggedIn();
