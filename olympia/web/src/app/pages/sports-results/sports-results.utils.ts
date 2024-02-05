@@ -45,6 +45,5 @@ export function getFlagIconClass(countryCode: string): string {
 	if (!alpha2) {
 		return "";
 	}
-	console.log(`fi-${alpha2.toLowerCase()}`);
 	return `fi-${alpha2.toLowerCase()}`;
 }
