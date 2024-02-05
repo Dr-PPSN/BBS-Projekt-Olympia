@@ -2,7 +2,7 @@
   <div class="winners-podium-container">
     @if (winners.gold) {
       <div class="winner">
-        <img class="athlete-avatar" src="assets/avatar.png">
+        <olympia-image [uuid]="winners.gold.image?.uuid"></olympia-image>
         <div class="athlete-name">{{winners.gold.name}}</div>
         <div class="medal-with-result">
           <div class="medal gold">1</div>
@@ -12,7 +12,7 @@
     }
     @if (winners.silver) {
       <div class="winner">
-        <img class="athlete-avatar" src="assets/avatar.png">
+        <olympia-image [uuid]="winners.silver.image?.uuid"></olympia-image>
         <div class="athlete-name">{{winners.silver.name}}</div>
         <div class="medal-with-result">
           <div class="medal silver">2</div>
@@ -22,7 +22,7 @@
     }
     @if (winners.bronze) {
       <div class="winner">
-        <img class="athlete-avatar" src="assets/avatar.png">
+        <olympia-image [uuid]="winners.bronze.image?.uuid"></olympia-image>
         <div class="athlete-name">{{winners.bronze.name}}</div>
         <div class="medal-with-result">
           <div class="medal bronze">3</div>

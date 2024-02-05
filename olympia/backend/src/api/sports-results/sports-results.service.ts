@@ -21,9 +21,13 @@ export class SportsResultsService {
 						value: true,
 						medal: true,
 					},
+					image: {
+						uuid: true,
+					},
 				},
 				relations: {
 					sportsResult: true,
+					image: true,
 				},
 				where: {
 					gender: Gender.MALE,
@@ -42,9 +46,13 @@ export class SportsResultsService {
 						value: true,
 						medal: true,
 					},
+					image: {
+						uuid: true,
+					},
 				},
 				relations: {
 					sportsResult: true,
+					image: true,
 				},
 				where: {
 					gender: Gender.FEMALE,

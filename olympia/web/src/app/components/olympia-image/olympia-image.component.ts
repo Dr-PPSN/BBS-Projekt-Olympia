@@ -13,7 +13,7 @@ import { ensureIsImageType } from "./olympia-image.utils";
 })
 export class OlympiaImageComponent {
 	private _uuid: string | undefined;
-	@Input() set uuid(value: string) {
+	@Input() set uuid(value: string | undefined) {
 		if (!value || value === this._uuid) {
 			return;
 		}

@@ -17,6 +17,10 @@ export interface Athlete {
 		value: number;
 		medal: string | null;
 	};
+	image: null | {
+		uuid: string;
+		lastModified: Date;
+	};
 }
 export interface SportsResults {
 	male: SportsResult[];
@@ -114,6 +118,7 @@ export class SportsResultsService {
 			sportsResult: `${athlete.sportsResult.value.toPrecision(
 				3,
 			)} ${getDisciplineUnit(this.discipline)}`,
+			image: athlete.image,
 		};
 	}
 

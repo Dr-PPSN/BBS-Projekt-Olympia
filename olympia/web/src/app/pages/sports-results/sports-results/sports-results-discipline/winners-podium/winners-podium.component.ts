@@ -5,6 +5,10 @@ export interface WinnersPodiumAthlete {
 	name: string;
 	country: string;
 	sportsResult: string;
+	image: null | {
+		uuid: string;
+		lastModified: Date;
+	};
 }
 export interface WinnersPodium {
 	gold: WinnersPodiumAthlete | undefined;
