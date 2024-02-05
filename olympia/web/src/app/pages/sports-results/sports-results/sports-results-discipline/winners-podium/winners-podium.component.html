@@ -3,7 +3,15 @@
     @if (winners.gold) {
       <div class="winner">
         <olympia-image [uuid]="winners.gold.image?.uuid"></olympia-image>
-        <div class="athlete-name">{{winners.gold.name}}</div>
+        <div>
+          <span
+            class="fi" 
+            [class]="winners.gold.country.flagIconClass"
+            [title]="winners.gold.country.name">
+          </span>
+          <span>&nbsp;</span>
+          <span class="athlete-name">{{winners.gold.name}}</span>
+        </div>
         <div class="medal-with-result">
           <div class="medal gold">1</div>
           <span class="ms-1">{{winners.gold.sportsResult}}</span>
@@ -13,7 +21,15 @@
     @if (winners.silver) {
       <div class="winner">
         <olympia-image [uuid]="winners.silver.image?.uuid"></olympia-image>
-        <div class="athlete-name">{{winners.silver.name}}</div>
+        <div>
+          <span
+            class="fi" 
+            [class]="winners.silver.country.flagIconClass"
+            [title]="winners.silver.country.name">
+          </span>
+          <span>&nbsp;</span>
+          <span class="athlete-name">{{winners.silver.name}}</span>
+        </div>
         <div class="medal-with-result">
           <div class="medal silver">2</div>
           <span class="ms-1">{{winners.silver.sportsResult}}</span>
@@ -23,7 +39,15 @@
     @if (winners.bronze) {
       <div class="winner">
         <olympia-image [uuid]="winners.bronze.image?.uuid"></olympia-image>
-        <div class="athlete-name">{{winners.bronze.name}}</div>
+        <div>
+          <span
+            class="fi" 
+            [class]="winners.bronze.country.flagIconClass"
+            [title]="winners.bronze.country.name">
+          </span>
+          <span>&nbsp;</span>
+          <span class="athlete-name">{{winners.bronze.name}}</span>
+        </div>
         <div class="medal-with-result">
           <div class="medal bronze">3</div>
           <span class="ms-1">{{winners.bronze.sportsResult}}</span>

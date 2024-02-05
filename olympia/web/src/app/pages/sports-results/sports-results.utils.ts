@@ -1,3 +1,5 @@
+import * as i18nIsoCountries from "i18n-iso-countries";
+
 export function getDisciplineFromRouteParameter(
 	routeParameter: string,
 ): string {
@@ -28,4 +30,21 @@ export function getDisciplineUnit(discipline: string | null): string {
 		default:
 			return "";
 	}
+}
+
+export function getCountryName(countryCode: string): string | undefined {
+	i18nIsoCountries.registerLocale(require("i18n-iso-countries/langs/de.json"));
+	return i18nIsoCountries.getName(countryCode.toLowerCase(), "de", {
+		select: "official",
+	});
+}
+
+export function getFlagIconClass(countryCode: string): string {
+	i18nIsoCountries.registerLocale(require("i18n-iso-countries/langs/de.json"));
+	const alpha2 = i18nIsoCountries.alpha3ToAlpha2(countryCode);
+	if (!alpha2) {
+		return "";
+	}
+	console.log(`fi-${alpha2.toLowerCase()}`);
+	return `fi-${alpha2.toLowerCase()}`;
 }

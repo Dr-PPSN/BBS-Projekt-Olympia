@@ -3,7 +3,10 @@ import { Component, Input } from "@angular/core";
 export interface WinnersPodiumAthlete {
 	uuid: string;
 	name: string;
-	country: string;
+	country: {
+		name: string;
+		flagIconClass: string;
+	};
 	sportsResult: string;
 	image: null | {
 		uuid: string;

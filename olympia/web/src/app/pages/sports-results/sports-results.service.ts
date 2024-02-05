@@ -1,7 +1,11 @@
 import { Injectable } from "@angular/core";
 import { map } from "rxjs";
 import { HttpService } from "../../service/http/http.service";
-import { getDisciplineUnit } from "./sports-results.utils";
+import {
+	getCountryName,
+	getDisciplineUnit,
+	getFlagIconClass,
+} from "./sports-results.utils";
 import { SportsResult } from "./sports-results/sports-results-discipline/sports-results-discipline.component";
 import {
 	WinnersPodium,
@@ -114,7 +118,10 @@ export class SportsResultsService {
 		return {
 			uuid: athlete.uuid,
 			name: `${athlete.firstName} ${athlete.lastName}`,
-			country: athlete.country,
+			country: {
+				name: getCountryName(athlete.country) || "",
+				flagIconClass: getFlagIconClass(athlete.country) || "",
+			},
 			sportsResult: `${athlete.sportsResult.value.toPrecision(
 				3,
 			)} ${getDisciplineUnit(this.discipline)}`,
