@@ -1,1 +1,32 @@
-<p>uebersicht works!</p>
+<form class="w-100" [formGroup]="formGroup">
+  <mat-form-field class="w-100">
+    <mat-label>Land</mat-label>
+    <input
+      matInput
+      type="text"
+      aria-label="Number"
+      [matAutocomplete]="auto"
+      formControlName="country"
+      >
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+      @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">{{option}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<router-outlet></router-outlet>
+
+<!-- <div class="round-corners">
+  <google-chart
+    [type]="ChartType.GeoChart"
+    [data]="chartData"
+    [dynamicResize]="true"
+    style="width: 100%;"
+    [options]="geoChartOptions"
+    (regionClick)="onSelect($event)"
+    (select)="onSelect($event)"
+    [columns]="chartColumns"
+  ></google-chart>
+</div> -->

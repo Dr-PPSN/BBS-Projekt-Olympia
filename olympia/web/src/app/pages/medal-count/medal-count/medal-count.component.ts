@@ -9,6 +9,16 @@ import {
 	getMedalCountData,
 } from "../medal-count.utils";
 
+export interface MedalCount {
+	country: string;
+	gold: number;
+	silver: number;
+	bronze: number;
+}
+export interface MedalCountDto {
+	medalCount: MedalCount[];
+}
+
 @Component({
 	selector: "app-medaillenspiegel",
 	templateUrl: "./medal-count.component.html",
@@ -41,9 +51,10 @@ export class MedalCountComponent implements OnInit {
 
 		this.showLoadingAnimation();
 		this.medalCountService.getMedalCount().subscribe({
-			next: (data) => {
-				this.labels = getCountries(data);
-				this.data = getMedalCountData(data);
+			next: (data: MedalCountDto) => {
+				console.log(data);
+				this.labels = getCountries(data.medalCount);
+				this.data = getMedalCountData(data.medalCount);
 				this.chartHeight = calculateChartHeight(this.labels.length);
 				this.hideLoadingAnimation();
 			},

@@ -25,25 +25,25 @@ export class UserController {
 
 	@HttpCode(200)
 	@Post(Api.INVITE_USER)
-	async inviteUser(@Body() body): Promise<User> {
-		return await this.userSerivce.inviteUser(body);
+	async inviteUser(@Body() user: User): Promise<User> {
+		return await this.userSerivce.inviteUser(user);
 	}
 
 	@HttpCode(200)
 	@Post(Api.ADD_USER_DEBUG)
-	async addUserDebug(@Body() body): Promise<User> {
-		return await this.userSerivce.addUserWithPassword(body);
+	async addUserDebug(@Body() user: User): Promise<User> {
+		return await this.userSerivce.addUserWithPassword(user);
 	}
 
 	@HttpCode(200)
 	@Post(Api.EDIT_USER)
-	async editUser(@Body() body): Promise<User> {
-		return await this.userSerivce.editUser(body);
+	async editUser(@Body() user: User): Promise<User> {
+		return await this.userSerivce.editUser(user);
 	}
 
 	@HttpCode(200)
 	@Post(Api.DELETE_USER)
-	async deleteUser(@Body() body): Promise<User> {
-		return await this.userSerivce.deleteUser(body);
+	async deleteUser(@Body() user: User): Promise<User> {
+		return await this.userSerivce.deleteUser(user);
 	}
 }

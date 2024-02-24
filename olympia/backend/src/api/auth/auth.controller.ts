@@ -2,15 +2,22 @@ import {
 	Body,
 	Controller,
 	HttpCode,
-	HttpException,
 	Post,
 	Request,
 	UseGuards,
 } from "@nestjs/common";
-import { TOKEN_EXPIRED_OR_INVALID } from "../../user/tokens/token.constant";
 import { Api } from "./auth.constants";
 import { AuthService } from "./auth.service";
 import { LocalAuthGuard } from "./guards/local-auth.guard";
+
+export class ChangeEmailDto {
+	email: string;
+}
+
+export class ChangePasswordDto {
+	token: string;
+	newPassword: string;
+}
 
 @Controller(Api.TITEL)
 export class AuthController {
@@ -26,13 +33,13 @@ export class AuthController {
 
 	@Post(Api.REQUEST_CHANGE_PASSWORD)
 	@HttpCode(200)
-	async requestChangePassword(@Body() body) {
-		this.authService.sendChangePasswordMail(body.email);
+	async requestChangePassword(@Body() changeEmailDto: ChangeEmailDto) {
+		this.authService.sendChangePasswordMail(changeEmailDto.email);
 	}
 
 	@Post(Api.CHANGE_PASSWORD)
 	@HttpCode(200)
-	async changePassword(@Body() body): Promise<void> {
-		return await this.authService.changePassword(body.token, body.newPassword);
+	async changePassword(@Body() changePasswordDto: ChangePasswordDto): Promise<void> {
+		return await this.authService.changePassword(changePasswordDto.token, changePasswordDto.newPassword);
 	}
 }

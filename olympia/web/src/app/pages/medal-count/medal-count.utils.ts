@@ -1,35 +1,27 @@
-import * as i18nIsoCountries from "i18n-iso-countries";
+import { getCountryName } from "../../utils/country.utils";
 import { Medals } from "./medal-count.constant";
+import { MedalCount } from "./medal-count/medal-count.component";
 
-export function getCountries(data: { medalCount: { country: string }[] }) {
-	return data.medalCount.map((entry: { country: string }) =>
+export function getCountries(medalCount: MedalCount[]) {
+	return medalCount.map((entry: { country: string }) =>
 		getCountryName(entry.country),
 	);
 }
 
-function getCountryName(countryCode: string) {
-	i18nIsoCountries.registerLocale(require("i18n-iso-countries/langs/de.json"));
-	return i18nIsoCountries.getName(countryCode.toLowerCase(), "de", {
-		select: "official",
-	});
-}
-
-export function getMedalCountData(data: {
-	medalCount: { gold: number; silver: number; bronze: number }[];
-}) {
+export function getMedalCountData(medalCount: MedalCount[]) {
 	return [
 		{
-			data: data.medalCount.map((entry: { gold: number }) => entry.gold),
+			data: medalCount.map((entry: { gold: number }) => entry.gold),
 			label: Medals.Gold.TITLE,
 			backgroundColor: Medals.Gold.COLOR,
 		},
 		{
-			data: data.medalCount.map((entry: { silver: number }) => entry.silver),
+			data: medalCount.map((entry: { silver: number }) => entry.silver),
 			label: Medals.Silver.TITLE,
 			backgroundColor: Medals.Silver.COLOR,
 		},
 		{
-			data: data.medalCount.map((entry: { bronze: number }) => entry.bronze),
+			data: medalCount.map((entry: { bronze: number }) => entry.bronze),
 			label: Medals.Bronze.TITLE,
 			backgroundColor: Medals.Bronze.COLOR,
 		},
