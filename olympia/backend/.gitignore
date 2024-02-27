@@ -36,3 +36,5 @@ lerna-debug.log*
 
 credentials.ts
 package-lock.json
+
+.env

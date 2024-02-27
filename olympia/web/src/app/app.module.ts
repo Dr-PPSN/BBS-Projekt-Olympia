@@ -14,6 +14,7 @@ import { BasePageComponent } from "./components/base-page/base-page.component";
 import { BreadcrumbsComponent } from "./components/base-page/breadcrumbs/breadcrumbs.component";
 import { HoverOverMenuComponent } from "./components/hover-over-menu/hover-over-menu.component";
 import { OlympiaTableComponent } from "./components/olympia-table/olympia-table.component";
+import { ImagesModule } from "./images/images.module";
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { LoginGuard } from "./pages/login/login.guard";
 import { NotFoundComponent } from "./pages/not-found/not-found.component";
@@ -51,6 +52,7 @@ import { HttpService } from "./service/http/http.service";
 		MatMenuModule,
 		MatTableModule,
 		OlympiaTableComponent,
+		ImagesModule,
 	],
 	providers: [
 		HttpService,

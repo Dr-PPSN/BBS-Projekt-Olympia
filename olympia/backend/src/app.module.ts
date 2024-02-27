@@ -4,6 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AdminModule } from "./api/admin/admin.module";
 import { AuthModule } from "./api/auth/auth.module";
 import { CountriesModule } from "./api/countries/countries.module";
+import { ImageModule } from "./api/images/image.module";
 import { MedalCountModule } from "./api/medal-count/medal-count.module";
 import { SportsResultsModule } from "./api/sports-results/sports-results.module";
 import { ALL_ROUTES } from "./app.constants";
@@ -37,6 +38,7 @@ import { UserModule } from "./user/user.module";
 		MedalCountModule,
 		MailModule,
 		UserModule,
+		ImageModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

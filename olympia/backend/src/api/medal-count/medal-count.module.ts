@@ -5,5 +5,6 @@ import { MedalCountService } from "./medal-count.service";
 @Module({
 	providers: [MedalCountService],
 	controllers: [MedalCountController],
+	exports: [MedalCountService],
 })
 export class MedalCountModule {}

@@ -24,7 +24,7 @@ export namespace Medals {
 		export const COLOR = "gold";
 	}
 	export namespace Silver {
-		export const TITLE = "Silver";
+		export const TITLE = "Silber";
 		export const COLOR = "silver";
 	}
 	export namespace Bronze {

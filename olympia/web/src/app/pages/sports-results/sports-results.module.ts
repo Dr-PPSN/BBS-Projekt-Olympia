@@ -9,6 +9,7 @@ import { SportsResultsService } from "./sports-results.service";
 import { SportsResultsDisciplineComponent } from "./sports-results/sports-results-discipline/sports-results-discipline.component";
 import { WinnersPodiumComponent } from "./sports-results/sports-results-discipline/winners-podium/winners-podium.component";
 import { SportsResultsComponent } from "./sports-results/sports-results.component";
+import { OlympiaImageComponent } from "../../components/olympia-image/olympia-image.component";
 
 @NgModule({
 	declarations: [
@@ -23,6 +24,7 @@ import { SportsResultsComponent } from "./sports-results/sports-results.componen
 		MatExpansionModule,
 		MatProgressSpinnerModule,
 		OlympiaTableComponent,
+		OlympiaImageComponent,
 	],
 	providers: [SportsResultsService],
 })

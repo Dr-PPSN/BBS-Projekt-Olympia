@@ -62,6 +62,9 @@ export class UserService {
 	}
 
 	async findUserWithEmail(email: string): Promise<User> {
+		if (!email) {
+			throw new Error("No email provided");
+		}
 		return await this.userRepository.findOne({
 			where: { email },
 		});

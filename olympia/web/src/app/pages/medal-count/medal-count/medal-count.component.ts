@@ -3,7 +3,21 @@ import { Component, OnInit, signal } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { DiagramSettings } from "../medal-count.constant";
 import { MedalCountService } from "../medal-count.service";
-import { getCountries, getMedalCountData } from "../medal-count.utils";
+import {
+	calculateChartHeight,
+	getCountries,
+	getMedalCountData,
+} from "../medal-count.utils";
+
+export interface MedalCount {
+	country: string;
+	gold: number;
+	silver: number;
+	bronze: number;
+}
+export interface MedalCountDto {
+	medalCount: MedalCount[];
+}
 
 @Component({
 	selector: "app-medaillenspiegel",
@@ -19,6 +33,7 @@ export class MedalCountComponent implements OnInit {
 		label: string;
 		backgroundColor: string;
 	}[] = [];
+	chartHeight = 150;
 	loadingAnimationIsActive = signal(true);
 
 	constructor(
@@ -36,9 +51,11 @@ export class MedalCountComponent implements OnInit {
 
 		this.showLoadingAnimation();
 		this.medalCountService.getMedalCount().subscribe({
-			next: (data) => {
-				this.labels = getCountries(data);
-				this.data = getMedalCountData(data);
+			next: (data: MedalCountDto) => {
+				console.log(data);
+				this.labels = getCountries(data.medalCount);
+				this.data = getMedalCountData(data.medalCount);
+				this.chartHeight = calculateChartHeight(this.labels.length);
 				this.hideLoadingAnimation();
 			},
 			error: (error) => {

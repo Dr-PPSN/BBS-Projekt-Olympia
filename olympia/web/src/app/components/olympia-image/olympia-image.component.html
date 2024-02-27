@@ -1,0 +1,18 @@
+
+<div [style.width]="size" [style.height]="size">
+  @if (image && image.safeUrl) {
+    <img 
+      class="olympia-image"
+      [src]="image.safeUrl"
+      [style.width]="size"
+      [style.height]="size"
+    >
+  } @else {
+    <img 
+      [src]="defaultImagePath"
+      class="olympia-image"
+      [style.width]="size"
+      [style.height]="size"
+    >
+  }
+</div>

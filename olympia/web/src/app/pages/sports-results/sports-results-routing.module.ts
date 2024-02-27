@@ -14,7 +14,6 @@ const disciplineTitleResolver: ResolveFn<string> = (
 	route: ActivatedRouteSnapshot,
 	state: RouterStateSnapshot,
 ) => {
-	// biome-ignore lint/complexity/useLiteralKeys: ignoriert
 	const discipline = route.params["discipline"];
 	return getDisciplineFromRouteParameter(discipline);
 };
@@ -23,7 +22,6 @@ const disciplineResolver: ResolveFn<string> = (
 	route: ActivatedRouteSnapshot,
 	state: RouterStateSnapshot,
 ) => {
-	// biome-ignore lint/complexity/useLiteralKeys: ignoriert
 	return route.params["discipline"];
 };
 

@@ -1,9 +1,11 @@
 import { Module } from "@nestjs/common";
 import { CountriesController } from "./countries.controller";
-import { CountrieesService } from "./countries.service";
+import { CountriesService } from "./countries.service";
+import { MedalCountModule } from "../medal-count/medal-count.module";
 
 @Module({
-	providers: [CountrieesService],
+	providers: [CountriesService],
 	controllers: [CountriesController],
+	imports: [MedalCountModule],
 })
 export class CountriesModule {}

@@ -27,7 +27,10 @@ export class SportsResult {
 	@JoinColumn()
 	athlete: Athlete;
 
-	@Column()
+	@Column({
+		type: "double precision",
+		nullable: true,
+	})
 	value: number;
 
 	@Column({

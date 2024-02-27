@@ -1,11 +1,13 @@
 import {
 	Column,
 	Entity,
+	JoinColumn,
 	ManyToOne,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	Unique,
 } from "typeorm";
+import { Image } from "../../images/entity/image.entity";
 import { Discipline } from "./discipline.entity";
 import { SportsResult } from "./sports_result.entity";
 
@@ -56,4 +58,8 @@ export class Athlete {
 		(sportsResult) => sportsResult.athlete,
 	)
 	sportsResult: SportsResult;
+
+	@OneToOne(() => Image, { onDelete: "SET NULL" })
+	@JoinColumn()
+	image: Image;
 }

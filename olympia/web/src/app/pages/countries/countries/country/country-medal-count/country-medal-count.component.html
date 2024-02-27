@@ -1,0 +1,39 @@
+
+<div class="medal-count-container">
+
+  <span class="heading">Medaillenspiegel</span>
+  @if (!loadingAnimationIsActive()) {
+    @if (countryWonSomeMedals()) {
+      <div class="medal-count-center-container">
+        <div class="medal-count">
+          <div
+            class="medal gold"
+            [style.flex-grow]="countriesService.medalCount?.gold"
+            title="Gold">
+            <span>{{countriesService.medalCount?.gold}}</span>
+          </div>
+          <div
+            class="medal silver"
+            [style.flex-grow]="countriesService.medalCount?.silver"
+            title="Silber">
+            <span>{{countriesService.medalCount?.silver}}</span>
+          </div>
+          <div
+            class="medal bronze"
+            [style.flex-grow]="countriesService.medalCount?.bronze"
+            title="Bronze">
+            <span>{{countriesService.medalCount?.bronze}}</span>
+          </div>
+        </div>
+      </div>
+
+    } @else {
+      <h3 class="w-100 d-flex justify-content-center">Keine Daten vorhanden</h3>
+    }
+  } @else {
+    <div class="w-100 d-flex justify-content-center">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  }
+
+</div>
