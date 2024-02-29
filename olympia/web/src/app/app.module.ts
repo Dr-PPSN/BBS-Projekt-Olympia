@@ -21,6 +21,7 @@ import { getToken } from "./service/auth/auth.constant";
 import { AuthGuard } from "./service/auth/auth.guard";
 import { AuthService } from "./service/auth/auth.service";
 import { HttpService } from "./service/http/http.service";
+import { TestComponent } from './test/test.component';
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,7 @@ import { HttpService } from "./service/http/http.service";
 		NotFoundComponent,
 		BasePageComponent,
 		BreadcrumbsComponent,
+  TestComponent,
 	],
 	imports: [
 		BrowserModule,

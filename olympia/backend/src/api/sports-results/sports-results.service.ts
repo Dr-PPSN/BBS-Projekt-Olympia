@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Athlete, Gender } from "./entity/athlete.entity";
@@ -54,5 +54,21 @@ export class SportsResultsService {
 				},
 			}),
 		};
+	}
+
+	async saveSportsResult(athleteId: string, updatedData: any): Promise<Athlete> {
+		// Finde den Athleten anhand der ID
+		const athlete = await this.athleteRepository.findOne({ where: { uuid: athleteId } });
+
+		if (!athlete) {
+			throw new NotFoundException(`Athlete with ID ${athleteId} not found`);
+		}
+
+		this.athleteRepository.merge(athlete, updatedData);
+
+		// Speichere die Änderungen in der Datenbank
+		await this.athleteRepository.save(athlete);
+
+		return athlete;
 	}
 }

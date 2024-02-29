@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { map } from "rxjs";
+import { Observable, map } from "rxjs";
 import { HttpService } from "../../service/http/http.service";
 import { SportsResult } from "./sports-results/sports-results-discipline/sports-results-discipline.component";
 
@@ -19,6 +19,11 @@ export class SportsResultsService {
 			}),
 		);
 	}
+
+	saveSportsResult(discipline: string, row: any): Observable<any> {
+		const url = `/sports-results/${discipline}/save`;
+		return this.httpService.postData(url, row);
+	  }
 
 	private transformSportsResults(
 		data: {
@@ -42,28 +47,5 @@ export class SportsResultsService {
 				medal: sportsResult.sportsResult.medal,
 			};
 		});
-
-//biome-ignore lint:any
-let heros: any[] = [
-	{ id: 12, name: 
-	{	
-	value: 12, 
-	medal: "gold"
-	} 
-	},
-	];
-
-	heros[0].name.value
-
-
-
 	}
-
-
-
-
-
-
-
-
 }

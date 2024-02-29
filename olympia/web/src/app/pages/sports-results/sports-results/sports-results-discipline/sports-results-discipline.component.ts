@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { Component, OnInit, signal } from "@angular/core";
+import { Component, OnInit, Output, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
@@ -20,6 +20,8 @@ export interface SportsResults {
 	female: SportsResult[];
 }
 
+
+
 @Component({
 	selector: "app-sports-results-discipline",
 	templateUrl: "./sports-results-discipline.component.html",
@@ -27,11 +29,12 @@ export interface SportsResults {
 })
 export class SportsResultsDisciplineComponent implements OnInit {
 	private routerSubscription: Subscription | null = null;
-	private discipline: string | null = null;
+	private discipline: string = '';
 	sportResultsMales: SportsResult[] = [];
 	sportResultsFemales: SportsResult[] = [];
 	loadingAnimationIsActive = signal(true);
-	columns: Column[] = [
+	
+	@Output() columns: Column[] = [
 		{ name: "firstName", label: "Vorname" },
 		{ name: "lastName", label: "Nachname" },
 		{ name: "country", label: "Land" },
@@ -100,5 +103,9 @@ export class SportsResultsDisciplineComponent implements OnInit {
 
 	ngOnDestroy(): void {
 		this.routerSubscription?.unsubscribe();
+	}
+
+	callSaveMethodForTable( row: any){
+		this.sportsResultsService.saveSportsResult(this.discipline, row);
 	}
 }
